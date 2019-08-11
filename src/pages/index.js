@@ -1,21 +1,42 @@
 import React from "react"
-import { Link } from "gatsby"
 
-import Layout from "../components/layout"
-import Image from "../components/image"
-import SEO from "../components/seo"
+import Layout from "../components/layout/layout"
+import SEO from "../components/layout/seo"
 
+import Container from '@material-ui/core/Container';
+import Typography from '@material-ui/core/Typography';
+import MuiLink from '@material-ui/core/Link';
+import Box from '@material-ui/core/Box';
+import Link from '../components/shared/link';
+
+const Copyright = () => (
+	<Typography variant="body2" color="textSecondary" align="center">
+		{'Copyright © '}
+		<MuiLink color="inherit" href="https://material-ui.com/">
+			Your Website
+      </MuiLink>{' '}
+		{new Date().getFullYear()}
+		{'. Built with '}
+		<MuiLink color="inherit" href="https://material-ui.com/">
+			Material-UI.
+      </MuiLink>
+	</Typography>
+)
 const IndexPage = () => (
-  <Layout>
-    <SEO title="Home" />
-    <h1>Hi people</h1>
-    <p>Welcome to your new Gatsby site.</p>
-    <p>Now go build something great.</p>
-    <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
-      <Image />
-    </div>
-    <Link to="/page-2/">Go to page 2</Link>
-  </Layout>
+	<Layout>
+		<SEO title="Home" />
+		<Container maxWidth="sm">
+			<Box my={4}>
+				<Typography variant="h4" component="h1" gutterBottom>
+					Gatsby v4-beta example
+        </Typography>
+				<Link to="/login" color="secondary">
+					Go to the login page
+        </Link>
+				<Copyright />
+			</Box>
+		</Container>
+	</Layout >
 )
 
 export default IndexPage
