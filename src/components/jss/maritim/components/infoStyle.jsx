@@ -24,7 +24,7 @@ import {
   roseColor,
   grayColor,
   title
-} from "assets/jss/material-kit-react.jsx";
+} from "../../maritim.jsx";
 
 const infoStyle = {
   infoArea: {
