@@ -9,10 +9,18 @@ import classNames from "classnames"
 // @material-ui/core components
 import withStyles from "@material-ui/core/styles/withStyles"
 
+import Energy from "@material-ui/icons/AutoRenew"
+import Biomedic from "@material-ui/icons/NaturePeople"
+import IT from "@material-ui/icons/DevicesOther"
+import Food from "@material-ui/icons/FastFood"
+import Other from "@material-ui/icons/CardGiftcard"
+
 import GridContainer from "../components/shared/Grid/GridContainer.jsx"
 import GridItem from "../components/shared/Grid/GridItem.jsx"
+
 import Button from "../components/shared/CustomButtons/Button.jsx"
 import Parallax from "../components/shared/Parallax/Parallax.jsx"
+import NavPills from "../components/shared/NavPills/NavPills.jsx"
 
 import landingPageStyle from "../components/jss/maritim/views/landingPage.jsx"
 
@@ -29,7 +37,7 @@ const IndexPage = ({ classes }) => (
       <Parallax filter image={require("../images/landing-bg.jpg")}>
         <GridContainer>
           <GridContainer className={classes.container}>
-            <GridItem xs={12} sm={12} md={6}>
+            <GridItem xs={12} sm={12} md={12}>
               <h1 className={classes.title}>
                 Your Innovations Starts With Us.
               </h1>
@@ -53,8 +61,38 @@ const IndexPage = ({ classes }) => (
             </GridItem>
           </GridContainer>
           <GridContainer className={classes.container}>
-            <GridItem xs={12} sm={12} md={6}>
-              <h1 className={classes.title}>Your life wil be much easier</h1>
+            <GridItem xs={12} sm={12} md={12}>
+              <h2 className={classes.title2}>Or choose by categories</h2>
+              <NavPills
+                alignCenter
+                tabs={[
+                  {
+                    tabButton: "Energy",
+                    tabIcon: Energy,
+                    color: "success",
+                  },
+                  {
+                    tabButton: "IT",
+                    tabIcon: IT,
+                    color: "warning",
+                  },
+                  {
+                    tabButton: "Biomedic",
+                    tabIcon: Biomedic,
+                    color: "danger",
+                  },
+                  {
+                    tabButton: "Food",
+                    tabIcon: Food,
+                    color: "rose",
+                  },
+                  {
+                    tabButton: "Others",
+                    tabIcon: Other,
+                    color: "info",
+                  },
+                ]}
+              />
             </GridItem>
           </GridContainer>
         </GridContainer>
