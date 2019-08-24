@@ -58,12 +58,7 @@ class ProductSection extends React.Component {
           </GridContainer>
         </div>
         <div className={classes.card}>
-          <GridContainer justify="center">
-            <GridItem xs={12} sm={5} md={5} className={classes.cardWrapper}>
-              <a href="#">
-                <img src={image} alt="..." className={classes.cardImage} />
-              </a>
-            </GridItem>
+          <GridContainer justify="center" className={classes.cardReverse}>
             <GridItem xs={12} sm={7} md={7} className={classes.cardWrapper}>
               <div className={classes.cardCategoryWrapper}>
                 <h6 className={classes.cardCategory}>Category name</h6>
@@ -85,6 +80,11 @@ class ProductSection extends React.Component {
                 </a>{" "}
                 2 days ago
               </p>
+            </GridItem>
+            <GridItem xs={12} sm={5} md={5} className={classes.cardWrapper}>
+              <a href="#">
+                <img src={image} alt="..." className={classes.cardImage} />
+              </a>
             </GridItem>
           </GridContainer>
         </div>

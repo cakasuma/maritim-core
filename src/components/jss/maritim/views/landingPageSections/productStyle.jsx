@@ -19,22 +19,23 @@ import { title } from "../../../maritim.jsx"
 
 const productStyle = {
   section: {
-    padding: "70px 0",
     textAlign: "center",
     width: "83%",
     marginLeft: "auto",
     marginRight: "auto",
+    "@media (max-width: 575px)": {
+      width: "100%",
+    },
   },
   card: {
     marginTop: "50px",
-    marginBottom: "80px",
+    marginBottom: "50px",
   },
   cardWrapper: {
     width: "100%",
     position: "relative",
     minHeight: "1px",
-    paddingLeft: "25px",
-    paddingRight: "25px",
+    padding: "10px",
     textAlign: "left",
     justifyContent: "center",
     alignSelf: "center",
@@ -45,7 +46,7 @@ const productStyle = {
       "0 5px 15px -8px rgba(0, 0, 0, 0.24), 0 8px 10px -5px rgba(0, 0, 0, 0.2)",
     borderRadius: "6px",
     pointerEvents: "none",
-    maxWidth: "300px",
+    maxWidth: "320px",
   },
   cardCategoryWrapper: {
     color: "#00acc1",
@@ -64,9 +65,12 @@ const productStyle = {
     marginBottom: "0.75rem",
     textDecoration: "none",
   },
+  cardReverse: {
+    flexWrap: "wrap-reverse",
+  },
   cardDescription: {
     color: "#999",
-    lineHeight: "1.313rem",
+    lineHeight: "1.5rem",
   },
   cardAuthor: {
     fontSize: "14px",
@@ -76,7 +80,7 @@ const productStyle = {
   title: {
     ...title,
     marginBottom: "1rem",
-    marginTop: "30px",
+    marginTop: "60px",
     minHeight: "32px",
     textDecoration: "none",
   },

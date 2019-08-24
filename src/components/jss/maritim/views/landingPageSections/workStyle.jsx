@@ -15,31 +15,34 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import { title } from "../../../maritim.jsx";
+import { title } from "../../../maritim.jsx"
 
 const workStyle = {
   section: {
-    padding: "70px 0"
+    paddingBottom: "70px",
   },
   title: {
     ...title,
-    marginBottom: "50px",
-    marginTop: "30px",
+    marginBottom: "20px",
+    marginTop: "10px",
     minHeight: "32px",
     textDecoration: "none",
-    textAlign: "center"
+    textAlign: "center",
   },
   description: {
     color: "#999",
-    textAlign: "center"
+    textAlign: "center",
+    fontSize: "1.2rem",
   },
   textCenter: {
-    textAlign: "center"
+    textAlign: "center",
   },
   textArea: {
-    marginRight: "15px",
-    marginLeft: "15px"
-  }
-};
+    margin: "15px",
+  },
+  fullWidth: {
+    width: "100%",
+  },
+}
 
-export default workStyle;
+export default workStyle

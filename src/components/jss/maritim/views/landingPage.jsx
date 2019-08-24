@@ -24,6 +24,9 @@ const landingPageStyle = {
     justifyContent: "center",
     textAlign: "center",
     ...container,
+    "@media (min-width: 320px)": {
+      maxWidth: "90%",
+    },
   },
   title: {
     ...title,

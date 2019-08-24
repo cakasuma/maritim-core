@@ -17,8 +17,7 @@
 */
 const parallaxStyle = {
   parallax: {
-    height: "90vh",
-    maxHeight: "1000px",
+    height: "800px",
     overflow: "hidden",
     position: "relative",
     backgroundPosition: "center center",
@@ -27,11 +26,17 @@ const parallaxStyle = {
     padding: "0",
     border: "0",
     display: "flex",
-    alignItems: "center"
+    alignItems: "center",
+    "@media (max-width: 575px)": {
+      height: "950px",
+    },
+    "@media (max-width: 400px)": {
+      height: "1050px",
+    },
   },
   filter: {
     "&:before": {
-      background: "rgba(0, 0, 0, 0.5)"
+      background: "rgba(0, 0, 0, 0.5)",
     },
     "&:after,&:before": {
       position: "absolute",
@@ -41,12 +46,12 @@ const parallaxStyle = {
       display: "block",
       left: "0",
       top: "0",
-      content: "''"
-    }
+      content: "''",
+    },
   },
   small: {
-    height: "380px"
-  }
-};
+    height: "380px",
+  },
+}
 
-export default parallaxStyle;
+export default parallaxStyle
