@@ -16,39 +16,58 @@
 
 */
 /*eslint-disable*/
-import React from "react";
+import React from "react"
 // react components for routing our app without refresh
-import { Link } from "gatsby";
+import { Link } from "gatsby"
 
 // @material-ui/core components
-import withStyles from "@material-ui/core/styles/withStyles";
-import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
-import Tooltip from "@material-ui/core/Tooltip";
+import withStyles from "@material-ui/core/styles/withStyles"
+import List from "@material-ui/core/List"
+import ListItem from "@material-ui/core/ListItem"
+import Tooltip from "@material-ui/core/Tooltip"
 
 // @material-ui/icons
-import { Apps, CloudDownload } from "@material-ui/icons";
+import { Apps, Search } from "@material-ui/icons"
 
 // core components
-import CustomDropdown from "../CustomDropdown/CustomDropdown.jsx";
-import Button from "../CustomButtons/Button.jsx";
+import CustomDropdown from "../CustomDropdown/CustomDropdown.jsx"
+import Button from "../CustomButtons/Button.jsx"
+import CustomInput from "../CustomInput/CustomInput.jsx"
 
-import headerLinksStyle from "../../jss/maritim/components/headerLinksStyle.jsx";
+import headerLinksStyle from "../../jss/maritim/components/headerLinksStyle.jsx"
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faTwitter, faFacebook, faInstagram } from '@fortawesome/free-brands-svg-icons'
+import profileImage from "../../../images/faces/avatar.jpg"
 
 function HeaderLinks({ ...props }) {
-  const { classes } = props;
+  const { classes } = props
   return (
     <List className={classes.list}>
+      <ListItem className={classes.listItem}>
+        <CustomInput
+          white
+          inputRootCustomClasses={classes.inputRootCustomClasses}
+          formControlProps={{
+            className: classes.formControl,
+          }}
+          inputProps={{
+            placeholder: "Search",
+            inputProps: {
+              "aria-label": "Search",
+              className: classes.searchInput,
+            },
+          }}
+        />
+        <Button justIcon round color="white">
+          <Search className={classes.searchIcon} />
+        </Button>
+      </ListItem>
       <ListItem className={classes.listItem}>
         <CustomDropdown
           noLiPadding
           buttonText="Categories"
           buttonProps={{
             className: classes.navLink,
-            color: "transparent"
+            color: "transparent",
           }}
           buttonIcon={Apps}
           dropdownList={[
@@ -57,22 +76,22 @@ function HeaderLinks({ ...props }) {
             </Link>,
             <Link to="/" className={classes.dropdownLink}>
               Energi
-          </Link>,
+            </Link>,
             <Link to="/" className={classes.dropdownLink}>
               TIK
-        </Link>,
+            </Link>,
             <Link to="/" className={classes.dropdownLink}>
               Material Maju
-      </Link>,
+            </Link>,
             <Link to="/" className={classes.dropdownLink}>
               Lainnya
-    </Link>
+            </Link>,
           ]}
         />
       </ListItem>
       <ListItem className={classes.listItem}>
         <Link
-          to='/'
+          to="/"
           color="transparent"
           target="_blank"
           className={classes.navLink}
@@ -81,58 +100,34 @@ function HeaderLinks({ ...props }) {
         </Link>
       </ListItem>
       <ListItem className={classes.listItem}>
-        <Tooltip
-          id="instagram-twitter"
-          title="Follow us on twitter"
-          placement={window.innerWidth > 959 ? "top" : "left"}
-          classes={{ tooltip: classes.tooltip }}
+        <Button
+          href="#pablo"
+          className={classes.registerNavLink}
+          onClick={e => e.preventDefault()}
+          color="rose"
+          round
         >
-          <Button
-            href="https://twitter.com/CreativeTim?ref=creativetim"
-            target="_blank"
-            color="transparent"
-            className={classes.navLink}
-          >
-            <FontAwesomeIcon icon={faTwitter} className={classes.socialIcons} />
-          </Button>
-        </Tooltip>
+          Login
+        </Button>
       </ListItem>
       <ListItem className={classes.listItem}>
-        <Tooltip
-          id="instagram-facebook"
-          title="Follow us on facebook"
-          placement={window.innerWidth > 959 ? "top" : "left"}
-          classes={{ tooltip: classes.tooltip }}
-        >
-          <Button
-            color="transparent"
-            href="https://www.facebook.com/CreativeTim?ref=creativetim"
-            target="_blank"
-            className={classes.navLink}
-          >
-            <FontAwesomeIcon icon={faFacebook} className={classes.socialIcons} />
-          </Button>
-        </Tooltip>
-      </ListItem>
-      <ListItem className={classes.listItem}>
-        <Tooltip
-          id="instagram-tooltip"
-          title="Follow us on instagram"
-          placement={window.innerWidth > 959 ? "top" : "left"}
-          classes={{ tooltip: classes.tooltip }}
-        >
-          <Button
-            color="transparent"
-            href="https://www.instagram.com/CreativeTimOfficial?ref=creativetim"
-            target="_blank"
-            className={classes.navLink}
-          >
-            <FontAwesomeIcon icon={faInstagram} className={classes.socialIcons} />
-          </Button>
-        </Tooltip>
+        <CustomDropdown
+          left
+          caret={false}
+          hoverColor="black"
+          dropdownHeader="Dropdown Header"
+          buttonText={
+            <img src={profileImage} className={classes.img} alt="profile" />
+          }
+          buttonProps={{
+            className: classes.navLink + " " + classes.imageDropdownButton,
+            color: "transparent",
+          }}
+          dropdownList={["Me", "Settings and other stuff", "Sign out"]}
+        />
       </ListItem>
     </List>
-  );
+  )
 }
 
-export default withStyles(headerLinksStyle)(HeaderLinks);
+export default withStyles(headerLinksStyle)(HeaderLinks)

@@ -16,28 +16,28 @@
 
 */
 /*eslint-disable*/
-import React from "react";
+import React from "react"
 // nodejs library to set properties for components
-import PropTypes from "prop-types";
+import PropTypes from "prop-types"
 // nodejs library that concatenates classes
-import classNames from "classnames";
-import { List, ListItem, withStyles } from "@material-ui/core";
+import classNames from "classnames"
+import { List, ListItem, withStyles } from "@material-ui/core"
 
 // @material-ui/icons
-import Favorite from "@material-ui/icons/Favorite";
+import Favorite from "@material-ui/icons/Favorite"
 
-import footerStyle from "../../jss/maritim/components/footerStyle.jsx";
+import footerStyle from "../../jss/maritim/components/footerStyle.jsx"
 
 function Footer({ ...props }) {
-  const { classes, whiteFont } = props;
+  const { classes, whiteFont } = props
   const footerClasses = classNames({
     [classes.footer]: true,
-    [classes.footerWhiteFont]: whiteFont
-  });
+    [classes.footerWhiteFont]: whiteFont,
+  })
   const aClasses = classNames({
     [classes.a]: true,
-    [classes.footerWhiteFont]: whiteFont
-  });
+    [classes.footerWhiteFont]: whiteFont,
+  })
   return (
     <footer className={footerClasses}>
       <div className={classes.container}>
@@ -45,38 +45,20 @@ function Footer({ ...props }) {
           <List className={classes.list}>
             <ListItem className={classes.inlineBlock}>
               <a
-                href="https://www.creative-tim.com/?ref=mkr-footer"
+                href="https://www.cakasuma.com/"
                 className={classes.block}
                 target="_blank"
               >
-                Creative Tim
+                Cakasuma
               </a>
             </ListItem>
             <ListItem className={classes.inlineBlock}>
               <a
-                href="https://www.creative-tim.com/presentation?ref=mkr-footer"
+                href="https://www.cakasuma.com/about/"
                 className={classes.block}
                 target="_blank"
               >
                 About us
-              </a>
-            </ListItem>
-            <ListItem className={classes.inlineBlock}>
-              <a
-                href="http://blog.creative-tim.com/?ref=mkr-footer"
-                className={classes.block}
-                target="_blank"
-              >
-                Blog
-              </a>
-            </ListItem>
-            <ListItem className={classes.inlineBlock}>
-              <a
-                href="https://www.creative-tim.com/license?ref=mkr-footer"
-                className={classes.block}
-                target="_blank"
-              >
-                Licenses
               </a>
             </ListItem>
           </List>
@@ -85,22 +67,22 @@ function Footer({ ...props }) {
           &copy; {1900 + new Date().getYear()} , made with{" "}
           <Favorite className={classes.icon} /> by{" "}
           <a
-            href="https://www.creative-tim.com?ref=mkr-footer"
+            href="https://www.cakasuma.com/"
             className={aClasses}
             target="_blank"
           >
-            Creative Tim
+            Cakasuma
           </a>{" "}
           for a better web.
         </div>
       </div>
     </footer>
-  );
+  )
 }
 
 Footer.propTypes = {
   classes: PropTypes.object.isRequired,
-  whiteFont: PropTypes.bool
-};
+  whiteFont: PropTypes.bool,
+}
 
-export default withStyles(footerStyle)(Footer);
+export default withStyles(footerStyle)(Footer)
