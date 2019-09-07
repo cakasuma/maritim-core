@@ -23,9 +23,7 @@ const Layout = ({ children, classes, is_login }) => {
   useEffect(() => {
     const script = document.createElement("script")
 
-    script.src = `${process.env.livechat}`
-    console.log("hi")
-    console.log(process.env.GATSBY_LIVE_CHAT)
+    script.src = process.env.GATSBY_LIVE_CHAT
     script.async = true
 
     document.body.appendChild(script)

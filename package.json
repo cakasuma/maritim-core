@@ -34,7 +34,11 @@
     "styled-components": "^4.3.2"
   },
   "devDependencies": {
-    "prettier": "^1.18.2"
+    "dotenv": "^8.1.0",
+    "formik": "^1.5.8",
+    "netlify": "^2.4.8",
+    "prettier": "^1.18.2",
+    "yup": "^0.27.0"
   },
   "keywords": [
     "gatsby"
@@ -43,6 +47,7 @@
   "scripts": {
     "build": "gatsby build",
     "develop": "gatsby develop",
+    "deploy": "npm run build && netlify deploy --dir=public",
     "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
     "start": "npm run develop",
     "serve": "gatsby serve",
