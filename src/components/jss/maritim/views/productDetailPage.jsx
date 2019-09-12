@@ -19,10 +19,6 @@ import { container, grayColor, primaryColor } from '../../maritim.jsx'
 import customCheckboxRadioSwitch from '../customCheckboxRadioSwitch.jsx'
 
 const productDetailStyle = {
-    header: {
-        width: '100%',
-        backgroundImage: 'url(' + image + ')',
-    },
     container: {
         ...container,
         zIndex: '2',

@@ -2,7 +2,7 @@ import React from 'react'
 
 import PropTypes from 'prop-types'
 // @material-ui/core components
-import withStyles from '@material-ui/co/styles/withStyles'
+import withStyles from '@material-ui/core/styles/withStyles'
 import GridContainer from '../../components/shared/Grid/GridContainer.jsx'
 
 import productsDetailStyle from '../../components/jss/maritim/views/productDetailPage.jsx'
