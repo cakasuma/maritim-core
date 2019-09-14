@@ -119,7 +119,7 @@ const SignupForm = ({ classes }) => {
                                 e.preventDefault()
                             }}
                         >
-                            Register here
+                            login here
                         </Button>
                     </CardFooter>
                 </Form>

@@ -3,7 +3,14 @@ import { StaticQuery, graphql } from 'gatsby'
 import BackgroundImage from 'gatsby-background-image'
 import PropTypes from 'prop-types'
 
-const Background = ({ children, img_name, className, style, ...props }) => (
+const Background = ({
+    children,
+    img_name,
+    className,
+    style,
+    brightness,
+    ...props
+}) => (
     <StaticQuery
         query={graphql`
             query {
@@ -24,9 +31,24 @@ const Background = ({ children, img_name, className, style, ...props }) => (
                 edge => edge.node.fluid.originalName === img_name,
             )
             if (!image) return null
+            const fluidStack = [image.node.fluid]
+
+            if (brightness) {
+                fluidStack.push(
+                    `linear-gradient(rgba(0,0,0,${brightness}), rgba(0,0,0,${brightness}))`,
+                )
+            }
 
             return (
-                <BackgroundImage Tag='div' className={className} style={style} fluid={image.node.fluid} {...props}>{children}</BackgroundImage>
+                <BackgroundImage
+                    Tag="div"
+                    className={className}
+                    style={style}
+                    fluid={fluidStack.reverse()}
+                    {...props}
+                >
+                    {children}
+                </BackgroundImage>
             )
         }}
     />

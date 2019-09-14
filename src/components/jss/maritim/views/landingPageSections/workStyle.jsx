@@ -15,34 +15,37 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import { title } from "../../../maritim.jsx"
+import { title } from '../../../maritim.jsx'
 
 const workStyle = {
-  section: {
-    paddingBottom: "70px",
-  },
-  title: {
-    ...title,
-    marginBottom: "20px",
-    marginTop: "10px",
-    minHeight: "32px",
-    textDecoration: "none",
-    textAlign: "center",
-  },
-  description: {
-    color: "#999",
-    textAlign: "center",
-    fontSize: "1.2rem",
-  },
-  textCenter: {
-    textAlign: "center",
-  },
-  textArea: {
-    margin: "15px",
-  },
-  fullWidth: {
-    width: "100%",
-  },
+    section: {
+        paddingBottom: '70px',
+    },
+    title: {
+        ...title,
+        marginBottom: '20px',
+        marginTop: '10px',
+        minHeight: '32px',
+        textDecoration: 'none',
+        textAlign: 'center',
+    },
+    description: {
+        color: '#999',
+        textAlign: 'center',
+        fontSize: '1.2rem',
+    },
+    textCenter: {
+        textAlign: 'center',
+    },
+    textArea: {
+        margin: '15px',
+    },
+    fullWidth: {
+        width: '100%',
+    },
+    circularProgress: {
+        marginTop: '1rem',
+    },
 }
 
 export default workStyle

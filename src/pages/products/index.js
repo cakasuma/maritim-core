@@ -99,6 +99,7 @@ class ProductsPage extends React.Component {
                         backgroundPosition: 'center',
                     }}
                     img_name="landing-bg.jpg"
+                    brightness="0.7"
                 >
                     <GridContainer className={classes.container}>
                         <div className={classes.headerWrapper}>

@@ -57,7 +57,7 @@ class LoginPage extends React.Component {
         super(props)
         this.state = {
             cardAnimaton: 'cardHidden',
-            isLogin: true,
+            isLogin: false,
             first_name: '',
             email: '',
             password: '',
