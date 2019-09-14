@@ -11,10 +11,10 @@ import classNames from 'classnames'
 // @material-ui/core components
 import withStyles from '@material-ui/core/styles/withStyles'
 
-import Energy from '@material-ui/icons/AutoRenew'
+import Energy from '@material-ui/icons/Autorenew'
 import Biomedic from '@material-ui/icons/NaturePeople'
 import IT from '@material-ui/icons/DevicesOther'
-import Food from '@material-ui/icons/FastFood'
+import Food from '@material-ui/icons/Fastfood'
 import Other from '@material-ui/icons/CardGiftcard'
 
 import GridContainer from '../components/shared/Grid/GridContainer.jsx'
