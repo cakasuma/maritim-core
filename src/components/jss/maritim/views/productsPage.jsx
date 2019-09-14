@@ -26,8 +26,10 @@ const productsPageStyle = {
         paddingTop: '5rem',
         paddingBottom: '5rem',
         color: '#FFFFFF',
-
         padding: 0,
+        '@media (min-width: 1200px)': {
+            maxWidth: '1400px',
+        },
     },
     pageHeader: {
         width: '100%',
@@ -42,6 +44,7 @@ const productsPageStyle = {
     },
     card: {
         margin: '0',
+        marginBottom: '2rem',
     },
     cardHeader: {
         backgroundColor: primaryColor,
@@ -81,6 +84,49 @@ const productsPageStyle = {
     },
     postWrapper: {
         paddingBottom: '20px',
+    },
+    checked: {
+        color: primaryColor + '!important',
+    },
+    checkedIcon: {
+        width: '20px',
+        height: '20px',
+        border: '1px solid rgba(0, 0, 0, .54)',
+        borderRadius: '3px',
+    },
+    uncheckedIcon: {
+        width: '0px',
+        height: '0px',
+        padding: '9px',
+        border: '1px solid rgba(0, 0, 0, .54)',
+        borderRadius: '3px',
+    },
+    formControl: {
+        width: '100%',
+        paddingTop: '0',
+        paddingBottom: '1rem',
+    },
+    searchInput: {
+        fontSize: '1.5rem',
+        '&,&::placeholder': {
+            fontSize: '1.5rem',
+            textAlign: 'center',
+        },
+    },
+    searchWrapper: {
+        position: 'relative',
+    },
+    searchIcon: {
+        position: 'absolute',
+        top: '11%',
+        fill: grayColor,
+        height: '1.5em',
+        width: '1.5em',
+        right: '0.8rem',
+    },
+    productHead: {
+        backgroundColor: primaryColor,
+        boxShadow: 'inset 0 0 0 2000px rgba(255,0,150,0.3)',
     },
 }
 

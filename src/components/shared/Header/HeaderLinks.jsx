@@ -26,12 +26,11 @@ import List from '@material-ui/core/List'
 import ListItem from '@material-ui/core/ListItem'
 
 // @material-ui/icons
-import { Apps, Search } from '@material-ui/icons'
+import { Apps } from '@material-ui/icons'
 
 // core components
 import CustomDropdown from '../CustomDropdown/CustomDropdown.jsx'
 import Button from '../CustomButtons/Button.jsx'
-import CustomInput from '../CustomInput/CustomInput.jsx'
 
 import headerLinksStyle from '../../jss/maritim/components/headerLinksStyle.jsx'
 
@@ -41,25 +40,6 @@ function HeaderLinks({ ...props }) {
     const { classes } = props
     return (
         <List className={classes.list}>
-            <ListItem className={classes.listItem}>
-                <CustomInput
-                    white
-                    inputRootCustomClasses={classes.inputRootCustomClasses}
-                    formControlProps={{
-                        className: classes.formControl,
-                    }}
-                    inputProps={{
-                        placeholder: 'Search',
-                        inputProps: {
-                            'aria-label': 'Search',
-                            className: classes.searchInput,
-                        },
-                    }}
-                />
-                <Button justIcon round color="white">
-                    <Search className={classes.searchIcon} />
-                </Button>
-            </ListItem>
             <ListItem className={classes.listItem}>
                 <CustomDropdown
                     noLiPadding
