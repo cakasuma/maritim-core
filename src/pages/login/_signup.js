@@ -7,6 +7,7 @@ import * as Yup from 'yup'
 // @material-ui/core components
 import withStyles from '@material-ui/core/styles/withStyles'
 import InputAdornment from '@material-ui/core/InputAdornment'
+
 // @material-ui/icons
 import Email from '@material-ui/icons/Email'
 import LockOutlined from '@material-ui/icons/LockOutlined'
@@ -15,13 +16,16 @@ import Button from '../../components/shared/CustomButtons/Button.jsx'
 import CardBody from '../../components/shared/Card/CardBody.jsx'
 import CardFooter from '../../components/shared/Card/CardFooter.jsx'
 import CustomInput from '../../components/shared/CustomInput/CustomInput.jsx'
+import CircularProgress from '@material-ui/core/CircularProgress'
 
 import loginPageStyle from '../../components/jss/maritim/views/loginPage.jsx'
+import { FirebaseContext } from 'gatsby-plugin-firebase'
 
 const SignupSchema = Yup.object().shape({
     first_name: Yup.string()
         .min(2, 'too show')
-        .max(15, 'too long'),
+        .max(15, 'too long')
+        .required('Required!'),
     email: Yup.string()
         .email('Invalid email')
         .required('Required'),
@@ -30,32 +34,79 @@ const SignupSchema = Yup.object().shape({
         .required('Required'),
 })
 
-const SignupForm = ({ classes }) => {
+const signupFormValues = {
+    first_name: '',
+    email: '',
+    password: '',
+}
+
+const SignupForm = ({ classes, toggleLogin }) => {
+    const firebase = React.useContext(FirebaseContext)
     return (
         <Formik
-            initialValues={{
-                first_name: '',
-                email: '',
-                password: '',
-            }}
+            initialValues={signupFormValues}
             validationSchema={SignupSchema}
-            onSubmit={values => {
+            onSubmit={(values, actions) => {
                 // same shape as initial values
-                console.log(values)
+                firebase
+                    .auth()
+                    .createUserWithEmailAndPassword(
+                        values.email,
+                        values.password,
+                    )
+                    .then(authResponse => {
+                        const user = authResponse.user
+                        firebase
+                            .firestore()
+                            .collection('users')
+                            .doc(user.uid)
+                            .set({
+                                name: values.first_name,
+                                email: values.email,
+                            })
+                        console.log(user)
+                        actions.resetForm()
+                        actions.setSubmitting(false)
+                    })
+                    .catch(err => {
+                        console.log(err)
+                        actions.setSubmitting(false)
+                    })
             }}
         >
-            {({ errors, touched }) => (
+            {({
+                values,
+                errors,
+                touched,
+                handleChange,
+                handleBlur,
+                isSubmitting,
+            }) => (
                 <Form className={classes.form}>
                     <CardBody>
                         <CustomInput
                             labelText="First Name..."
-                            id="first"
+                            id="first_name"
                             formControlProps={{
                                 fullWidth: true,
                             }}
+                            error={
+                                errors.first_name && touched.first_name
+                                    ? true
+                                    : false
+                            }
+                            errorMessage={
+                                errors.first_name && touched.first_name
+                                    ? errors.first_name
+                                    : null
+                            }
                             inputProps={{
                                 type: 'text',
                                 name: 'first_name',
+                                value: values.first_name,
+                                onChange: handleChange,
+                                onBlur: handleBlur,
+                                readOnly: isSubmitting,
                                 endAdornment: (
                                     <InputAdornment position="end">
                                         <Email
@@ -64,7 +115,6 @@ const SignupForm = ({ classes }) => {
                                     </InputAdornment>
                                 ),
                             }}
-                            error={errors.email}
                         />
                         <CustomInput
                             labelText="Email..."
@@ -72,9 +122,19 @@ const SignupForm = ({ classes }) => {
                             formControlProps={{
                                 fullWidth: true,
                             }}
+                            error={errors.email && touched.email ? true : false}
+                            errorMessage={
+                                errors.email && touched.email
+                                    ? errors.email
+                                    : null
+                            }
                             inputProps={{
                                 type: 'email',
                                 name: 'email',
+                                value: values.email,
+                                onChange: handleChange,
+                                onBlur: handleBlur,
+                                readOnly: isSubmitting,
                                 endAdornment: (
                                     <InputAdornment position="end">
                                         <Email
@@ -83,7 +143,6 @@ const SignupForm = ({ classes }) => {
                                     </InputAdornment>
                                 ),
                             }}
-                            error={errors.email}
                         />
                         <CustomInput
                             labelText="Password"
@@ -91,9 +150,23 @@ const SignupForm = ({ classes }) => {
                             formControlProps={{
                                 fullWidth: true,
                             }}
+                            error={
+                                errors.password && touched.password
+                                    ? true
+                                    : false
+                            }
+                            errorMessage={
+                                errors.password && touched.password
+                                    ? errors.password
+                                    : null
+                            }
                             inputProps={{
                                 type: 'password',
                                 name: 'password',
+                                value: values.password,
+                                onChange: handleChange,
+                                onBlur: handleBlur,
+                                readOnly: isSubmitting,
                                 endAdornment: (
                                     <InputAdornment position="end">
                                         <LockOutlined
@@ -103,13 +176,19 @@ const SignupForm = ({ classes }) => {
                                 ),
                                 autoComplete: 'off',
                             }}
-                            error={errors.password}
                         />
                     </CardBody>
                     <CardFooter className={classes.cardFooter}>
-                        <Button color="primary" size="md" type="submit">
-                            Get started
-                        </Button>
+                        {isSubmitting ? (
+                            <CircularProgress
+                                className={classes.circularProgress}
+                                color="secondary"
+                            />
+                        ) : (
+                            <Button color="primary" size="md" type="submit">
+                                Get started
+                            </Button>
+                        )}
                         <br />
                         Or
                         <br />
@@ -119,6 +198,7 @@ const SignupForm = ({ classes }) => {
                             size="md"
                             onClick={e => {
                                 e.preventDefault()
+                                toggleLogin()
                             }}
                         >
                             login here

@@ -58,10 +58,10 @@ class LoginPage extends React.Component {
         this.state = {
             cardAnimaton: 'cardHidden',
             isLogin: false,
-            first_name: '',
-            email: '',
-            password: '',
         }
+    }
+    toggleLogin() {
+        this.setState({ isLogin: !this.state.isLogin })
     }
     componentDidMount() {
         // we add a hidden class to the card and after 700 ms we delete it and the transition appears
@@ -71,33 +71,6 @@ class LoginPage extends React.Component {
             }.bind(this),
             100,
         )
-    }
-    handleChange(e) {
-        const { name, value } = e.target
-        this.setState({ [name]: value })
-    }
-    handleSubmit(e) {
-        e.preventDefault()
-        const { isLogin, first_name, email, password } = this.state
-
-        if (isLogin) {
-            if (!email || !password) {
-                console.log('error')
-                return
-            }
-            console.log('write login function here')
-            console.log(email)
-            console.log(password)
-        } else {
-            if (!email || !password || !first_name) {
-                console.log('error')
-                return
-            }
-            console.log('write register function here')
-            console.log(first_name)
-            console.log(email)
-            console.log(password)
-        }
     }
     render() {
         const { classes } = this.props
@@ -176,9 +149,17 @@ class LoginPage extends React.Component {
                                             </div>
                                         </CardHeader>
                                         {isLogin ? (
-                                            <LoginForm />
+                                            <LoginForm
+                                                toggleLogin={this.toggleLogin.bind(
+                                                    this,
+                                                )}
+                                            />
                                         ) : (
-                                            <SignupForm />
+                                            <SignupForm
+                                                toggleLogin={this.toggleLogin.bind(
+                                                    this,
+                                                )}
+                                            />
                                         )}
                                     </div>
                                 </Card>
