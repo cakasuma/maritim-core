@@ -110,7 +110,9 @@ const SignupForm = ({ classes }) => {
                         <Button color="primary" size="md" type="submit">
                             Get started
                         </Button>
+                        <br />
                         Or
+                        <br />
                         <Button
                             simple
                             color="primary"

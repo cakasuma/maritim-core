@@ -112,10 +112,16 @@ class LoginPage extends React.Component {
                         backgroundPosition: 'top center',
                     }}
                     img_name="bg-main.png"
+                    brightness="0.5"
                 >
                     <div className={classes.container}>
                         <GridContainer justify="center">
-                            <GridItem xs={12} sm={12} md={4}>
+                            <GridItem
+                                xs={12}
+                                sm={12}
+                                md={4}
+                                className={classes.cardGrid}
+                            >
                                 <Card
                                     className={classes[this.state.cardAnimaton]}
                                 >
@@ -124,7 +130,7 @@ class LoginPage extends React.Component {
                                             color="primary"
                                             className={classes.cardHeader}
                                         >
-                                            <h4>
+                                            <h4 className={classes.headerTitle}>
                                                 {isLogin ? 'Login' : 'Register'}
                                             </h4>
                                             <div className={classes.socialLine}>

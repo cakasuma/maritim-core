@@ -6,6 +6,7 @@ import withStyles from '@material-ui/core/styles/withStyles'
 import GridContainer from '../../components/shared/Grid/GridContainer.jsx'
 import GridItem from '../../components/shared/Grid/GridItem.jsx'
 import Button from '../../components/shared/CustomButtons/Button.jsx'
+import { Link } from 'gatsby'
 // @material-ui/icons
 import { Search } from '@material-ui/icons'
 import Card from '../../components/shared/Card/Card.jsx'
@@ -272,25 +273,41 @@ class ProductsPage extends React.Component {
                                     className={classes.postWrapper}
                                     key={idx}
                                 >
-                                    <a href="#">
+                                    <Link
+                                        to="/product-detail"
+                                        className={classes.postImageWrapper}
+                                    >
                                         <img
                                             src={image}
                                             alt="..."
                                             className={classes.postImage}
                                         />
-                                    </a>
+                                    </Link>
                                     <div className={classes.postDescription}>
                                         <div className={classes.postCategory}>
                                             <h6>Pangan</h6>
                                         </div>
                                         <h4 className={classes.postTitle}>
-                                            <a href="#">
+                                            <Link
+                                                to="/product-detail"
+                                                className={
+                                                    classes.postImageWrapper
+                                                }
+                                            >
                                                 Autodesk look into the future
-                                            </a>
+                                            </Link>
                                         </h4>
                                         <p className={classes.postExplain}>
                                             alksdfjalskdfj jlskdjflskdf j sdlkf
-                                            jlskd <a href="#">...Read more</a>
+                                            jlskd{' '}
+                                            <Link
+                                                to="/product-detail"
+                                                className={
+                                                    classes.postImageWrapper
+                                                }
+                                            >
+                                                ...Read more
+                                            </Link>
                                         </p>
                                     </div>
                                 </GridItem>
