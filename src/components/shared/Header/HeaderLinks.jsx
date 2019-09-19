@@ -41,6 +41,7 @@ import { FirebaseContext } from 'gatsby-plugin-firebase'
 function HeaderLinks({ ...props }) {
     const { classes } = props
     const [isLoggedin, setLoggedIn] = React.useState(false)
+    const [currentUser, setCurrentUser] = React.useState()
     const firebase = React.useContext(FirebaseContext)
 
     React.useEffect(() => {
@@ -48,7 +49,10 @@ function HeaderLinks({ ...props }) {
             return
         }
 
-        setLoggedIn(firebase.auth().currentUser ? true : false)
+        firebase.auth().onAuthStateChanged(function(user) {
+            setLoggedIn(user ? true : false)
+            setCurrentUser(user)
+        })
     }, [firebase])
 
     return (
@@ -109,7 +113,8 @@ function HeaderLinks({ ...props }) {
                         left
                         caret={false}
                         hoverColor="black"
-                        dropdownHeader="Dropdown Header"
+                        dropdownHeader={`Hi, ${currentUser &&
+                            currentUser.displayName}`}
                         buttonText={
                             <img
                                 src={profileImage}

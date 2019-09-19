@@ -44,14 +44,22 @@ const LoginForm = ({ classes, toggleLogin }) => {
                 // same shape as initial values
                 firebase
                     .auth()
-                    .signInWithEmailAndPassword(values.email, values.password)
-                    .then(authResponse => {
-                        actions.resetForm()
-                        actions.setSubmitting(false)
-                    })
-                    .catch(err => {
-                        console.log(err)
-                        actions.setSubmitting(false)
+                    .setPersistence(firebase.auth.Auth.Persistence.LOCAL)
+                    .then(() => {
+                        firebase
+                            .auth()
+                            .signInWithEmailAndPassword(
+                                values.email,
+                                values.password,
+                            )
+                            .then(authResponse => {
+                                actions.resetForm()
+                                actions.setSubmitting(false)
+                            })
+                            .catch(err => {
+                                console.log(err)
+                                actions.setSubmitting(false)
+                            })
                     })
             }}
         >

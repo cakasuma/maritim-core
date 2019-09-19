@@ -64,9 +64,15 @@ const SignupForm = ({ classes, toggleLogin }) => {
                                 name: values.first_name,
                                 email: values.email,
                             })
-                        console.log(user)
-                        actions.resetForm()
-                        actions.setSubmitting(false)
+                        user.updateProfile({
+                            displayName: values.first_name,
+                        })
+                            .then(() => {
+                                console.log(user)
+                                actions.resetForm()
+                                actions.setSubmitting(false)
+                            })
+                            .catch(err => console.log(err))
                     })
                     .catch(err => {
                         console.log(err)

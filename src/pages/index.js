@@ -22,7 +22,7 @@ import GridItem from '../components/shared/Grid/GridItem.jsx'
 
 import Button from '../components/shared/CustomButtons/Button.jsx'
 import Parallax from '../components/shared/Parallax/Parallax.jsx'
-import NavPills from '../components/shared/NavPills/NavPills.jsx'
+import NavPillsStatic from '../components/shared/NavPillsStatic/NavPillsStatic.jsx'
 
 import landingPageStyle from '../components/jss/maritim/views/landingPage.jsx'
 
@@ -68,7 +68,7 @@ const IndexPage = ({ classes }) => (
                             <h2 className={classes.title2}>
                                 Or choose by categories
                             </h2>
-                            <NavPills
+                            <NavPillsStatic
                                 alignCenter
                                 tabs={[
                                     {

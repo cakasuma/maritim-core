@@ -67,15 +67,13 @@ class LoginPage extends React.Component {
     toggleLogin() {
         this.setState({ isLogin: !this.state.isLogin })
     }
-    componentDidUpdate(prevProps) {
-        if (!prevProps.firebase && this.props.firebase) {
+    componentDidMount() {
+        if (this.props.firebase) {
             this.props.firebase.auth().onAuthStateChanged(user => {
                 console.log('state changed')
                 this.setState({ user: user })
             })
         }
-    }
-    componentDidMount() {
         // we add a hidden class to the card and after 700 ms we delete it and the transition appears
         setTimeout(
             function() {
