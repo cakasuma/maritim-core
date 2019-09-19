@@ -32,6 +32,10 @@
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
     "react-helmet": "^5.2.1",
+    "react-slick": "^0.25.2",
+    "react-swipeable-views": "^0.13.3",
+    "react-with-firebase-auth": "^1.0.4",
+    "slick-carousel": "^1.8.1",
     "styled-components": "^4.3.2"
   },
   "devDependencies": {

@@ -30,7 +30,7 @@ class ProductSection extends React.Component {
                 {new Array(3).fill(3).map((em, idx) => {
                     if (idx % 2 !== 0) {
                         return (
-                            <div className={classes.card}>
+                            <div key={idx} className={classes.card}>
                                 <GridContainer justify="center">
                                     <GridItem
                                         xs={12}
@@ -108,7 +108,7 @@ class ProductSection extends React.Component {
                         )
                     } else {
                         return (
-                            <div className={classes.card}>
+                            <div key={idx} className={classes.card}>
                                 <GridContainer
                                     justify="center"
                                     className={classes.cardReverse}

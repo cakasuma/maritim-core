@@ -21,6 +21,7 @@ import PropTypes from 'prop-types'
 // @material-ui/core components
 import withStyles from '@material-ui/core/styles/withStyles'
 import InputAdornment from '@material-ui/core/InputAdornment'
+import { navigate } from 'gatsby'
 // @material-ui/icons
 import Email from '@material-ui/icons/Email'
 import People from '@material-ui/icons/People'
@@ -52,18 +53,27 @@ import {
 import LoginForm from './_login'
 import SignupForm from './_signup'
 
+import { withFirebase } from '../../components/layout/with-firebase.js'
+
 class LoginPage extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
             cardAnimaton: 'cardHidden',
-            isLogin: false,
-            first_name: '',
-            email: '',
-            password: '',
+            isLogin: true,
+            user: null,
         }
     }
+    toggleLogin() {
+        this.setState({ isLogin: !this.state.isLogin })
+    }
     componentDidMount() {
+        if (this.props.firebase) {
+            this.props.firebase.auth().onAuthStateChanged(user => {
+                console.log('state changed')
+                this.setState({ user: user })
+            })
+        }
         // we add a hidden class to the card and after 700 ms we delete it and the transition appears
         setTimeout(
             function() {
@@ -72,38 +82,16 @@ class LoginPage extends React.Component {
             100,
         )
     }
-    handleChange(e) {
-        const { name, value } = e.target
-        this.setState({ [name]: value })
-    }
-    handleSubmit(e) {
-        e.preventDefault()
-        const { isLogin, first_name, email, password } = this.state
-
-        if (isLogin) {
-            if (!email || !password) {
-                console.log('error')
-                return
-            }
-            console.log('write login function here')
-            console.log(email)
-            console.log(password)
-        } else {
-            if (!email || !password || !first_name) {
-                console.log('error')
-                return
-            }
-            console.log('write register function here')
-            console.log(first_name)
-            console.log(email)
-            console.log(password)
-        }
-    }
     render() {
         const { classes } = this.props
         const { isLogin } = this.state
+
+        if (this.state.user) {
+            navigate('/')
+        }
+
         return (
-            <Layout is_login>
+            <Layout>
                 <SEO title="login" />
                 <Background
                     className={classes.pageHeader}
@@ -176,9 +164,17 @@ class LoginPage extends React.Component {
                                             </div>
                                         </CardHeader>
                                         {isLogin ? (
-                                            <LoginForm />
+                                            <LoginForm
+                                                toggleLogin={this.toggleLogin.bind(
+                                                    this,
+                                                )}
+                                            />
                                         ) : (
-                                            <SignupForm />
+                                            <SignupForm
+                                                toggleLogin={this.toggleLogin.bind(
+                                                    this,
+                                                )}
+                                            />
                                         )}
                                     </div>
                                 </Card>
@@ -195,4 +191,4 @@ LoginPage.propTypes = {
     classes: PropTypes.object,
 }
 
-export default withStyles(loginPageStyle)(LoginPage)
+export default withFirebase(withStyles(loginPageStyle)(LoginPage))

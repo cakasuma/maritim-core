@@ -17,6 +17,8 @@
 */
 import { container, grayColor, primaryColor } from '../../maritim.jsx'
 import customCheckboxRadioSwitch from '../customCheckboxRadioSwitch.jsx'
+import 'slick-carousel/slick/slick.css'
+import 'slick-carousel/slick/slick-theme.css'
 
 const productDetailStyle = {
     container: {
@@ -25,20 +27,37 @@ const productDetailStyle = {
         position: 'relative',
         paddingTop: '5rem',
         paddingBottom: '5rem',
-        color: '#FFFFFF',
-
         padding: 0,
+    },
+    navWrapper: {
+        margin: '20px auto 50px auto',
+    },
+    sliderContainer: {
+        '& .slick-arrow': {
+            zIndex: '3',
+            '&.slick-prev': {
+                left: '8px',
+            },
+            '&.slick-next': {
+                right: '8px',
+            },
+        },
+    },
+    contactButton: {
+        margin: 'auto',
+        width: '100%',
     },
     pageHeader: {
         width: '100%',
-        maxHeight: '22rem',
-        paddingTop: '20vh',
+        maxHeight: '15rem',
+        paddingTop: '15vh',
         paddingBottom: '200px',
     },
     headerWrapper: {
         width: '100%',
-        marginTop: '6rem',
+        marginTop: '1rem',
         textAlign: 'center',
+        color: '#ffffff',
     },
     card: {
         margin: '0',
