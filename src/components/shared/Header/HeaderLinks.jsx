@@ -102,14 +102,27 @@ function HeaderLinks({ ...props }) {
             </ListItem>
             <ListItem className={classes.listItem}>
                 <Link
-                    to="/"
+                    to="/about-us"
                     color="transparent"
                     target="_blank"
                     className={classes.navLink}
                 >
-                    Submit your idea!
+                    About us
                 </Link>
             </ListItem>
+            {isLoggedin && (
+                <ListItem className={classes.listItem}>
+                    <Link
+                        to="/submit-idea"
+                        color="transparent"
+                        target="_blank"
+                        className={classes.navLink}
+                    >
+                        Submit your idea!
+                    </Link>
+                </ListItem>
+            )}
+
             {!isLoggedin ? (
                 <ListItem className={classes.listItem}>
                     <Button
@@ -127,7 +140,7 @@ function HeaderLinks({ ...props }) {
                     <CustomDropdown
                         left
                         caret={false}
-                        hoverColor="black"
+                        hoverColor="primary"
                         dropdownHeader={`Hi, ${currentUser &&
                             currentUser.displayName}`}
                         buttonText={

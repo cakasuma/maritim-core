@@ -37,14 +37,14 @@ const IndexPage = ({ classes }) => (
     <Layout>
         <SEO title="Home" />
         <div>
-            <Parallax filter image={require('../images/landing-bg.jpg')}>
-                <GridContainer>
+            <Parallax filter image={require('../images/bg7.jpg')}>
+                <GridContainer className={classes.container}>
                     <GridContainer className={classes.container}>
                         <GridItem xs={12} sm={12} md={12}>
                             <h1 className={classes.title}>
                                 Your Innovations Starts With Us.
                             </h1>
-                            <h4>
+                            <h4 className={classes.titleSecondary}>
                                 We publish your innovation to help investor peek
                                 at your innovation and communicate with you. We
                                 believe Indonesia is a country full of inventor

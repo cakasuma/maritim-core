@@ -91,7 +91,7 @@ class LoginPage extends React.Component {
         }
 
         return (
-            <Layout>
+            <Layout is_login>
                 <SEO title="login" />
                 <Background
                     className={classes.pageHeader}
