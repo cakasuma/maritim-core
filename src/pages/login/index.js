@@ -21,6 +21,7 @@ import PropTypes from 'prop-types'
 // @material-ui/core components
 import withStyles from '@material-ui/core/styles/withStyles'
 import InputAdornment from '@material-ui/core/InputAdornment'
+import { navigate } from 'gatsby'
 // @material-ui/icons
 import Email from '@material-ui/icons/Email'
 import People from '@material-ui/icons/People'
@@ -52,16 +53,27 @@ import {
 import LoginForm from './_login'
 import SignupForm from './_signup'
 
+import { withFirebase } from '../../components/layout/with-firebase.js'
+
 class LoginPage extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
             cardAnimaton: 'cardHidden',
-            isLogin: false,
+            isLogin: true,
+            user: null,
         }
     }
     toggleLogin() {
         this.setState({ isLogin: !this.state.isLogin })
+    }
+    componentDidUpdate(prevProps) {
+        if (!prevProps.firebase && this.props.firebase) {
+            this.props.firebase.auth().onAuthStateChanged(user => {
+                console.log('state changed')
+                this.setState({ user: user })
+            })
+        }
     }
     componentDidMount() {
         // we add a hidden class to the card and after 700 ms we delete it and the transition appears
@@ -75,8 +87,13 @@ class LoginPage extends React.Component {
     render() {
         const { classes } = this.props
         const { isLogin } = this.state
+
+        if (this.state.user) {
+            navigate('/')
+        }
+
         return (
-            <Layout is_login>
+            <Layout>
                 <SEO title="login" />
                 <Background
                     className={classes.pageHeader}
@@ -176,4 +193,4 @@ LoginPage.propTypes = {
     classes: PropTypes.object,
 }
 
-export default withStyles(loginPageStyle)(LoginPage)
+export default withFirebase(withStyles(loginPageStyle)(LoginPage))

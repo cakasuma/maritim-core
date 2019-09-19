@@ -18,6 +18,7 @@ import CardFooter from '../../components/shared/Card/CardFooter.jsx'
 import CustomInput from '../../components/shared/CustomInput/CustomInput.jsx'
 
 import loginPageStyle from '../../components/jss/maritim/views/loginPage.jsx'
+import { FirebaseContext } from 'gatsby-plugin-firebase'
 
 const SigninSchema = Yup.object().shape({
     email: Yup.string()
@@ -34,14 +35,24 @@ const signinFormValues = {
 }
 
 const LoginForm = ({ classes, toggleLogin }) => {
+    const firebase = React.useContext(FirebaseContext)
     return (
         <Formik
             initialValues={signinFormValues}
             validationSchema={SigninSchema}
-            onSubmit={values => {
+            onSubmit={(values, actions) => {
                 // same shape as initial values
-                console.log('hi')
-                console.log(values)
+                firebase
+                    .auth()
+                    .signInWithEmailAndPassword(values.email, values.password)
+                    .then(authResponse => {
+                        actions.resetForm()
+                        actions.setSubmitting(false)
+                    })
+                    .catch(err => {
+                        console.log(err)
+                        actions.setSubmitting(false)
+                    })
             }}
         >
             {({

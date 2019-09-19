@@ -36,8 +36,21 @@ import headerLinksStyle from '../../jss/maritim/components/headerLinksStyle.jsx'
 
 import profileImage from '../../../images/faces/avatar.jpg'
 
+import { FirebaseContext } from 'gatsby-plugin-firebase'
+
 function HeaderLinks({ ...props }) {
     const { classes } = props
+    const [isLoggedin, setLoggedIn] = React.useState(false)
+    const firebase = React.useContext(FirebaseContext)
+
+    React.useEffect(() => {
+        if (!firebase) {
+            return
+        }
+
+        setLoggedIn(firebase.auth().currentUser ? true : false)
+    }, [firebase])
+
     return (
         <List className={classes.list}>
             <ListItem className={classes.listItem}>
@@ -78,42 +91,69 @@ function HeaderLinks({ ...props }) {
                     About us
                 </Link>
             </ListItem>
-            <ListItem className={classes.listItem}>
-                <Button
-                    component={Link}
-                    to="/login"
-                    className={classes.registerNavLink}
-                    color="rose"
-                    round
-                >
-                    Login
-                </Button>
-            </ListItem>
-            <ListItem className={classes.listItem}>
-                <CustomDropdown
-                    left
-                    caret={false}
-                    hoverColor="black"
-                    dropdownHeader="Dropdown Header"
-                    buttonText={
-                        <img
-                            src={profileImage}
-                            className={classes.img}
-                            alt="profile"
-                        />
-                    }
-                    buttonProps={{
-                        className:
-                            classes.navLink + ' ' + classes.imageDropdownButton,
-                        color: 'transparent',
-                    }}
-                    dropdownList={[
-                        'Me',
-                        'Settings and other stuff',
-                        'Sign out',
-                    ]}
-                />
-            </ListItem>
+            {!isLoggedin ? (
+                <ListItem className={classes.listItem}>
+                    <Button
+                        component={Link}
+                        to="/login"
+                        className={classes.registerNavLink}
+                        color="rose"
+                        round
+                    >
+                        Login
+                    </Button>
+                </ListItem>
+            ) : (
+                <ListItem className={classes.listItem}>
+                    <CustomDropdown
+                        left
+                        caret={false}
+                        hoverColor="black"
+                        dropdownHeader="Dropdown Header"
+                        buttonText={
+                            <img
+                                src={profileImage}
+                                className={classes.img}
+                                alt="profile"
+                            />
+                        }
+                        onClick={action => {
+                            console.log(action)
+                            switch (action) {
+                                case 'Me':
+                                    break
+                                case 'Settings and other stuff':
+                                    break
+                                case 'Sign out':
+                                    console.log('hi')
+                                    if (firebase) {
+                                        firebase
+                                            .auth()
+                                            .signOut()
+                                            .then(() => {
+                                                setLoggedIn(false)
+                                            })
+                                    }
+                                    break
+                                default:
+                                    break
+                            }
+                        }}
+                        buttonProps={{
+                            className:
+                                classes.navLink +
+                                ' ' +
+                                classes.imageDropdownButton,
+                            color: 'transparent',
+                        }}
+                        dropdownList={[
+                            'Me',
+                            'Settings and other stuff',
+                            'Sign out',
+                        ]}
+                    />
+                </ListItem>
+            )}
         </List>
     )
 }
