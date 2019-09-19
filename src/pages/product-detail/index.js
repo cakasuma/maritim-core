@@ -15,6 +15,7 @@ import Card from '../../components/shared/Card/Card.jsx'
 import CardBody from '../../components/shared/Card/CardBody.jsx'
 import Primary from '../../components/shared/Typography/Primary.jsx'
 import NavPills from '../../components/shared/NavPills/NavPills.jsx'
+import { Link } from 'gatsby'
 
 import Layout from '../../components/layout/layout.js'
 import SEO from '../../components/layout/seo.js'
@@ -24,6 +25,7 @@ import image1 from '../../images/bg.jpg'
 import Dashboard from '@material-ui/icons/Dashboard'
 import Schedule from '@material-ui/icons/Schedule'
 import List from '@material-ui/icons/List'
+import image from '../../images/faces/avatar.jpg'
 
 const settings = {
     dots: false,
@@ -32,6 +34,15 @@ const settings = {
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
+}
+
+const relatedSettings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 5,
+    slidesToScroll: 1,
+    autoplay: false,
 }
 
 class ProductDetail extends React.Component {
@@ -251,6 +262,60 @@ class ProductDetail extends React.Component {
                             />
                         </GridItem>
                     </GridContainer>
+                    <div className={classes.relatedTitle}>
+                        <h2 className={classes.relatedName}>
+                            Related innovation
+                        </h2>
+                        <span className={classes.relatedSeparator}></span>
+                    </div>
+                    <GridItem xs={12} sm={12} md={12}>
+                        <Slider
+                            className={classes.relatedContainer}
+                            {...relatedSettings}
+                        >
+                            {new Array(8).fill(8).map((em, idx) => (
+                                <div className={classes.relatedPostWrapper}>
+                                    <Link
+                                        to="/product-detail"
+                                        className={classes.postImageWrapper}
+                                    >
+                                        <img
+                                            src={image}
+                                            alt="..."
+                                            className={classes.postImage}
+                                        />
+                                    </Link>
+                                    <div className={classes.postDescription}>
+                                        <div className={classes.postCategory}>
+                                            <h6>Pangan</h6>
+                                        </div>
+                                        <h4 className={classes.postTitle}>
+                                            <Link
+                                                to="/product-detail"
+                                                className={
+                                                    classes.postImageWrapper
+                                                }
+                                            >
+                                                Autodesk look into the future
+                                            </Link>
+                                        </h4>
+                                        <p className={classes.postExplain}>
+                                            alksdfjalskdfj jlskdjflskdf j sdlkf
+                                            jlskd{' '}
+                                            <Link
+                                                to="/product-detail"
+                                                className={
+                                                    classes.postImageWrapper
+                                                }
+                                            >
+                                                ...Read more
+                                            </Link>
+                                        </p>
+                                    </div>
+                                </div>
+                            ))}
+                        </Slider>
+                    </GridItem>
                 </GridContainer>
             </Layout>
         )
