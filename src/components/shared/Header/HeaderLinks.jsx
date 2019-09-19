@@ -67,27 +67,42 @@ function HeaderLinks({ ...props }) {
                     }}
                     buttonIcon={Apps}
                     dropdownList={[
-                        <Link to="/" className={classes.dropdownLink}>
-                            Pangan
+                        <Link
+                            to="/products?cat=energy"
+                            className={classes.dropdownLink}
+                        >
+                            Energy
                         </Link>,
-                        <Link to="/" className={classes.dropdownLink}>
-                            Energi
+                        <Link
+                            to="/products?cat=it"
+                            className={classes.dropdownLink}
+                        >
+                            IT
                         </Link>,
-                        <Link to="/" className={classes.dropdownLink}>
-                            TIK
+                        <Link
+                            to="/products?cat=biomedic"
+                            className={classes.dropdownLink}
+                        >
+                            Biomedic
                         </Link>,
-                        <Link to="/" className={classes.dropdownLink}>
-                            Material Maju
+                        <Link
+                            to="/products?cat=food"
+                            className={classes.dropdownLink}
+                        >
+                            Food
                         </Link>,
-                        <Link to="/" className={classes.dropdownLink}>
-                            Lainnya
+                        <Link
+                            to="/products?cat=others"
+                            className={classes.dropdownLink}
+                        >
+                            Others
                         </Link>,
                     ]}
                 />
             </ListItem>
             <ListItem className={classes.listItem}>
                 <Link
-                    to="/"
+                    to="/about-us"
                     color="transparent"
                     target="_blank"
                     className={classes.navLink}
@@ -95,6 +110,19 @@ function HeaderLinks({ ...props }) {
                     About us
                 </Link>
             </ListItem>
+            {isLoggedin && (
+                <ListItem className={classes.listItem}>
+                    <Link
+                        to="/submit-idea"
+                        color="transparent"
+                        target="_blank"
+                        className={classes.navLink}
+                    >
+                        Submit your idea!
+                    </Link>
+                </ListItem>
+            )}
+
             {!isLoggedin ? (
                 <ListItem className={classes.listItem}>
                     <Button
@@ -112,7 +140,7 @@ function HeaderLinks({ ...props }) {
                     <CustomDropdown
                         left
                         caret={false}
-                        hoverColor="black"
+                        hoverColor="primary"
                         dropdownHeader={`Hi, ${currentUser &&
                             currentUser.displayName}`}
                         buttonText={
@@ -151,11 +179,7 @@ function HeaderLinks({ ...props }) {
                                 classes.imageDropdownButton,
                             color: 'transparent',
                         }}
-                        dropdownList={[
-                            'Me',
-                            'Settings and other stuff',
-                            'Sign out',
-                        ]}
+                        dropdownList={['My profile', 'Sign out']}
                     />
                 </ListItem>
             )}

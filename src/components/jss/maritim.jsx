@@ -17,6 +17,8 @@
 // ##############################
 // // // Variables - Styles that are used on more than one component
 // #############################
+import 'slick-carousel/slick/slick.css'
+import 'slick-carousel/slick/slick-theme.css'
 
 const drawerWidth = 260
 

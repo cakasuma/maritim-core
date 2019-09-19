@@ -17,16 +17,20 @@
 */
 import { container, title } from '../../maritim.jsx'
 
-const landingPageStyle = {
+const aboutUsStyle = {
     container: {
         zIndex: '12',
         color: '#FFFFFF',
         justifyContent: 'center',
         textAlign: 'center',
+        margin: 'auto',
         ...container,
         '@media (min-width: 320px)': {
             maxWidth: '90%',
         },
+    },
+    parallax: {
+        height: '500px',
     },
     title: {
         ...title,
@@ -68,4 +72,4 @@ const landingPageStyle = {
     },
 }
 
-export default landingPageStyle
+export default aboutUsStyle

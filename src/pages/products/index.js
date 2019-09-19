@@ -27,29 +27,29 @@ import image from '../../images/faces/avatar.jpg'
 
 const innovationCategory = [
     {
-        name: 'pangan',
-        label: 'Pangan',
-        path: '/pangan',
+        name: 'energy',
+        label: 'Energy',
+        path: '/energy',
     },
     {
-        name: 'energi',
-        label: 'Energi',
-        path: '/energi',
+        name: 'it',
+        label: 'IT',
+        path: '/it',
     },
     {
-        name: 'tik',
-        label: 'TIK',
-        path: '/tik',
+        name: 'biomedic',
+        label: 'Biomedic',
+        path: '/biomedic',
     },
     {
-        name: 'material',
-        label: 'Material Maju',
-        path: '/material',
+        name: 'food',
+        label: 'Food',
+        path: '/food',
     },
     {
-        name: 'lainnya',
-        label: 'Lainnya',
-        path: '/lainnya',
+        name: 'others',
+        label: 'Others',
+        path: '/others',
     },
 ]
 

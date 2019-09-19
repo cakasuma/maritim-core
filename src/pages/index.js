@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Link } from 'gatsby'
+import { Link, navigate } from 'gatsby'
 
 import Layout from '../components/layout/layout'
 import SEO from '../components/layout/seo'
@@ -26,6 +26,7 @@ import NavPillsStatic from '../components/shared/NavPillsStatic/NavPillsStatic.j
 
 import landingPageStyle from '../components/jss/maritim/views/landingPage.jsx'
 
+import AboutSection from './home/_about-section.js'
 import ProductSection from './home/_product-section.js'
 import WorkSection from './home/_work-section.js'
 
@@ -36,14 +37,14 @@ const IndexPage = ({ classes }) => (
     <Layout>
         <SEO title="Home" />
         <div>
-            <Parallax filter image={require('../images/landing-bg.jpg')}>
-                <GridContainer>
+            <Parallax filter image={require('../images/bg7.jpg')}>
+                <GridContainer className={classes.container}>
                     <GridContainer className={classes.container}>
                         <GridItem xs={12} sm={12} md={12}>
                             <h1 className={classes.title}>
                                 Your Innovations Starts With Us.
                             </h1>
-                            <h4>
+                            <h4 className={classes.titleSecondary}>
                                 We publish your innovation to help investor peek
                                 at your innovation and communicate with you. We
                                 believe Indonesia is a country full of inventor
@@ -75,26 +76,41 @@ const IndexPage = ({ classes }) => (
                                         tabButton: 'Energy',
                                         tabIcon: Energy,
                                         color: 'success',
+                                        onClick: () => {
+                                            navigate('/products?cat=energy')
+                                        },
                                     },
                                     {
                                         tabButton: 'IT',
                                         tabIcon: IT,
                                         color: 'warning',
+                                        onClick: () => {
+                                            navigate('/products?cat=it')
+                                        },
                                     },
                                     {
                                         tabButton: 'Biomedic',
                                         tabIcon: Biomedic,
                                         color: 'danger',
+                                        onClick: () => {
+                                            navigate('/products?cat=biomedic')
+                                        },
                                     },
                                     {
                                         tabButton: 'Food',
                                         tabIcon: Food,
                                         color: 'rose',
+                                        onClick: () => {
+                                            navigate('/products?cat=food')
+                                        },
                                     },
                                     {
                                         tabButton: 'Others',
                                         tabIcon: Other,
                                         color: 'info',
+                                        onClick: () => {
+                                            navigate('/products?cat=others')
+                                        },
                                     },
                                 ]}
                             />
@@ -104,6 +120,7 @@ const IndexPage = ({ classes }) => (
             </Parallax>
             <div className={classNames(classes.main, classes.mainRaised)}>
                 <div className={classes.container}>
+                    <AboutSection />
                     <ProductSection />
                     <WorkSection />
                 </div>

@@ -1,24 +1,10 @@
-/*!
-
-=========================================================
-* Material Kit React - v1.7.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/material-kit-react
-* Copyright 2019 Creative Tim (https://www.creative-tim.com)
-* Licensed under MIT (https://github.com/creativetimofficial/material-kit-react/blob/master/LICENSE.md)
-
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-*/
-import { container, grayColor, primaryColor } from '../../maritim.jsx'
+import {
+    container,
+    grayColor,
+    primaryColor,
+    infoColor,
+} from '../../maritim.jsx'
 import customCheckboxRadioSwitch from '../customCheckboxRadioSwitch.jsx'
-import 'slick-carousel/slick/slick.css'
-import 'slick-carousel/slick/slick-theme.css'
 
 const productDetailStyle = {
     container: {
@@ -32,6 +18,22 @@ const productDetailStyle = {
     navWrapper: {
         margin: '20px auto 50px auto',
     },
+    relatedTitle: {
+        display: 'inline-flex',
+        marginBottom: '1rem',
+        width: '100%',
+    },
+    relatedName: {
+        marginTop: '0',
+        padding: '0 15px',
+        color: infoColor,
+    },
+    relatedSeparator: {
+        flexGrow: 1,
+        background: grayColor,
+        height: '1px',
+        alignSelf: 'center',
+    },
     sliderContainer: {
         '& .slick-arrow': {
             zIndex: '3',
@@ -42,6 +44,12 @@ const productDetailStyle = {
                 right: '8px',
             },
         },
+    },
+    relatedContainer: {
+        '& img': {
+            margin: 'auto',
+        },
+        margin: 'auto',
     },
     contactButton: {
         margin: 'auto',
@@ -100,6 +108,9 @@ const productDetailStyle = {
     },
     postWrapper: {
         paddingBottom: '20px',
+    },
+    relatedPostWrapper: {
+        padding: '0 0.5rem',
     },
 }
 

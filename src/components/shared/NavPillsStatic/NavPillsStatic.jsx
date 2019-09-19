@@ -68,6 +68,7 @@ class NavPillsStatic extends React.Component {
                         <Tab
                             label={prop.tabButton}
                             key={key}
+                            onClick={prop.onClick}
                             {...icon}
                             classes={{
                                 root: pillsClasses,
