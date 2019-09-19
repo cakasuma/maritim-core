@@ -21,6 +21,8 @@ const productStyle = {
     section: {
         textAlign: 'center',
         width: '83%',
+        marginTop: '2rem',
+        marginBottom: '2rem',
         marginLeft: 'auto',
         marginRight: 'auto',
         '@media (max-width: 575px)': {
@@ -30,6 +32,7 @@ const productStyle = {
     card: {
         marginTop: '50px',
         marginBottom: '50px',
+        margin: 'auto',
     },
     cardWrapper: {
         width: '100%',

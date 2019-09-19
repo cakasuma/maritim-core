@@ -19,7 +19,14 @@ import { title } from '../../../maritim.jsx'
 
 const workStyle = {
     section: {
-        paddingBottom: '70px',
+        marginTop: '2rem',
+        marginBottom: '2rem',
+        paddingBottom: '3rem',
+        marginLeft: 'auto',
+        marginRight: 'auto',
+        '@media (max-width: 575px)': {
+            width: '100%',
+        },
     },
     title: {
         ...title,

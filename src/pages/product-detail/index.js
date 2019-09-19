@@ -16,6 +16,7 @@ import CardBody from '../../components/shared/Card/CardBody.jsx'
 import Primary from '../../components/shared/Typography/Primary.jsx'
 import NavPills from '../../components/shared/NavPills/NavPills.jsx'
 import { Link } from 'gatsby'
+import Badge from '../../components/shared/Badge/Badge.jsx'
 
 import Layout from '../../components/layout/layout.js'
 import SEO from '../../components/layout/seo.js'
@@ -98,44 +99,59 @@ class ProductDetail extends React.Component {
                         md={4}
                         className={classes.descriptionDetail}
                     >
-                        <Card className={classes.card}>
-                            <div className={classes.cardHeader}>
-                                Innovation Info
-                            </div>
-                            <CardBody>
-                                <Primary>
-                                    <h4>Data</h4>
-                                </Primary>
-                                <p>
-                                    <strong>Title:</strong> innovation title
-                                </p>
-                                <p>
-                                    <strong>Category:</strong> innovation
-                                    category
-                                </p>
-                                <p>
-                                    <strong>Author:</strong> innovation author
-                                </p>
-                                <Primary>
-                                    <h4>Brief description</h4>
-                                </Primary>
-                                <p>Lorem ipsum yes no</p>
-                                <Button
-                                    className={classes.contactButton}
-                                    color="primary"
-                                    size="md"
-                                    onClick={e => {
-                                        e.preventDefault()
-                                        window.open(
-                                            'https://wa.me/623424324234',
-                                            '_blank',
-                                        )
-                                    }}
-                                >
-                                    Contact now +623424324234
-                                </Button>
-                            </CardBody>
-                        </Card>
+                        <div>
+                            <Card className={classes.card}>
+                                <div className={classes.cardHeader}>
+                                    Innovation Info
+                                </div>
+                                <CardBody>
+                                    <Primary>
+                                        <h4>Data</h4>
+                                    </Primary>
+                                    <p>
+                                        <strong>Title:</strong> innovation title
+                                    </p>
+                                    <p>
+                                        <strong>Category:</strong> innovation
+                                        category
+                                    </p>
+                                    <p>
+                                        <strong>Author:</strong> innovation
+                                        author
+                                    </p>
+                                    <Primary>
+                                        <h4>Brief description</h4>
+                                    </Primary>
+                                    <p>Lorem ipsum yes no</p>
+                                    <Button
+                                        className={classes.contactButton}
+                                        color="primary"
+                                        size="md"
+                                        onClick={e => {
+                                            e.preventDefault()
+                                            window.open(
+                                                'https://wa.me/623424324234',
+                                                '_blank',
+                                            )
+                                        }}
+                                    >
+                                        Contact now +623424324234
+                                    </Button>
+                                </CardBody>
+                            </Card>
+                            <Card className={classes.cardSecondary}>
+                                <div className={classes.cardHeader}>
+                                    Categories tags
+                                </div>
+                                <CardBody>
+                                    <Badge color="primary">Pangan</Badge>
+                                    <Badge color="info">TIK</Badge>
+                                    <Badge color="success">Energi</Badge>
+                                    <Badge color="warning">Material</Badge>
+                                    <Badge color="rose">Lainnya</Badge>
+                                </CardBody>
+                            </Card>
+                        </div>
                     </GridItem>
                     <GridContainer className={classes.navWrapper}>
                         <GridItem xs={12} sm={12} md={12}>
