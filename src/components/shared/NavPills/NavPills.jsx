@@ -64,6 +64,7 @@ export default function NavPills(props) {
                             selected: classes[color],
                             wrapper: classes.tabWrapper,
                         }}
+                        onClick={prop.onClick}
                     />
                 )
             })}
