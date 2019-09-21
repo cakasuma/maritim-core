@@ -4,9 +4,6 @@ import PropTypes from 'prop-types'
 // @material-ui/core components
 import withStyles from '@material-ui/core/styles/withStyles'
 import { FirebaseContext } from 'gatsby-plugin-firebase'
-import { Formik } from 'formik'
-import * as Yup from 'yup'
-import CircularProgress from '@material-ui/core/CircularProgress'
 
 // @material-ui/icons
 
@@ -15,246 +12,118 @@ import GridContainer from '../../components/shared/Grid/GridContainer.jsx'
 import GridItem from '../../components/shared/Grid/GridItem.jsx'
 import CustomInput from '../../components/shared/CustomInput/CustomInput.jsx'
 import Button from '../../components/shared/CustomButtons/Button.jsx'
+import InfoArea from '../../components/shared/InfoArea/InfoArea.jsx'
 
-import workStyle from '../../components/jss/maritim/views/landingPageSections/workStyle.jsx'
+import PinDrop from '@material-ui/icons/PinDrop'
+import Phone from '@material-ui/icons/Phone'
+import BusinessCenter from '@material-ui/icons/BusinessCenter'
 
-const validationSchema = Yup.object().shape({
-    name: Yup.string().required('Name is required!'),
-    email: Yup.string()
-        .email('E-mail is not valid!')
-        .required('E-mail is required!'),
-    company: Yup.string().required('Company is required!'),
-    phone: Yup.string().required('Phone is required!'),
-    message: Yup.string().required('Message is required!'),
-})
-
-const feedbackFormValues = {
-    name: '',
-    email: '',
-    company: '',
-    phone: '',
-    message: '',
-}
+import feedbackStyle from '../../components/jss/maritim/views/landingPageSections/feedbackStyle.jsx'
 
 const FeedbackSection = ({ classes }) => {
     const firebase = React.useContext(FirebaseContext)
     return (
         <div className={classes.section}>
-            <GridContainer justify="center">
-                <GridItem cs={12} sm={12} md={8}>
-                    <h2 className={classes.title}>Work with us</h2>
-                    <h4 className={classes.description}>
-                        You can become one of the most influential investor by
-                        signing up to our program, choose the idea and happy
-                        hunting.
-                    </h4>
-                    <Formik
-                        initialValues={feedbackFormValues}
-                        validationSchema={validationSchema}
-                        onSubmit={(values, actions) => {
-                            actions.setSubmitting(true)
-                            const db = firebase.firestore()
-                            db.collection('company')
-                                .add({
-                                    name: values.name,
-                                    email: values.email,
-                                    company: values.company,
-                                    phone: values.phone,
-                                    message: values.message,
-                                })
-                                .then(function(docRef) {
-                                    console.log(
-                                        'Document written with ID: ',
-                                        docRef.id,
-                                    )
-                                    actions.setSubmitting(false)
-                                    actions.resetForm()
-                                })
-                                .catch(function(error) {
-                                    console.error(
-                                        'Error adding document: ',
-                                        error,
-                                    )
-                                    actions.setSubmitting(false)
-                                })
-                        }}
-                    >
-                        {({
-                            values,
-                            errors,
-                            touched,
-                            handleSubmit,
-                            handleChange,
-                            handleBlur,
-                            handleReset,
-                            isSubmitting,
-                        }) => (
-                            <form onReset={handleReset} onSubmit={handleSubmit}>
-                                <GridContainer justify="center">
-                                    <GridItem xs={12} sm={12} md={6}>
-                                        <CustomInput
-                                            labelText="Your Name"
-                                            id="name"
-                                            error={
-                                                errors.name && touched.name
-                                                    ? true
-                                                    : false
-                                            }
-                                            errorMessage={
-                                                errors.name && touched.name
-                                                    ? errors.name
-                                                    : null
-                                            }
-                                            inputProps={{
-                                                name: 'name',
-                                                value: values.name,
-                                                onChange: handleChange,
-                                                onBlur: handleBlur,
-                                                readOnly: isSubmitting,
-                                            }}
-                                            formControlProps={{
-                                                fullWidth: true,
-                                            }}
-                                        />
-                                    </GridItem>
-                                    <GridItem xs={12} sm={12} md={6}>
-                                        <CustomInput
-                                            labelText="Your Email"
-                                            id="email"
-                                            error={
-                                                errors.email && touched.email
-                                                    ? true
-                                                    : false
-                                            }
-                                            errorMessage={
-                                                errors.email && touched.email
-                                                    ? errors.email
-                                                    : null
-                                            }
-                                            inputProps={{
-                                                name: 'email',
-                                                value: values.email,
-                                                onChange: handleChange,
-                                                onBlur: handleBlur,
-                                                readOnly: isSubmitting,
-                                            }}
-                                            formControlProps={{
-                                                fullWidth: true,
-                                            }}
-                                        />
-                                    </GridItem>
-                                    <GridItem xs={12} sm={12} md={6}>
-                                        <CustomInput
-                                            labelText="Your Company"
-                                            id="company"
-                                            error={
-                                                errors.company &&
-                                                touched.company
-                                                    ? true
-                                                    : false
-                                            }
-                                            errorMessage={
-                                                errors.company &&
-                                                touched.company
-                                                    ? errors.company
-                                                    : null
-                                            }
-                                            inputProps={{
-                                                name: 'company',
-                                                value: values.company,
-                                                onChange: handleChange,
-                                                onBlur: handleBlur,
-                                                readOnly: isSubmitting,
-                                            }}
-                                            formControlProps={{
-                                                fullWidth: true,
-                                            }}
-                                        />
-                                    </GridItem>
-                                    <GridItem xs={12} sm={12} md={6}>
-                                        <CustomInput
-                                            labelText="Your Phone Number"
-                                            id="phone"
-                                            error={
-                                                errors.phone && touched.phone
-                                                    ? true
-                                                    : false
-                                            }
-                                            errorMessage={
-                                                errors.phone && touched.phone
-                                                    ? errors.phone
-                                                    : null
-                                            }
-                                            inputProps={{
-                                                name: 'phone',
-                                                value: values.phone,
-                                                onChange: handleChange,
-                                                onBlur: handleBlur,
-                                                readOnly: isSubmitting,
-                                            }}
-                                            formControlProps={{
-                                                fullWidth: true,
-                                            }}
-                                        />
-                                    </GridItem>
-                                    <CustomInput
-                                        labelText="Describe a little bit about you"
-                                        id="message"
-                                        error={
-                                            errors.message && touched.message
-                                                ? true
-                                                : false
-                                        }
-                                        errorMessage={
-                                            errors.message && touched.message
-                                                ? errors.message
-                                                : null
-                                        }
-                                        inputProps={{
-                                            name: 'message',
-                                            value: values.message,
-                                            multiline: true,
-                                            rows: 5,
-                                            onChange: handleChange,
-                                            onBlur: handleBlur,
-                                            readOnly: isSubmitting,
-                                        }}
-                                        formControlProps={{
-                                            fullWidth: true,
-                                            className: classes.textArea,
-                                        }}
-                                    />
-                                    <GridContainer
-                                        justify="center"
-                                        className={classes.fullWidth}
-                                    >
-                                        <GridItem
-                                            xs={12}
-                                            sm={12}
-                                            md={4}
-                                            className={classes.textCenter}
-                                        >
-                                            {isSubmitting ? (
-                                                <CircularProgress
-                                                    className={
-                                                        classes.circularProgress
-                                                    }
-                                                    color="secondary"
-                                                />
-                                            ) : (
-                                                <Button
-                                                    type="submit"
-                                                    color="primary"
-                                                >
-                                                    Join
-                                                </Button>
-                                            )}
-                                        </GridItem>
-                                    </GridContainer>
-                                </GridContainer>
+            <GridContainer className={classes.container} justify="center">
+                <GridItem xs={11} sm={11} md={11}>
+                    <h2 className={classes.title}>Send us a message</h2>
+                    <GridContainer>
+                        <GridItem sm={6} md={6} className={classes.noPadding}>
+                            <p className={classes.description}>
+                                You can contact us with anything to our
+                                services. We'll get in touch with you as soon as
+                                possible
+                                <br />
+                                <br />
+                            </p>
+                            <form action="/about-us">
+                                <CustomInput
+                                    labelText="Your Name"
+                                    id="name"
+                                    inputProps={{
+                                        name: 'name',
+                                    }}
+                                    formControlProps={{
+                                        fullWidth: true,
+                                    }}
+                                />
+                                <CustomInput
+                                    labelText="Your Name"
+                                    id="name"
+                                    inputProps={{
+                                        name: 'name',
+                                    }}
+                                    formControlProps={{
+                                        fullWidth: true,
+                                    }}
+                                />
+                                <CustomInput
+                                    labelText="Your Name"
+                                    id="name"
+                                    inputProps={{
+                                        name: 'name',
+                                    }}
+                                    formControlProps={{
+                                        fullWidth: true,
+                                    }}
+                                />
+                                <CustomInput
+                                    labelText="Describe a little bit about you"
+                                    id="message"
+                                    inputProps={{
+                                        name: 'message',
+                                        multiline: true,
+                                        rows: 5,
+                                    }}
+                                    formControlProps={{
+                                        fullWidth: true,
+                                    }}
+                                />
+                                <Button type="submit" color="primary">
+                                    Contact us
+                                </Button>
                             </form>
-                        )}
-                    </Formik>
+                        </GridItem>
+                        <GridItem md={4} sm={4} className={classes.mlAuto}>
+                            <InfoArea
+                                className={classes.infoAreaWrapper}
+                                title="Find us at the office"
+                                description={
+                                    <p>
+                                        Bld Mihail Kogalniceanu, nr. 8, <br />{' '}
+                                        7652 Bucharest, <br /> Romania
+                                    </p>
+                                }
+                                icon={PinDrop}
+                                iconColor="primary"
+                            />
+                            <InfoArea
+                                className={classes.infoAreaWrapper}
+                                title="Give us a ring"
+                                description={
+                                    <p>
+                                        Michael Jordan <br /> +40 762 321 762{' '}
+                                        <br /> Mon - Fri, 8:00-22:00
+                                    </p>
+                                }
+                                icon={Phone}
+                                iconColor="primary"
+                            />
+                            <InfoArea
+                                className={classes.infoAreaWrapper}
+                                title="Legal Information"
+                                description={
+                                    <p>
+                                        Creative Tim Ltd. <br /> VAT · EN2341241{' '}
+                                        <br /> IBAN · EN8732ENGB2300099123{' '}
+                                        <br /> Bank · Great Britain Bank
+                                    </p>
+                                }
+                                icon={BusinessCenter}
+                                iconColor="primary"
+                            />
+                        </GridItem>
+                    </GridContainer>
                 </GridItem>
             </GridContainer>
         </div>
@@ -265,4 +134,4 @@ FeedbackSection.propTypes = {
     classes: PropTypes.object,
 }
 
-export default withStyles(workStyle)(FeedbackSection)
+export default withStyles(feedbackStyle)(FeedbackSection)
