@@ -9,13 +9,13 @@ import classNames from 'classnames'
 
 // @material-ui/core components
 import withStyles from '@material-ui/core/styles/withStyles'
-import GridContainer from '../../components/shared/Grid/GridContainer.jsx'
-import GridItem from '../../components/shared/Grid/GridItem.jsx'
-import CustomButton from '../../components/shared/CustomButtons/Button.jsx'
-import Layout from '../../components/layout/layout.js'
-import SEO from '../../components/layout/seo.js'
-import Parallax from '../../components/shared/Parallax/Parallax.jsx'
-import submitPageStyle from '../../components/jss/maritim/views/submitPage.jsx'
+import GridContainer from '../../../components/shared/Grid/GridContainer.jsx'
+import GridItem from '../../../components/shared/Grid/GridItem.jsx'
+import CustomButton from '../../../components/shared/CustomButtons/Button.jsx'
+import Layout from '../../../components/layout/layout.js'
+import SEO from '../../../components/layout/seo.js'
+import Parallax from '../../../components/shared/Parallax/Parallax.jsx'
+import submitPageStyle from '../../../components/jss/maritim/views/submitPage.jsx'
 
 import CategoryStep from './_category-step'
 import DetailStep from './_detail-step'
@@ -70,19 +70,11 @@ const SubmitIdea = ({ classes }) => {
                 <Parallax
                     className={classes.parallax}
                     filter
-                    image={require('../../images/bg3.jpg')}
+                    image={require('../../../images/bg3.jpg')}
                 >
                     <GridContainer className={classes.container}>
                         <GridItem xs={12} sm={12} md={12}>
-                            <h1 className={classes.title}>
-                                Lets show the world your idea
-                            </h1>
-                            <h4 className={classes.titleSecondary}>
-                                We publish your innovation to help investor peek
-                                at your innovation and communicate with you. We
-                                believe Indonesia is a country full of inventor
-                                and it will help its glory because of you too!.
-                            </h4>
+                            <h1 className={classes.title}>Edit your idea</h1>
                         </GridItem>
                     </GridContainer>
                 </Parallax>

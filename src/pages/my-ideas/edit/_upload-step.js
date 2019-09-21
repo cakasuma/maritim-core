@@ -1,10 +1,10 @@
 import React from 'react'
 import styled from 'styled-components'
-import NavPills from '../../components/shared/NavPills/NavPills.jsx'
-import GridContainer from '../../components/shared/Grid/GridContainer.jsx'
+import NavPills from '../../../components/shared/NavPills/NavPills.jsx'
+import GridContainer from '../../../components/shared/Grid/GridContainer.jsx'
 import Typography from '@material-ui/core/Typography'
 import Button from '@material-ui/core/Button'
-import submitPageStyle from '../../components/jss/maritim/views/submitPage.jsx'
+import submitPageStyle from '../../../components/jss/maritim/views/submitPage.jsx'
 import withStyles from '@material-ui/core/styles/withStyles'
 
 const StyledWrapper = styled.section`

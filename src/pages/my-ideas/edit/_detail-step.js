@@ -11,12 +11,12 @@ import CircularProgress from '@material-ui/core/CircularProgress'
 // @material-ui/icons
 
 // core components
-import GridContainer from '../../components/shared/Grid/GridContainer.jsx'
-import GridItem from '../../components/shared/Grid/GridItem.jsx'
-import CustomInput from '../../components/shared/CustomInput/CustomInput.jsx'
-import Button from '../../components/shared/CustomButtons/Button.jsx'
+import GridContainer from '../../../components/shared/Grid/GridContainer.jsx'
+import GridItem from '../../../components/shared/Grid/GridItem.jsx'
+import CustomInput from '../../../components/shared/CustomInput/CustomInput.jsx'
+import Button from '../../../components/shared/CustomButtons/Button.jsx'
 
-import submitPageStyle from '../../components/jss/maritim/views/submitPage.jsx'
+import submitPageStyle from '../../../components/jss/maritim/views/submitPage.jsx'
 
 const validationSchema = Yup.object().shape({
     name: Yup.string().required('Name is required!'),

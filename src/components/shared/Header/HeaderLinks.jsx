@@ -18,7 +18,7 @@
 /*eslint-disable*/
 import React from 'react'
 // react components for routing our app without refresh
-import { Link } from 'gatsby'
+import { Link, navigate } from 'gatsby'
 
 // @material-ui/core components
 import withStyles from '@material-ui/core/styles/withStyles'
@@ -122,6 +122,18 @@ function HeaderLinks({ ...props }) {
                     </Link>
                 </ListItem>
             )}
+            {isLoggedin && (
+                <ListItem className={classes.listItem}>
+                    <Link
+                        to="/my-ideas"
+                        color="transparent"
+                        target="_blank"
+                        className={classes.navLink}
+                    >
+                        My ideas
+                    </Link>
+                </ListItem>
+            )}
 
             {!isLoggedin ? (
                 <ListItem className={classes.listItem}>
@@ -153,9 +165,8 @@ function HeaderLinks({ ...props }) {
                         onClick={action => {
                             console.log(action)
                             switch (action) {
-                                case 'Me':
-                                    break
-                                case 'Settings and other stuff':
+                                case 'My profile':
+                                    navigate('my-profile')
                                     break
                                 case 'Sign out':
                                     console.log('hi')
