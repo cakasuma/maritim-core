@@ -19,6 +19,7 @@
 import React from 'react'
 // nodejs library to set properties for components
 import PropTypes from 'prop-types'
+import { Link } from 'gatsby'
 // nodejs library that concatenates classes
 import classNames from 'classnames'
 import { List, ListItem, withStyles } from '@material-ui/core'
@@ -45,21 +46,17 @@ function Footer({ ...props }) {
                     <List className={classes.list}>
                         <ListItem className={classes.inlineBlock}>
                             <a
-                                href="https://www.cakasuma.com/"
+                                href="https://www.maritimmuda.id"
                                 className={classes.block}
                                 target="_blank"
                             >
-                                Cakasuma
+                                Maritim muda nasional
                             </a>
                         </ListItem>
                         <ListItem className={classes.inlineBlock}>
-                            <a
-                                href="https://www.cakasuma.com/about/"
-                                className={classes.block}
-                                target="_blank"
-                            >
+                            <Link to="/about-us" className={classes.block}>
                                 About us
-                            </a>
+                            </Link>
                         </ListItem>
                     </List>
                 </div>
@@ -67,13 +64,13 @@ function Footer({ ...props }) {
                     &copy; {1900 + new Date().getYear()} , made with{' '}
                     <Favorite className={classes.icon} /> by{' '}
                     <a
-                        href="https://www.cakasuma.com/"
+                        href="https://www.maritimmuda.id"
                         className={aClasses}
                         target="_blank"
                     >
-                        Cakasuma
+                        Maritim muda
                     </a>{' '}
-                    for a better web.
+                    for a better Indonesia.
                 </div>
             </div>
         </footer>

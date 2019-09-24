@@ -1,7 +1,7 @@
 import React from 'react'
 // nodejs library to set properties for components
 import PropTypes from 'prop-types'
-
+import styled from 'styled-components'
 import { Formik, Form } from 'formik'
 import * as Yup from 'yup'
 // @material-ui/core components
@@ -11,6 +11,8 @@ import InputAdornment from '@material-ui/core/InputAdornment'
 import Email from '@material-ui/icons/Email'
 import People from '@material-ui/icons/People'
 import LockOutlined from '@material-ui/icons/LockOutlined'
+
+import CircularProgress from '@material-ui/core/CircularProgress'
 // core components
 import Button from '../../components/shared/CustomButtons/Button.jsx'
 import CardBody from '../../components/shared/Card/CardBody.jsx'
@@ -34,11 +36,16 @@ const signinFormValues = {
     password: '',
 }
 
+const ErrorMessage = styled.p`
+    color: red;
+`
+
 const LoginForm = ({ classes, toggleLogin }) => {
     const firebase = React.useContext(FirebaseContext)
     return (
         <Formik
             initialValues={signinFormValues}
+            initialStatus={{}}
             validationSchema={SigninSchema}
             onSubmit={(values, actions) => {
                 // same shape as initial values
@@ -59,6 +66,9 @@ const LoginForm = ({ classes, toggleLogin }) => {
                             .catch(err => {
                                 console.log(err)
                                 actions.setSubmitting(false)
+                                actions.setStatus({
+                                    error: err.message,
+                                })
                             })
                     })
             }}
@@ -70,6 +80,7 @@ const LoginForm = ({ classes, toggleLogin }) => {
                 handleChange,
                 handleBlur,
                 isSubmitting,
+                status,
             }) => (
                 <Form className={classes.form}>
                     <CardBody>
@@ -136,10 +147,20 @@ const LoginForm = ({ classes, toggleLogin }) => {
                         />
                     </CardBody>
                     <CardFooter className={classes.cardFooter}>
-                        <Button color="primary" size="md" type="submit">
-                            Login
-                        </Button>
-                        Or
+                        {status.error && (
+                            <ErrorMessage>{status.error}</ErrorMessage>
+                        )}
+                        {isSubmitting ? (
+                            <CircularProgress
+                                className={classes.circularProgress}
+                                color="secondary"
+                            />
+                        ) : (
+                            <Button color="primary" size="md" type="submit">
+                                Login
+                            </Button>
+                        )}
+                        <br />
                         <Button
                             simple
                             color="primary"
@@ -149,7 +170,7 @@ const LoginForm = ({ classes, toggleLogin }) => {
                                 toggleLogin()
                             }}
                         >
-                            Register here
+                            Create a new account here
                         </Button>
                     </CardFooter>
                 </Form>

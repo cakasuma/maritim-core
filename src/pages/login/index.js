@@ -18,6 +18,7 @@
 import React from 'react'
 // nodejs library to set properties for components
 import PropTypes from 'prop-types'
+import styled from 'styled-components'
 // @material-ui/core components
 import withStyles from '@material-ui/core/styles/withStyles'
 import InputAdornment from '@material-ui/core/InputAdornment'
@@ -41,7 +42,8 @@ import loginPageStyle from '../../components/jss/maritim/views/loginPage.jsx'
 import Layout from '../../components/layout/layout.js'
 import SEO from '../../components/layout/seo.js'
 
-import Background from '../../components/shared/Image/background'
+import Abstract from '../../images/svg/bg8.svg'
+import Image from '../../components/shared/Image/image'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
@@ -55,6 +57,18 @@ import SignupForm from './_signup'
 
 import { withFirebase } from '../../components/layout/with-firebase.js'
 
+const Container = styled.div`
+    background: #6c63ff;
+    position: relative;
+`
+
+const StyledImage = styled.img`
+    position: absolute;
+    z-index: 1;
+    left: 14%;
+    top: 5%;
+`
+
 class LoginPage extends React.Component {
     constructor(props) {
         super(props)
@@ -67,10 +81,20 @@ class LoginPage extends React.Component {
     toggleLogin() {
         this.setState({ isLogin: !this.state.isLogin })
     }
+    componentDidUpdate(prevProps) {
+        if (!prevProps.firebase && this.props.firebase) {
+            this.props.firebase.auth().onAuthStateChanged(user => {
+                console.log('state changed')
+                console.log(user)
+                this.setState({ user: user })
+            })
+        }
+    }
     componentDidMount() {
         if (this.props.firebase) {
             this.props.firebase.auth().onAuthStateChanged(user => {
                 console.log('state changed')
+                console.log(user)
                 this.setState({ user: user })
             })
         }
@@ -84,24 +108,17 @@ class LoginPage extends React.Component {
     }
     render() {
         const { classes } = this.props
-        const { isLogin } = this.state
+        const { isLogin, user } = this.state
 
-        if (this.state.user) {
+        if (user && isLogin) {
             navigate('/')
         }
 
         return (
             <Layout is_login>
                 <SEO title="login" />
-                <Background
-                    className={classes.pageHeader}
-                    style={{
-                        backgroundSize: 'cover',
-                        backgroundPosition: 'top center',
-                    }}
-                    img_name="bg-main.png"
-                    brightness="0.5"
-                >
+                <StyledImage src={Abstract} />
+                <Container>
                     <div className={classes.container}>
                         <GridContainer justify="center">
                             <GridItem
@@ -181,7 +198,7 @@ class LoginPage extends React.Component {
                             </GridItem>
                         </GridContainer>
                     </div>
-                </Background>
+                </Container>
             </Layout>
         )
     }
