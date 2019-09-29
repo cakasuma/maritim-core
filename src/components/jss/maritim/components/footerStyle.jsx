@@ -60,6 +60,8 @@ const footerStyle = {
     },
     footerWhiteFont: {
         backgroundColor: '#6C63FF',
+        height: '30.2vh',
+        paddingTop: '21vh',
         '&,&:hover,&:focus': {
             color: '#FFFFFF',
         },

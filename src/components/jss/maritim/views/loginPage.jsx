@@ -26,8 +26,12 @@ const signupPageStyle = {
         color: '#FFFFFF',
         paddingBottom: '200px',
     },
+    formControl: {
+        width: '100%',
+    },
     cardGrid: {
         padding: '0',
+        zIndex: 3,
     },
     cardHidden: {
         opacity: '0',

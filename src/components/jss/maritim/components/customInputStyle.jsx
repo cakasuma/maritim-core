@@ -90,6 +90,7 @@ const customInputStyle = {
     input: {
         color: '#495057',
         height: 'unset',
+        fontSize: '14px',
         '&,&::placeholder': {
             fontSize: '14px',
             fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
@@ -99,6 +100,9 @@ const customInputStyle = {
         },
         '&::placeholder': {
             color: '#AAAAAA',
+        },
+        '&::focus': {
+            background: 'none',
         },
     },
     whiteInput: {

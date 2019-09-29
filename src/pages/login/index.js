@@ -60,13 +60,18 @@ import { withFirebase } from '../../components/layout/with-firebase.js'
 const Container = styled.div`
     background: #6c63ff;
     position: relative;
+    height: 100%;
+`
+
+const StyledContainer = styled(GridContainer)`
+    position: relative;
 `
 
 const StyledImage = styled.img`
     position: absolute;
     z-index: 1;
-    left: 14%;
-    top: 5%;
+    top: -10vh;
+    width: 100%;
 `
 
 class LoginPage extends React.Component {
@@ -117,10 +122,11 @@ class LoginPage extends React.Component {
         return (
             <Layout is_login>
                 <SEO title="login" />
-                <StyledImage src={Abstract} />
+
                 <Container>
                     <div className={classes.container}>
-                        <GridContainer justify="center">
+                        <StyledContainer justify="center">
+                            <StyledImage src={Abstract} />
                             <GridItem
                                 xs={12}
                                 sm={12}
@@ -196,7 +202,7 @@ class LoginPage extends React.Component {
                                     </div>
                                 </Card>
                             </GridItem>
-                        </GridContainer>
+                        </StyledContainer>
                     </div>
                 </Container>
             </Layout>
