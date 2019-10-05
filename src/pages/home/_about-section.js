@@ -3,9 +3,9 @@ import React from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 
 // @material-ui/icons
-import Chat from '@material-ui/icons/Chat'
+import ThumbUp from '@material-ui/icons/ThumbUp'
 import VerifiedUser from '@material-ui/icons/VerifiedUser'
-import Fingerprint from '@material-ui/icons/Fingerprint'
+import ContactPhone from '@material-ui/icons/ContactPhone'
 // core components
 import GridContainer from '../../components/shared/Grid/GridContainer.jsx'
 import GridItem from '../../components/shared/Grid/GridItem.jsx'
@@ -21,14 +21,13 @@ export default function AboutSection() {
         <div className={classes.section}>
             <GridContainer justify="center">
                 <GridItem xs={12} sm={12} md={8}>
-                    <h2 className={classes.title}>Let{"'"}s talk product</h2>
+                    <h2 className={classes.title}>
+                        Let{"'"}s talk about innovation
+                    </h2>
                     <h5 className={classes.description}>
-                        This is the paragraph where you can write more details
-                        about your product. Keep you user engaged by providing
-                        meaningful information. Remember that by this time, the
-                        user is curious, otherwise he wouldn
-                        {"'"}t scroll to get here. Add a button if you want the
-                        user to see more.
+                        The innovation hosted in this platform comes from
+                        verified students and source, which are worth to become
+                        your next investment
                     </h5>
                 </GridItem>
             </GridContainer>
@@ -36,27 +35,27 @@ export default function AboutSection() {
                 <GridContainer>
                     <GridItem xs={12} sm={12} md={4}>
                         <InfoArea
-                            title="Free Chat"
-                            description="Divide details about your product or agency work into parts. Write a few lines about each one. A paragraph describing a feature will be enough."
-                            icon={Chat}
+                            title="Verified students"
+                            description="We verify students background before they can submit their innovation. despite of it, it will be easy for innovator to create new innovation with us"
+                            icon={VerifiedUser}
                             iconColor="info"
                             vertical
                         />
                     </GridItem>
                     <GridItem xs={12} sm={12} md={4}>
                         <InfoArea
-                            title="Verified Users"
-                            description="Divide details about your product or agency work into parts. Write a few lines about each one. A paragraph describing a feature will be enough."
-                            icon={VerifiedUser}
+                            title="Trusted source"
+                            description="We take a look at geuninity of the innovation seriously. as it will benefits both of the parties in continuation of the idea."
+                            icon={ThumbUp}
                             iconColor="success"
                             vertical
                         />
                     </GridItem>
                     <GridItem xs={12} sm={12} md={4}>
                         <InfoArea
-                            title="Fingerprint"
-                            description="Divide details about your product or agency work into parts. Write a few lines about each one. A paragraph describing a feature will be enough."
-                            icon={Fingerprint}
+                            title="Easily accessible"
+                            description="the innovation will be available in our platform when innovator upload it to our system."
+                            icon={ContactPhone}
                             iconColor="danger"
                             vertical
                         />

@@ -28,6 +28,10 @@ const footerStyle = {
         textDecoration: 'none',
         position: 'relative',
         display: 'block',
+        '&:hover,&:focus': {
+            color: 'inherit',
+            textDecoration: 'underline',
+        },
     },
     left: {
         float: 'left!important',
@@ -49,9 +53,15 @@ const footerStyle = {
         color: primaryColor,
         textDecoration: 'none',
         backgroundColor: 'transparent',
+        '&:hover,&:focus': {
+            color: 'inherit',
+            textDecoration: 'underline',
+        },
     },
     footerWhiteFont: {
-        backgroundColor: '#0f557b',
+        backgroundColor: '#6C63FF',
+        height: '30.2vh',
+        paddingTop: '21vh',
         '&,&:hover,&:focus': {
             color: '#FFFFFF',
         },

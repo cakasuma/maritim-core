@@ -1,10 +1,11 @@
-import { createGlobalStyle } from "styled-components"
-import Reset from "./reset"
+import { createGlobalStyle } from 'styled-components'
+import Reset from './reset'
 
 const GlobalStyle = createGlobalStyle`
     ${Reset}
 
     html {
+        height: 100%;
         font-size: 100%; /* 1rem = 10px */
 
         @media (min-width: 1980px) {

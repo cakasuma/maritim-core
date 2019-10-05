@@ -1,6 +1,8 @@
 import React from 'react'
 // nodejs library to set properties for components
 import PropTypes from 'prop-types'
+import styled from 'styled-components'
+import { navigate } from 'gatsby'
 
 import { Formik, Form } from 'formik'
 import * as Yup from 'yup'
@@ -10,19 +12,24 @@ import InputAdornment from '@material-ui/core/InputAdornment'
 
 // @material-ui/icons
 import Email from '@material-ui/icons/Email'
+import Face from '@material-ui/icons/Face'
+import Functions from '@material-ui/icons/Functions'
+import Phone from '@material-ui/icons/Phone'
 import LockOutlined from '@material-ui/icons/LockOutlined'
 // core components
 import Button from '../../components/shared/CustomButtons/Button.jsx'
 import CardBody from '../../components/shared/Card/CardBody.jsx'
 import CardFooter from '../../components/shared/Card/CardFooter.jsx'
 import CustomInput from '../../components/shared/CustomInput/CustomInput.jsx'
+import CustomSelect from '../../components/shared/CustomSelect/CustomSelect.jsx'
 import CircularProgress from '@material-ui/core/CircularProgress'
+import InputLabel from '@material-ui/core/InputLabel'
 
 import loginPageStyle from '../../components/jss/maritim/views/loginPage.jsx'
 import { FirebaseContext } from 'gatsby-plugin-firebase'
 
 const SignupSchema = Yup.object().shape({
-    first_name: Yup.string()
+    full_name: Yup.string()
         .min(2, 'too show')
         .max(15, 'too long')
         .required('Required!'),
@@ -32,19 +39,40 @@ const SignupSchema = Yup.object().shape({
     password: Yup.string()
         .min(8, 'Too Short!')
         .required('Required'),
+    phone: Yup.string().required('Phone is required'),
+    type: Yup.string().required('Type is required'),
 })
 
 const signupFormValues = {
-    first_name: '',
+    full_name: '',
     email: '',
     password: '',
+    phone: '',
+    type: '',
 }
+
+const styledLabel = styled(InputLabel)`
+    font-size: 14px;
+`
+
+const ErrorMessage = styled.p`
+    color: red;
+`
+
+const StyledHeader = styled.h1`
+    text-align: center;
+`
+
+const StyledParagraph = styled.p`
+    text-align: center;
+`
 
 const SignupForm = ({ classes, toggleLogin }) => {
     const firebase = React.useContext(FirebaseContext)
     return (
         <Formik
             initialValues={signupFormValues}
+            initialStatus={{}}
             validationSchema={SignupSchema}
             onSubmit={(values, actions) => {
                 // same shape as initial values
@@ -61,22 +89,36 @@ const SignupForm = ({ classes, toggleLogin }) => {
                             .collection('users')
                             .doc(user.uid)
                             .set({
-                                name: values.first_name,
+                                name: values.full_name,
+                                phone: values.phone,
+                                type: values.type,
                                 email: values.email,
                             })
                         user.updateProfile({
-                            displayName: values.first_name,
+                            displayName: values.full_name,
                         })
                             .then(() => {
-                                console.log(user)
-                                actions.resetForm()
-                                actions.setSubmitting(false)
+                                user.sendEmailVerification().then(() => {
+                                    actions.resetForm()
+                                    actions.setSubmitting(false)
+                                    actions.setStatus({
+                                        success:
+                                            "We've sent you email to verify your account",
+                                    })
+                                })
                             })
-                            .catch(err => console.log(err))
+                            .catch(err => {
+                                actions.setSubmitting(false)
+                                actions.setStatus({
+                                    error: err.message,
+                                })
+                            })
                     })
                     .catch(err => {
-                        console.log(err)
                         actions.setSubmitting(false)
+                        actions.setStatus({
+                            error: err.message,
+                        })
                     })
             }}
         >
@@ -87,129 +129,249 @@ const SignupForm = ({ classes, toggleLogin }) => {
                 handleChange,
                 handleBlur,
                 isSubmitting,
+                status,
             }) => (
                 <Form className={classes.form}>
-                    <CardBody>
-                        <CustomInput
-                            labelText="First Name..."
-                            id="first_name"
-                            formControlProps={{
-                                fullWidth: true,
-                            }}
-                            error={
-                                errors.first_name && touched.first_name
-                                    ? true
-                                    : false
-                            }
-                            errorMessage={
-                                errors.first_name && touched.first_name
-                                    ? errors.first_name
-                                    : null
-                            }
-                            inputProps={{
-                                type: 'text',
-                                name: 'first_name',
-                                value: values.first_name,
-                                onChange: handleChange,
-                                onBlur: handleBlur,
-                                readOnly: isSubmitting,
-                                endAdornment: (
-                                    <InputAdornment position="end">
-                                        <Email
-                                            className={classes.inputIconsColor}
-                                        />
-                                    </InputAdornment>
-                                ),
-                            }}
-                        />
-                        <CustomInput
-                            labelText="Email..."
-                            id="email"
-                            formControlProps={{
-                                fullWidth: true,
-                            }}
-                            error={errors.email && touched.email ? true : false}
-                            errorMessage={
-                                errors.email && touched.email
-                                    ? errors.email
-                                    : null
-                            }
-                            inputProps={{
-                                type: 'email',
-                                name: 'email',
-                                value: values.email,
-                                onChange: handleChange,
-                                onBlur: handleBlur,
-                                readOnly: isSubmitting,
-                                endAdornment: (
-                                    <InputAdornment position="end">
-                                        <Email
-                                            className={classes.inputIconsColor}
-                                        />
-                                    </InputAdornment>
-                                ),
-                            }}
-                        />
-                        <CustomInput
-                            labelText="Password"
-                            id="pass"
-                            formControlProps={{
-                                fullWidth: true,
-                            }}
-                            error={
-                                errors.password && touched.password
-                                    ? true
-                                    : false
-                            }
-                            errorMessage={
-                                errors.password && touched.password
-                                    ? errors.password
-                                    : null
-                            }
-                            inputProps={{
-                                type: 'password',
-                                name: 'password',
-                                value: values.password,
-                                onChange: handleChange,
-                                onBlur: handleBlur,
-                                readOnly: isSubmitting,
-                                endAdornment: (
-                                    <InputAdornment position="end">
-                                        <LockOutlined
-                                            className={classes.inputIconsColor}
-                                        />
-                                    </InputAdornment>
-                                ),
-                                autoComplete: 'off',
-                            }}
-                        />
-                    </CardBody>
-                    <CardFooter className={classes.cardFooter}>
-                        {isSubmitting ? (
-                            <CircularProgress
-                                className={classes.circularProgress}
-                                color="secondary"
-                            />
-                        ) : (
-                            <Button color="primary" size="md" type="submit">
-                                Get started
-                            </Button>
-                        )}
-                        <br />
-                        Or
-                        <br />
-                        <Button
-                            simple
-                            color="primary"
-                            size="md"
-                            onClick={e => {
-                                e.preventDefault()
-                                toggleLogin()
-                            }}
-                        >
-                            login here
-                        </Button>
-                    </CardFooter>
+                    {!status.success ? (
+                        <>
+                            <CardBody>
+                                <CustomInput
+                                    labelText="Full name"
+                                    id="full_name"
+                                    formControlProps={{
+                                        fullWidth: true,
+                                    }}
+                                    error={
+                                        errors.full_name && touched.full_name
+                                            ? true
+                                            : false
+                                    }
+                                    errorMessage={
+                                        errors.full_name && touched.full_name
+                                            ? errors.full_name
+                                            : null
+                                    }
+                                    inputProps={{
+                                        type: 'text',
+                                        name: 'full_name',
+                                        value: values.full_name,
+                                        onChange: handleChange,
+                                        onBlur: handleBlur,
+                                        readOnly: isSubmitting,
+                                        endAdornment: (
+                                            <InputAdornment position="end">
+                                                <Face
+                                                    className={
+                                                        classes.inputIconsColor
+                                                    }
+                                                />
+                                            </InputAdornment>
+                                        ),
+                                    }}
+                                />
+                                <CustomInput
+                                    labelText="Phone number"
+                                    id="phone"
+                                    formControlProps={{
+                                        fullWidth: true,
+                                    }}
+                                    error={
+                                        errors.phone && touched.phone
+                                            ? true
+                                            : false
+                                    }
+                                    errorMessage={
+                                        errors.phone && touched.phone
+                                            ? errors.phone
+                                            : null
+                                    }
+                                    inputProps={{
+                                        type: 'text',
+                                        name: 'phone',
+                                        value: values.phone,
+                                        onChange: handleChange,
+                                        onBlur: handleBlur,
+                                        readOnly: isSubmitting,
+                                        endAdornment: (
+                                            <InputAdornment position="end">
+                                                <Phone
+                                                    className={
+                                                        classes.inputIconsColor
+                                                    }
+                                                />
+                                            </InputAdornment>
+                                        ),
+                                    }}
+                                />
+                                <CustomSelect
+                                    labelText="Type"
+                                    id="type"
+                                    formControlProps={{
+                                        fullWidth: true,
+                                    }}
+                                    error={
+                                        errors.type && touched.type
+                                            ? true
+                                            : false
+                                    }
+                                    errorMessage={
+                                        errors.type && touched.type
+                                            ? errors.type
+                                            : null
+                                    }
+                                    inputProps={{
+                                        type: 'text',
+                                        name: 'type',
+                                        value: values.type,
+                                        onChange: handleChange,
+                                        onBlur: handleBlur,
+                                        readOnly: isSubmitting,
+                                        endAdornment: (
+                                            <InputAdornment position="end">
+                                                <Functions
+                                                    className={
+                                                        classes.inputIconsColor
+                                                    }
+                                                />
+                                            </InputAdornment>
+                                        ),
+                                        menuItem: [
+                                            {
+                                                text: 'Investor',
+                                                value: 'investor',
+                                            },
+                                            {
+                                                text: 'Innovator',
+                                                value: 'innovator',
+                                            },
+                                        ],
+                                    }}
+                                />
+                                <CustomInput
+                                    labelText="Email..."
+                                    id="email"
+                                    formControlProps={{
+                                        fullWidth: true,
+                                    }}
+                                    error={
+                                        errors.email && touched.email
+                                            ? true
+                                            : false
+                                    }
+                                    errorMessage={
+                                        errors.email && touched.email
+                                            ? errors.email
+                                            : null
+                                    }
+                                    inputProps={{
+                                        type: 'email',
+                                        name: 'email',
+                                        value: values.email,
+                                        onChange: handleChange,
+                                        onBlur: handleBlur,
+                                        readOnly: isSubmitting,
+                                        endAdornment: (
+                                            <InputAdornment position="end">
+                                                <Email
+                                                    className={
+                                                        classes.inputIconsColor
+                                                    }
+                                                />
+                                            </InputAdornment>
+                                        ),
+                                    }}
+                                />
+                                <CustomInput
+                                    labelText="Password"
+                                    id="pass"
+                                    formControlProps={{
+                                        fullWidth: true,
+                                    }}
+                                    error={
+                                        errors.password && touched.password
+                                            ? true
+                                            : false
+                                    }
+                                    errorMessage={
+                                        errors.password && touched.password
+                                            ? errors.password
+                                            : null
+                                    }
+                                    inputProps={{
+                                        type: 'password',
+                                        name: 'password',
+                                        value: values.password,
+                                        onChange: handleChange,
+                                        onBlur: handleBlur,
+                                        readOnly: isSubmitting,
+                                        endAdornment: (
+                                            <InputAdornment position="end">
+                                                <LockOutlined
+                                                    className={
+                                                        classes.inputIconsColor
+                                                    }
+                                                />
+                                            </InputAdornment>
+                                        ),
+                                        autoComplete: 'off',
+                                    }}
+                                />
+                            </CardBody>
+                            <CardFooter className={classes.cardFooter}>
+                                {status.error && (
+                                    <ErrorMessage>{status.error}</ErrorMessage>
+                                )}
+                                {isSubmitting ? (
+                                    <CircularProgress
+                                        className={classes.circularProgress}
+                                        color="secondary"
+                                    />
+                                ) : (
+                                    <Button
+                                        color="primary"
+                                        size="md"
+                                        type="submit"
+                                    >
+                                        Get started
+                                    </Button>
+                                )}
+                                <br />
+                                <Button
+                                    simple
+                                    color="primary"
+                                    size="md"
+                                    onClick={e => {
+                                        e.preventDefault()
+                                        toggleLogin()
+                                    }}
+                                >
+                                    Already have an account? Login here
+                                </Button>
+                            </CardFooter>
+                        </>
+                    ) : (
+                        <>
+                            <CardBody>
+                                <StyledHeader>Sign up successful</StyledHeader>
+                                <StyledParagraph>
+                                    {status.success}
+                                </StyledParagraph>
+                            </CardBody>
+                            <CardFooter className={classes.cardFooter}>
+                                {' '}
+                                <Button
+                                    color="primary"
+                                    size="md"
+                                    type="submit"
+                                    onClick={() => {
+                                        navigate('/')
+                                    }}
+                                >
+                                    View innovation
+                                </Button>
+                            </CardFooter>
+                        </>
+                    )}
                 </Form>
             )}
         </Formik>

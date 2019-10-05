@@ -28,6 +28,9 @@ const workStyle = {
             width: '100%',
         },
     },
+    button: {
+        width: '100%',
+    },
     title: {
         ...title,
         marginBottom: '20px',

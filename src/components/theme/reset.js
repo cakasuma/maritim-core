@@ -138,11 +138,13 @@ const Reset = css`
     }
 
     html * {
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale; }
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
 
     body {
-    font-size: 1rem; }
+        font-size: 1rem;
+    }
 
     body,
     h1,
@@ -151,9 +153,10 @@ const Reset = css`
     h4,
     h5,
     h6 {
-    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
-    font-weight: 300;
-    line-height: 1.5em; }
+        font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
+        font-weight: 300;
+        line-height: 1.5em;
+    }
 
     h1,
     h2,
@@ -161,99 +164,122 @@ const Reset = css`
     h4,
     h5,
     h6 {
-    color: inherit; }
+        color: inherit;
+    }
 
     h1,
     h2,
     h3 {
-    margin-top: 20px;
-    margin-bottom: 10px; }
+        margin-top: 20px;
+        margin-bottom: 10px;
+    }
 
     h4,
     h5,
     h6 {
-    margin-top: 10px;
-    margin-bottom: 10px; }
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
 
     h1 {
-    font-size: 3rem;
-    line-height: 1.15em; }
+        font-size: 3rem;
+        line-height: 1.15em;
+    }
 
     h2 {
-    font-size: 2.25rem;
-    line-height: 1.5em; }
+        font-size: 2.25rem;
+        line-height: 1.5em;
+    }
 
     h3 {
-    font-size: 1.5625rem;
-    line-height: 1.4em; }
+        font-size: 1.5625rem;
+        line-height: 1.4em;
+    }
 
     h4 {
-    font-size: 1rem;
-    line-height: 1.5em; }
+        font-size: 1rem;
+        line-height: 1.5em;
+    }
 
     h5 {
-    font-size: 1.0625rem;
-    line-height: 1.55em; }
+        font-size: 1.0625rem;
+        line-height: 1.55em;
+    }
 
     h6 {
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    font-weight: 500; }
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        font-weight: 500;
+    }
 
     p {
-    font-size: 14px;
-    margin: 0 0 10px; }
+        font-size: 14px;
+        margin: 0 0 10px;
+    }
 
     html {
-    font-family: sans-serif;
-    line-height: 1.15;
-    -webkit-text-size-adjust: 100%;
-    -ms-text-size-adjust: 100%;
-    -ms-overflow-style: scrollbar;
-    -webkit-tap-highlight-color: transparent; }
+        font-family: sans-serif;
+        line-height: 1.15;
+        -webkit-text-size-adjust: 100%;
+        -ms-text-size-adjust: 100%;
+        -ms-overflow-style: scrollbar;
+        -webkit-tap-highlight-color: transparent;
+    }
 
     body {
-    background-color: #e5e5e5;
-    color: #3c4858;
-    margin: 0;
-    font-size: 1rem;
-    text-align: left; }
+        background-color: #e5e5e5;
+        color: #3c4858;
+        margin: 0;
+        font-size: 1rem;
+        text-align: left;
+        height: 100%;
+    }
 
     legend {
-    border-bottom: 0; }
+        border-bottom: 0;
+    }
 
     * {
-    -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
-    -webkit-tap-highlight-color: transparent;
-    box-sizing: border-box; }
+        -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+        -webkit-tap-highlight-color: transparent;
+        box-sizing: border-box;
+    }
     *:focus {
-        outline: 0; }
+        outline: 0;
+    }
 
     a {
-    color: #9c27b0;
-    text-decoration: none;
-    background-color: transparent; }
-    a:hover, a:focus {
+        color: #9c27b0;
+        text-decoration: none;
+        background-color: transparent;
+    }
+    a:hover,
+    a:focus {
         color: #89229b;
-        text-decoration: none; }
+        text-decoration: none;
+    }
 
     label {
-    font-size: 14px;
-    line-height: 1.42857;
-    color: #aaaaaa;
-    font-weight: 400; }
+        font-size: 14px;
+        line-height: 1.42857;
+        color: #aaaaaa;
+        font-weight: 400;
+    }
 
     small {
-    font-size: 75%;
-    color: #777;
-    font-weight: 400; }
+        font-size: 75%;
+        color: #777;
+        font-weight: 400;
+    }
 
     img {
-    vertical-align: middle;
-    border-style: none; }
+        vertical-align: middle;
+        border-style: none;
+    }
 
     form {
-    margin-bottom: 1.125rem; }
+        margin-bottom: 1.125rem;
+    }
 `
 
 export default Reset
