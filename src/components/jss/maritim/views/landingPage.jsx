@@ -28,12 +28,15 @@ const landingPageStyle = {
             maxWidth: '90%',
         },
     },
+    parallax: {
+        height: '650px',
+    },
     title: {
         ...title,
         display: 'inline-block',
         position: 'relative',
         marginTop: '0',
-        minHeight: '32px',
+        fontSize: '9rem',
         color: '#FFFFFF',
         textDecoration: 'none',
     },

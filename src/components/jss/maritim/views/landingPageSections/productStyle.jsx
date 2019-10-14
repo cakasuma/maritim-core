@@ -34,6 +34,17 @@ const productStyle = {
         marginBottom: '50px',
         margin: 'auto',
     },
+    separator: {
+        marginTop: '90px',
+    },
+    title2: {
+        ...title,
+        display: 'inline-block',
+        position: 'relative',
+        marginTop: '50px',
+        minHeight: '32px',
+        textDecoration: 'none',
+    },
     cardWrapper: {
         width: '100%',
         position: 'relative',

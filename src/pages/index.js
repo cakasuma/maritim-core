@@ -37,19 +37,18 @@ const IndexPage = ({ classes }) => (
     <Layout>
         <SEO title="Home" />
         <div>
-            <Parallax filter image={require('../images/bg7.jpg')}>
+            <Parallax
+                className={classes.parallax}
+                filter
+                image={require('../images/bg7.jpg')}
+            >
                 <GridContainer className={classes.container}>
                     <GridContainer className={classes.container}>
                         <GridItem xs={12} sm={12} md={12}>
-                            <h1 className={classes.title}>
-                                Your Innovations Starts With Us.
-                            </h1>
-                            <h4 className={classes.titleSecondary}>
-                                We publish your innovation to help investor peek
-                                at your innovation and communicate with you. We
-                                believe Indonesia is a country full of inventor
-                                and it will help its glory because of you too!.
-                            </h4>
+                            <h3 className={classes.titleSecondary}>
+                                Its time for great
+                            </h3>
+                            <h1 className={classes.title}>Innovation</h1>
                             <br />
                             <Button
                                 component={Link}
@@ -60,60 +59,8 @@ const IndexPage = ({ classes }) => (
                                 rel="noopener noreferrer"
                             >
                                 <FontAwesomeIcon icon={faLightbulb} />
-                                Peek all innovation
+                                Start now
                             </Button>
-                        </GridItem>
-                    </GridContainer>
-                    <GridContainer className={classes.container}>
-                        <GridItem xs={12} sm={12} md={12}>
-                            <h2 className={classes.title2}>
-                                Or choose by categories
-                            </h2>
-                            <NavPillsStatic
-                                alignCenter
-                                tabs={[
-                                    {
-                                        tabButton: 'Energy',
-                                        tabIcon: Energy,
-                                        color: 'success',
-                                        onClick: () => {
-                                            navigate('/products?cat=energy')
-                                        },
-                                    },
-                                    {
-                                        tabButton: 'IT',
-                                        tabIcon: IT,
-                                        color: 'warning',
-                                        onClick: () => {
-                                            navigate('/products?cat=it')
-                                        },
-                                    },
-                                    {
-                                        tabButton: 'Biomedic',
-                                        tabIcon: Biomedic,
-                                        color: 'danger',
-                                        onClick: () => {
-                                            navigate('/products?cat=biomedic')
-                                        },
-                                    },
-                                    {
-                                        tabButton: 'Food',
-                                        tabIcon: Food,
-                                        color: 'rose',
-                                        onClick: () => {
-                                            navigate('/products?cat=food')
-                                        },
-                                    },
-                                    {
-                                        tabButton: 'Others',
-                                        tabIcon: Other,
-                                        color: 'info',
-                                        onClick: () => {
-                                            navigate('/products?cat=others')
-                                        },
-                                    },
-                                ]}
-                            />
                         </GridItem>
                     </GridContainer>
                 </GridContainer>
