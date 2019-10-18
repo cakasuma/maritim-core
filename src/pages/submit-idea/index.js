@@ -1,5 +1,4 @@
 import React from 'react'
-import { makeStyles } from '@material-ui/core/styles'
 import Stepper from '@material-ui/core/Stepper'
 import Step from '@material-ui/core/Step'
 import StepLabel from '@material-ui/core/StepLabel'
@@ -11,7 +10,6 @@ import classNames from 'classnames'
 import withStyles from '@material-ui/core/styles/withStyles'
 import GridContainer from '../../components/shared/Grid/GridContainer.jsx'
 import GridItem from '../../components/shared/Grid/GridItem.jsx'
-import CustomButton from '../../components/shared/CustomButtons/Button.jsx'
 import Layout from '../../components/layout/layout.js'
 import SEO from '../../components/layout/seo.js'
 import Parallax from '../../components/shared/Parallax/Parallax.jsx'
@@ -29,14 +27,29 @@ function getSteps() {
     ]
 }
 
-function getStepContent(stepIndex) {
+function getStepContent(stepIndex, innovation, setInnovation) {
     switch (stepIndex) {
         case 0:
-            return <CategoryStep />
+            return (
+                <CategoryStep
+                    innovation={innovation}
+                    setInnovation={setInnovation}
+                />
+            )
         case 1:
-            return <DetailStep />
+            return (
+                <DetailStep
+                    innovation={innovation}
+                    setInnovation={setInnovation}
+                />
+            )
         case 2:
-            return <UploadStep />
+            return (
+                <UploadStep
+                    innovation={innovation}
+                    setInnovation={setInnovation}
+                />
+            )
         default:
             return 'unknown step'
     }
@@ -45,6 +58,18 @@ function getStepContent(stepIndex) {
 const SubmitIdea = ({ classes }) => {
     const [activeStep, setActiveStep] = React.useState(0)
     const [innovation, setInnovation] = React.useState(null)
+
+    // /* name of the properties */
+    // const [abstract_file, setAbstractFile] = React.useState(null)
+    // const [description, setDescription] = React.useState(null)
+    // const [development_stage, setDevelopmentStage] = React.useState(null)
+    // const [excellence, setExcellence] = React.useState(null)
+    // const [image, setImage] = React.useState(null)
+    // const [innovator_id, setInnovatorId] = React.useState(null)
+    // const [patent_status, setPatentStatus] = React.useState(null)
+    // const [ready_stage, setReadyStage] = React.useState(null)
+    // const [subtitle, setSubtitle] = React.useState(null)
+    // const [title, setTitle] = React.useState(null)
     const steps = getSteps()
 
     function handleNext() {
@@ -57,6 +82,8 @@ const SubmitIdea = ({ classes }) => {
 
     function handleFinish() {
         setActiveStep(prevActiveStep => prevActiveStep + 1)
+        console.log(innovation)
+        setInnovation(null)
         console.log('finish')
     }
 
@@ -110,7 +137,11 @@ const SubmitIdea = ({ classes }) => {
                                     </div>
                                 ) : (
                                     <div>
-                                        {getStepContent(activeStep)}
+                                        {getStepContent(
+                                            activeStep,
+                                            innovation,
+                                            setInnovation,
+                                        )}
                                         <div>
                                             <Button
                                                 disabled={activeStep === 0}

@@ -30,7 +30,7 @@ import Tab from '@material-ui/core/Tab'
 import GridContainer from '../Grid/GridContainer.jsx'
 import GridItem from '../Grid/GridItem.jsx'
 
-import navPillsStyle from '../../jss/maritim/components/navPillsStyle.jsx'
+import navPillsStyle from '../../jss/maritim/components/navPillsStaticStyle.jsx'
 
 class NavPillsStatic extends React.Component {
     render() {

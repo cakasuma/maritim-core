@@ -87,7 +87,7 @@ export default function AboutSection() {
                             title="Free chat"
                             description="Help innovators and stakeholders to communicate for the further support of each other"
                             icon={Chat}
-                            iconColor="rose"
+                            iconColor="danger"
                             vertical
                         />
                     </GridItem>
@@ -96,7 +96,7 @@ export default function AboutSection() {
                             title="Verified Users"
                             description="The innovators and the stakeholders registered and verified from the company"
                             icon={VerifiedUser}
-                            iconColor="rose"
+                            iconColor="danger"
                             vertical
                         />
                     </GridItem>
@@ -105,7 +105,7 @@ export default function AboutSection() {
                             title="Various Fields"
                             description="Accommodate various fields of innovation for Indonesia's innovators and stakeholders"
                             icon={BarChart}
-                            iconColor="rose"
+                            iconColor="danger"
                             vertical
                         />
                     </GridItem>
@@ -114,7 +114,7 @@ export default function AboutSection() {
                             title="Patent Status"
                             description="Help the innovators to get a patent for the innovation as an Intellectual Property of Indonesia"
                             icon={Class}
-                            iconColor="rose"
+                            iconColor="danger"
                             vertical
                         />
                     </GridItem>

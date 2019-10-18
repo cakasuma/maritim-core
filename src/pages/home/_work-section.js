@@ -13,8 +13,6 @@ import GridItem from '../../components/shared/Grid/GridItem.jsx'
 import Button from '../../components/shared/CustomButtons/Button.jsx'
 
 import workStyle from '../../components/jss/maritim/views/landingPageSections/workStyle.jsx'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faLightbulb } from '@fortawesome/free-solid-svg-icons'
 
 const WorkSection = ({ classes }) => {
     const firebase = React.useContext(FirebaseContext)
@@ -23,7 +21,7 @@ const WorkSection = ({ classes }) => {
             <GridContainer justify="center">
                 <GridItem xs={12} sm={12} md={6}>
                     <Button
-                        color="primary"
+                        color="danger"
                         size="lg"
                         onClick={() => {
                             navigate('/login')

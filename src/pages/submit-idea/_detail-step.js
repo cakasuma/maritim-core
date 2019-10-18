@@ -3,10 +3,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 // @material-ui/core components
 import withStyles from '@material-ui/core/styles/withStyles'
-import { FirebaseContext } from 'gatsby-plugin-firebase'
 import { Formik } from 'formik'
 import * as Yup from 'yup'
-import CircularProgress from '@material-ui/core/CircularProgress'
 
 // @material-ui/icons
 
@@ -14,7 +12,7 @@ import CircularProgress from '@material-ui/core/CircularProgress'
 import GridContainer from '../../components/shared/Grid/GridContainer.jsx'
 import GridItem from '../../components/shared/Grid/GridItem.jsx'
 import CustomInput from '../../components/shared/CustomInput/CustomInput.jsx'
-import Button from '../../components/shared/CustomButtons/Button.jsx'
+import CustomSelect from '../../components/shared/CustomSelect/CustomSelect.jsx'
 
 import submitPageStyle from '../../components/jss/maritim/views/submitPage.jsx'
 
@@ -29,15 +27,15 @@ const validationSchema = Yup.object().shape({
 })
 
 const workFormValues = {
-    name: '',
-    email: '',
-    company: '',
-    phone: '',
-    message: '',
+    title: '',
+    subtitle: '',
+    description: '',
+    development_stage: '',
+    excellence: '',
+    patent_status: '',
 }
 
-const DetailStep = ({ classes }) => {
-    const firebase = React.useContext(FirebaseContext)
+const DetailStep = ({ classes, setInnovation, innovation }) => {
     return (
         <div className={classes.section}>
             <GridContainer justify="center">
@@ -45,33 +43,6 @@ const DetailStep = ({ classes }) => {
                     <Formik
                         initialValues={workFormValues}
                         validationSchema={validationSchema}
-                        onSubmit={(values, actions) => {
-                            actions.setSubmitting(true)
-                            const db = firebase.firestore()
-                            db.collection('company')
-                                .add({
-                                    name: values.name,
-                                    email: values.email,
-                                    company: values.company,
-                                    phone: values.phone,
-                                    message: values.message,
-                                })
-                                .then(function(docRef) {
-                                    console.log(
-                                        'Document written with ID: ',
-                                        docRef.id,
-                                    )
-                                    actions.setSubmitting(false)
-                                    actions.resetForm()
-                                })
-                                .catch(function(error) {
-                                    console.error(
-                                        'Error adding document: ',
-                                        error,
-                                    )
-                                    actions.setSubmitting(false)
-                                })
-                        }}
                     >
                         {({
                             values,
@@ -87,22 +58,32 @@ const DetailStep = ({ classes }) => {
                                 <GridContainer justify="center">
                                     <GridItem xs={12} sm={12} md={6}>
                                         <CustomInput
-                                            labelText="Your Name"
-                                            id="name"
+                                            labelText="Innovation title"
+                                            id="title"
                                             error={
-                                                errors.name && touched.name
+                                                errors.title && touched.title
                                                     ? true
                                                     : false
                                             }
                                             errorMessage={
-                                                errors.name && touched.name
-                                                    ? errors.name
+                                                errors.title && touched.title
+                                                    ? errors.title
                                                     : null
                                             }
                                             inputProps={{
-                                                name: 'name',
-                                                value: values.name,
-                                                onChange: handleChange,
+                                                name: 'title',
+                                                value: values.title,
+                                                onChange: e => {
+                                                    handleChange(e)
+                                                    const new_innovation = {
+                                                        ...innovation,
+                                                    }
+                                                    new_innovation.title =
+                                                        e.target.value
+                                                    setInnovation(
+                                                        new_innovation,
+                                                    )
+                                                },
                                                 onBlur: handleBlur,
                                                 readOnly: isSubmitting,
                                             }}
@@ -113,22 +94,34 @@ const DetailStep = ({ classes }) => {
                                     </GridItem>
                                     <GridItem xs={12} sm={12} md={6}>
                                         <CustomInput
-                                            labelText="Your Email"
-                                            id="email"
+                                            labelText="Innovation subtitle"
+                                            id="subtitle"
                                             error={
-                                                errors.email && touched.email
+                                                errors.subtitle &&
+                                                touched.subtitle
                                                     ? true
                                                     : false
                                             }
                                             errorMessage={
-                                                errors.email && touched.email
-                                                    ? errors.email
+                                                errors.subtitle &&
+                                                touched.subtitle
+                                                    ? errors.subtitle
                                                     : null
                                             }
                                             inputProps={{
-                                                name: 'email',
-                                                value: values.email,
-                                                onChange: handleChange,
+                                                name: 'subtitle',
+                                                value: values.subtitle,
+                                                onChange: e => {
+                                                    handleChange(e)
+                                                    const new_innovation = {
+                                                        ...innovation,
+                                                    }
+                                                    new_innovation.subtitle =
+                                                        e.target.value
+                                                    setInnovation(
+                                                        new_innovation,
+                                                    )
+                                                },
                                                 onBlur: handleBlur,
                                                 readOnly: isSubmitting,
                                             }}
@@ -139,24 +132,135 @@ const DetailStep = ({ classes }) => {
                                     </GridItem>
                                     <GridItem xs={12} sm={12} md={6}>
                                         <CustomInput
-                                            labelText="Your Company"
-                                            id="company"
+                                            labelText="Innovation description"
+                                            id="description"
                                             error={
-                                                errors.company &&
-                                                touched.company
+                                                errors.description &&
+                                                touched.description
                                                     ? true
                                                     : false
                                             }
                                             errorMessage={
-                                                errors.company &&
-                                                touched.company
-                                                    ? errors.company
+                                                errors.description &&
+                                                touched.description
+                                                    ? errors.description
                                                     : null
                                             }
                                             inputProps={{
-                                                name: 'company',
-                                                value: values.company,
-                                                onChange: handleChange,
+                                                name: 'description',
+                                                value: values.description,
+                                                onChange: e => {
+                                                    handleChange(e)
+                                                    const new_innovation = {
+                                                        ...innovation,
+                                                    }
+                                                    new_innovation.description =
+                                                        e.target.value
+                                                    setInnovation(
+                                                        new_innovation,
+                                                    )
+                                                },
+                                                onBlur: handleBlur,
+                                                readOnly: isSubmitting,
+                                                multiline: true,
+                                                rows: 5,
+                                            }}
+                                            formControlProps={{
+                                                fullWidth: true,
+                                            }}
+                                        />
+                                    </GridItem>
+                                    <GridItem xs={12} sm={12} md={6}>
+                                        <CustomSelect
+                                            labelText="Development Stage"
+                                            id="development_stage"
+                                            formControlProps={{
+                                                fullWidth: true,
+                                            }}
+                                            error={
+                                                errors.development_stage &&
+                                                touched.development_stage
+                                                    ? true
+                                                    : false
+                                            }
+                                            errorMessage={
+                                                errors.development_stage &&
+                                                touched.development_stage
+                                                    ? errors.development_stage
+                                                    : null
+                                            }
+                                            inputProps={{
+                                                type: 'text',
+                                                name: 'development_stage',
+                                                value: values.development_stage,
+                                                onChange: e => {
+                                                    handleChange(e)
+                                                    const new_innovation = {
+                                                        ...innovation,
+                                                    }
+                                                    new_innovation.development_stage =
+                                                        e.target.value
+                                                    setInnovation(
+                                                        new_innovation,
+                                                    )
+                                                },
+                                                onBlur: handleBlur,
+                                                readOnly: isSubmitting,
+                                                menuItem: [
+                                                    {
+                                                        text: 'Data gathering',
+                                                        value: 'Data gathering',
+                                                    },
+                                                    {
+                                                        text:
+                                                            'Research & Development',
+                                                        value:
+                                                            'Research & Development',
+                                                    },
+                                                    {
+                                                        text: 'Prototype',
+                                                        value: 'Prototype',
+                                                    },
+                                                    {
+                                                        text:
+                                                            'Ready made solution!',
+                                                        value:
+                                                            'Ready made solution',
+                                                    },
+                                                ],
+                                            }}
+                                        />
+                                    </GridItem>
+                                    <GridItem xs={12} sm={12} md={6}>
+                                        <CustomInput
+                                            labelText="Whats make your innovation distinct"
+                                            id="excellence"
+                                            error={
+                                                errors.excellence &&
+                                                touched.excellence
+                                                    ? true
+                                                    : false
+                                            }
+                                            errorMessage={
+                                                errors.excellence &&
+                                                touched.excellence
+                                                    ? errors.excellence
+                                                    : null
+                                            }
+                                            inputProps={{
+                                                name: 'excellence',
+                                                value: values.excellence,
+                                                onChange: e => {
+                                                    handleChange(e)
+                                                    const new_innovation = {
+                                                        ...innovation,
+                                                    }
+                                                    new_innovation.excellence =
+                                                        e.target.value
+                                                    setInnovation(
+                                                        new_innovation,
+                                                    )
+                                                },
                                                 onBlur: handleBlur,
                                                 readOnly: isSubmitting,
                                             }}
@@ -166,28 +270,63 @@ const DetailStep = ({ classes }) => {
                                         />
                                     </GridItem>
                                     <GridItem xs={12} sm={12} md={6}>
-                                        <CustomInput
-                                            labelText="Your Phone Number"
-                                            id="phone"
+                                        <CustomSelect
+                                            labelText="Patent status"
+                                            id="patent_status"
+                                            formControlProps={{
+                                                fullWidth: true,
+                                            }}
                                             error={
-                                                errors.phone && touched.phone
+                                                errors.patent_status &&
+                                                touched.patent_status
                                                     ? true
                                                     : false
                                             }
                                             errorMessage={
-                                                errors.phone && touched.phone
-                                                    ? errors.phone
+                                                errors.patent_status &&
+                                                touched.patent_status
+                                                    ? errors.patent_status
                                                     : null
                                             }
                                             inputProps={{
-                                                name: 'phone',
-                                                value: values.phone,
-                                                onChange: handleChange,
+                                                type: 'text',
+                                                name: 'patent_status',
+                                                value: values.patent_status,
+                                                onChange: e => {
+                                                    handleChange(e)
+                                                    const new_innovation = {
+                                                        ...innovation,
+                                                    }
+                                                    new_innovation.patent_status =
+                                                        e.target.value
+                                                    setInnovation(
+                                                        new_innovation,
+                                                    )
+                                                },
                                                 onBlur: handleBlur,
                                                 readOnly: isSubmitting,
-                                            }}
-                                            formControlProps={{
-                                                fullWidth: true,
+                                                menuItem: [
+                                                    {
+                                                        text:
+                                                            'Not yet registered',
+                                                        value:
+                                                            'Not yet registered',
+                                                    },
+                                                    {
+                                                        text:
+                                                            'Request for approval',
+                                                        value:
+                                                            'Request for approval',
+                                                    },
+                                                    {
+                                                        text: 'Approved',
+                                                        value: 'Approved',
+                                                    },
+                                                    {
+                                                        text: 'Patented!',
+                                                        value: 'Patented',
+                                                    },
+                                                ],
                                             }}
                                         />
                                     </GridItem>
