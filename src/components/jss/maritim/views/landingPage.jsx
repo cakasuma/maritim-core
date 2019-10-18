@@ -1,23 +1,15 @@
-/*!
-
-=========================================================
-* Material Kit React - v1.7.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/material-kit-react
-* Copyright 2019 Creative Tim (https://www.creative-tim.com)
-* Licensed under MIT (https://github.com/creativetimofficial/material-kit-react/blob/master/LICENSE.md)
-
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-*/
 import { container, title } from '../../maritim.jsx'
 
 const landingPageStyle = {
+    '@keyframes typing': {
+        from: { width: 0 },
+        to: { width: '100%' },
+    },
+    '@keyframes blink': {
+        from: { borderColor: 'transparent' },
+        '50%': { borderColor: 'orange' },
+        to: { borderColor: 'transparent' },
+    },
     container: {
         zIndex: '12',
         color: '#FFFFFF',
@@ -29,7 +21,7 @@ const landingPageStyle = {
         },
     },
     parallax: {
-        height: '650px',
+        height: '700px',
     },
     title: {
         ...title,
@@ -39,6 +31,25 @@ const landingPageStyle = {
         fontSize: '9rem',
         color: '#FFFFFF',
         textDecoration: 'none',
+    },
+    titleAnimation: {
+        ...title,
+        display: 'inline-block',
+        position: 'relative',
+        fontSize: '9rem',
+        color: '#FFFFFF',
+        textDecoration: 'none',
+        overflow:
+            'hidden' /* Ensures the content is not revealed until the animation */,
+        borderRight: '0.15em solid orange' /* The typwriter cursor */,
+        whiteSpace: 'nowrap' /* Keeps the content on a single line */,
+        margin:
+            '1rem auto' /* Gives that scrolling effect as the typing happens */,
+        letterSpacing: '0.1em' /* Adjust as needed */,
+        animation: '$typing 2.5s steps(30, end), $blink 1s step-end infinite',
+    },
+    separator: {
+        margin: '1rem auto',
     },
     titleSecondary: {
         maxWidth: '700px',

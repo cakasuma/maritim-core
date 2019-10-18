@@ -11,12 +11,6 @@ import classNames from 'classnames'
 // @material-ui/core components
 import withStyles from '@material-ui/core/styles/withStyles'
 
-import Energy from '@material-ui/icons/Autorenew'
-import Biomedic from '@material-ui/icons/NaturePeople'
-import IT from '@material-ui/icons/DevicesOther'
-import Food from '@material-ui/icons/Fastfood'
-import Other from '@material-ui/icons/CardGiftcard'
-
 import GridContainer from '../components/shared/Grid/GridContainer.jsx'
 import GridItem from '../components/shared/Grid/GridItem.jsx'
 
@@ -46,20 +40,34 @@ const IndexPage = ({ classes }) => (
                     <GridContainer className={classes.container}>
                         <GridItem xs={12} sm={12} md={12}>
                             <h3 className={classes.titleSecondary}>
-                                Its time for great
+                                Inilah saatnya kita
                             </h3>
-                            <h1 className={classes.title}>Innovation</h1>
+                            <h1 className={classes.titleAnimation}>
+                                Berinovasi
+                            </h1>
                             <br />
                             <Button
                                 component={Link}
                                 color="danger"
                                 size="lg"
-                                to="/products"
+                                to="/submit-idea"
                                 target="_blank"
                                 rel="noopener noreferrer"
                             >
                                 <FontAwesomeIcon icon={faLightbulb} />
-                                Start now
+                                Mulai sekarang
+                            </Button>
+                            <br />
+                            <h2 className={classes.separator}>Atau</h2>
+                            <Button
+                                component={Link}
+                                color="primary"
+                                size="lg"
+                                to="/products"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                Lihat semua inovasi
                             </Button>
                         </GridItem>
                     </GridContainer>

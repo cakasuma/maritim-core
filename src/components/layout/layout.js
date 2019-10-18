@@ -1,10 +1,3 @@
-/**
- * Layout component that queries for data
- * with Gatsby's useStaticQuery component
- *
- * See: https://www.gatsbyjs.org/docs/use-static-query/
- */
-
 import React, { useEffect } from 'react'
 import PropTypes from 'prop-types'
 
@@ -34,7 +27,7 @@ const Layout = ({ children, classes, is_login }) => {
             <Header
                 absolute
                 color="transparent"
-                brand="Maritim Muda Nasional"
+                brand="Maritim Muda Nusantara"
                 rightLinks={<HeaderLinks />}
                 changeColorOnScroll={{
                     height: 100,

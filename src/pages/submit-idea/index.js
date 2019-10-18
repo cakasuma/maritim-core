@@ -2,8 +2,10 @@ import React from 'react'
 import Stepper from '@material-ui/core/Stepper'
 import Step from '@material-ui/core/Step'
 import StepLabel from '@material-ui/core/StepLabel'
+import CircularProgress from '@material-ui/core/CircularProgress'
 import Button from '@material-ui/core/Button'
 import Typography from '@material-ui/core/Typography'
+import { FirebaseContext } from 'gatsby-plugin-firebase'
 import classNames from 'classnames'
 
 // @material-ui/core components
@@ -58,18 +60,21 @@ function getStepContent(stepIndex, innovation, setInnovation) {
 const SubmitIdea = ({ classes }) => {
     const [activeStep, setActiveStep] = React.useState(0)
     const [innovation, setInnovation] = React.useState(null)
+    const [currentUser, setCurrentUser] = React.useState()
+    const [isLoading, setLoading] = React.useState(false)
+    const [error, setError] = React.useState('')
+    const firebase = React.useContext(FirebaseContext)
 
-    // /* name of the properties */
-    // const [abstract_file, setAbstractFile] = React.useState(null)
-    // const [description, setDescription] = React.useState(null)
-    // const [development_stage, setDevelopmentStage] = React.useState(null)
-    // const [excellence, setExcellence] = React.useState(null)
-    // const [image, setImage] = React.useState(null)
-    // const [innovator_id, setInnovatorId] = React.useState(null)
-    // const [patent_status, setPatentStatus] = React.useState(null)
-    // const [ready_stage, setReadyStage] = React.useState(null)
-    // const [subtitle, setSubtitle] = React.useState(null)
-    // const [title, setTitle] = React.useState(null)
+    React.useEffect(() => {
+        if (!firebase) {
+            return
+        }
+
+        firebase.auth().onAuthStateChanged(function(user) {
+            setCurrentUser(user)
+        })
+    }, [firebase])
+
     const steps = getSteps()
 
     function handleNext() {
@@ -80,14 +85,67 @@ const SubmitIdea = ({ classes }) => {
         setActiveStep(prevActiveStep => prevActiveStep - 1)
     }
 
-    function handleFinish() {
+    const handleFinish = async () => {
         setActiveStep(prevActiveStep => prevActiveStep + 1)
-        console.log(innovation)
+        setLoading(true)
+        let hasError = false
+
+        if (!innovation.hasOwnProperty('title')) {
+            setError(error + ' title is required ')
+            hasError = true
+        }
+        if (!innovation.hasOwnProperty('subtitle')) {
+            setError(error + ' subtitle is required ')
+            hasError = true
+        }
+        if (!innovation.hasOwnProperty('description')) {
+            setError(error + ' description is required ')
+            hasError = true
+        }
+        if (!innovation.hasOwnProperty('development_stage')) {
+            setError(error + ' development_stage is required ')
+            hasError = true
+        }
+        if (!innovation.hasOwnProperty('image_1')) {
+            setError(error + ' image 1 is required ')
+            hasError = true
+        }
+
+        if (hasError) {
+            setLoading(false)
+            return
+        }
+        console.log('start interact with firebase storage')
+        const storage = firebase.storage()
+        const storageRef = storage.ref()
+        const imagesRef = storageRef.child(`images/${currentUser.uid}`)
+        const image1Ref = imagesRef.child(innovation.image_1.name)
+        const image2Ref = imagesRef.child(innovation.image_2.name)
+        const abstractRef = imagesRef.child(innovation.abstract_file.name)
+        await image1Ref.put(innovation.image_1)
+        innovation.image2 && (await image2Ref.put(innovation.image_2))
+        innovation.abstract_file &&
+            (await abstractRef.put(innovation.abstract_file))
+
+        const new_innovation = { ...innovation }
+        new_innovation.image_1 = image1Ref.fullPath
+        new_innovation.image_2 = image2Ref.fullPath
+        new_innovation.abstract_file = abstractRef.fullPath
+        new_innovation.innovator = currentUser.uid
+        new_innovation.timestamp = new Date().getTime()
+        setInnovation(new_innovation)
+
+        const db = firebase.firestore()
+        db.collection('innovation')
+            .doc()
+            .set(new_innovation)
+        console.log(new_innovation)
         setInnovation(null)
         console.log('finish')
+        setLoading(false)
     }
 
-    function handleReset() {
+    function handleNewSubmit() {
         setActiveStep(0)
     }
     return (
@@ -126,14 +184,56 @@ const SubmitIdea = ({ classes }) => {
                             <div>
                                 {activeStep === steps.length ? (
                                     <div>
-                                        <Typography
-                                            className={classes.instructions}
-                                        >
-                                            All steps completed
-                                        </Typography>
-                                        <Button onClick={handleReset}>
-                                            Reset
-                                        </Button>
+                                        {isLoading ? (
+                                            <CircularProgress
+                                                className={
+                                                    classes.circularProgress
+                                                }
+                                                color="secondary"
+                                            />
+                                        ) : (
+                                            <div>
+                                                {error ? (
+                                                    <div>
+                                                        <Typography
+                                                            className={
+                                                                classes.error
+                                                            }
+                                                        >
+                                                            {error}
+                                                        </Typography>
+                                                        <Button
+                                                            disabled={
+                                                                activeStep === 0
+                                                            }
+                                                            onClick={handleBack}
+                                                            className={
+                                                                classes.backButton
+                                                            }
+                                                        >
+                                                            Back
+                                                        </Button>
+                                                    </div>
+                                                ) : (
+                                                    <div>
+                                                        <Typography
+                                                            className={
+                                                                classes.instructions
+                                                            }
+                                                        >
+                                                            All steps completed
+                                                        </Typography>
+                                                        <Button
+                                                            onClick={
+                                                                handleNewSubmit
+                                                            }
+                                                        >
+                                                            Submit new idea
+                                                        </Button>
+                                                    </div>
+                                                )}
+                                            </div>
+                                        )}
                                     </div>
                                 ) : (
                                     <div>
