@@ -120,17 +120,25 @@ const SubmitIdea = ({ classes }) => {
         const storageRef = storage.ref()
         const imagesRef = storageRef.child(`images/${currentUser.uid}`)
         const image1Ref = imagesRef.child(innovation.image_1.name)
-        const image2Ref = imagesRef.child(innovation.image_2.name)
-        const abstractRef = imagesRef.child(innovation.abstract_file.name)
+        const image2Ref = innovation.image_2
+            ? imagesRef.child(innovation.image_2.name)
+            : null
+        const abstractRef = innovation.abstract_file
+            ? imagesRef.child(innovation.abstract_file.name)
+            : null
         await image1Ref.put(innovation.image_1)
-        innovation.image2 && (await image2Ref.put(innovation.image_2))
+        innovation.image_2 && (await image2Ref.put(innovation.image_2))
         innovation.abstract_file &&
             (await abstractRef.put(innovation.abstract_file))
 
         const new_innovation = { ...innovation }
         new_innovation.image_1 = image1Ref.fullPath
-        new_innovation.image_2 = image2Ref.fullPath
-        new_innovation.abstract_file = abstractRef.fullPath
+
+        new_innovation.image_2 = image2Ref ? image2Ref.fullPath : ''
+        new_innovation.abstract_file = abstractRef ? abstractRef.fullPath : ''
+        new_innovation.viewers = 0
+        new_innovation.liked = 0
+
         new_innovation.innovator = currentUser.uid
         new_innovation.timestamp = new Date().getTime()
         setInnovation(new_innovation)

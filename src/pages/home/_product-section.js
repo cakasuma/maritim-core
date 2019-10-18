@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 // @material-ui/core components
 import withStyles from '@material-ui/core/styles/withStyles'
 import { Link } from 'gatsby'
+import { FirebaseContext } from 'gatsby-plugin-firebase'
 
 // @material-ui/icons
 
@@ -14,230 +15,215 @@ import GridItem from '../../components/shared/Grid/GridItem.jsx'
 import productStyle from '../../components/jss/maritim/views/landingPageSections/productStyle.jsx'
 import image from '../../images/faces/avatar.jpg'
 
-class ProductSection extends React.Component {
-    render() {
-        const { classes } = this.props
-        return (
-            <div className={classes.section}>
-                <GridContainer justify="center">
-                    <GridItem xs={12} sm={12} md={8}>
-                        <h2 className={classes.title}>Innovation overview</h2>
-                        <h5 className={classes.description}>
-                            These are the most popular posted in our platform
-                        </h5>
-                    </GridItem>
-                    <GridItem xs={12} sm={12} md={10}>
-                        {new Array(3).fill(3).map((em, idx) => {
-                            if (idx % 2 !== 0) {
-                                return (
-                                    <div key={idx} className={classes.card}>
-                                        <GridContainer justify="center">
-                                            <GridItem
-                                                xs={12}
-                                                sm={5}
-                                                md={5}
-                                                className={classes.cardWrapper}
-                                            >
-                                                <Link
-                                                    to="/product-detail"
-                                                    className={
-                                                        classes.cardImageWrapper
-                                                    }
-                                                >
-                                                    <img
-                                                        src={image}
-                                                        alt="..."
-                                                        className={
-                                                            classes.cardImage
-                                                        }
-                                                    />
-                                                </Link>
-                                            </GridItem>
-                                            <GridItem
-                                                xs={12}
-                                                sm={7}
-                                                md={7}
-                                                className={classes.cardWrapper}
-                                            >
-                                                <div
-                                                    className={
-                                                        classes.cardCategoryWrapper
-                                                    }
-                                                >
-                                                    <h6
-                                                        className={
-                                                            classes.cardCategory
-                                                        }
-                                                    >
-                                                        Category name
-                                                    </h6>
-                                                </div>
-                                                <Link
-                                                    to="/product-detail"
-                                                    className={
-                                                        classes.cardImageWrapper
-                                                    }
-                                                >
-                                                    <h3
-                                                        className={
-                                                            classes.cardTitle
-                                                        }
-                                                    >
-                                                        Card title Autodesk look
-                                                        to the future by using
-                                                        3d printing. will be
-                                                        very good to other
-                                                        organization
-                                                    </h3>
-                                                </Link>
-                                                <p
-                                                    className={
-                                                        classes.cardDescription
-                                                    }
-                                                >
-                                                    lsdjfs lskdjf skldjf lksdjf
-                                                    lksd fjlskdfj lksdf jksldfj
-                                                    skldf jslkdf jslkdf jslkdf
-                                                    sjkldf
-                                                    <Link
-                                                        to="/product-detail"
-                                                        className={
-                                                            classes.cardImageWrapper
-                                                        }
-                                                    >
-                                                        ...Read more
-                                                    </Link>
-                                                </p>
-                                                <p
-                                                    className={
-                                                        classes.cardAuthor
-                                                    }
-                                                >
-                                                    By{' '}
-                                                    <Link
-                                                        to="/product-detail"
-                                                        className={
-                                                            classes.cardImageWrapper
-                                                        }
-                                                    >
-                                                        <b>Cakasuma</b>
-                                                    </Link>{' '}
-                                                    2 days ago
-                                                </p>
-                                            </GridItem>
-                                        </GridContainer>
-                                    </div>
-                                )
-                            } else {
-                                return (
-                                    <div key={idx} className={classes.card}>
-                                        <GridContainer
-                                            justify="center"
-                                            className={classes.cardReverse}
+const ProductSection = ({ classes }) => {
+    return (
+        <div className={classes.section}>
+            <GridContainer justify="center">
+                <GridItem xs={12} sm={12} md={8}>
+                    <h2 className={classes.title}>Inovasi terkini</h2>
+                    <h5 className={classes.description}>
+                        Inilah inovasi yang popular di aplikasi saat ini
+                    </h5>
+                </GridItem>
+                <GridItem xs={12} sm={12} md={10}>
+                    {new Array(3).fill(3).map((em, idx) => {
+                        if (idx % 2 !== 0) {
+                            return (
+                                <div key={idx} className={classes.card}>
+                                    <GridContainer justify="center">
+                                        <GridItem
+                                            xs={12}
+                                            sm={5}
+                                            md={5}
+                                            className={classes.cardWrapper}
                                         >
-                                            <GridItem
-                                                xs={12}
-                                                sm={7}
-                                                md={7}
-                                                className={classes.cardWrapper}
+                                            <Link
+                                                to="/product-detail"
+                                                className={
+                                                    classes.cardImageWrapper
+                                                }
                                             >
-                                                <div
+                                                <img
+                                                    src={image}
+                                                    alt="..."
                                                     className={
-                                                        classes.cardCategoryWrapper
+                                                        classes.cardImage
+                                                    }
+                                                />
+                                            </Link>
+                                        </GridItem>
+                                        <GridItem
+                                            xs={12}
+                                            sm={7}
+                                            md={7}
+                                            className={classes.cardWrapper}
+                                        >
+                                            <div
+                                                className={
+                                                    classes.cardCategoryWrapper
+                                                }
+                                            >
+                                                <h6
+                                                    className={
+                                                        classes.cardCategory
                                                     }
                                                 >
-                                                    <h6
-                                                        className={
-                                                            classes.cardCategory
-                                                        }
-                                                    >
-                                                        Category name
-                                                    </h6>
-                                                </div>
+                                                    Category name
+                                                </h6>
+                                            </div>
+                                            <Link
+                                                to="/product-detail"
+                                                className={
+                                                    classes.cardImageWrapper
+                                                }
+                                            >
+                                                <h3
+                                                    className={
+                                                        classes.cardTitle
+                                                    }
+                                                >
+                                                    Card title Autodesk look to
+                                                    the future by using 3d
+                                                    printing. will be very good
+                                                    to other organization
+                                                </h3>
+                                            </Link>
+                                            <p
+                                                className={
+                                                    classes.cardDescription
+                                                }
+                                            >
+                                                lsdjfs lskdjf skldjf lksdjf lksd
+                                                fjlskdfj lksdf jksldfj skldf
+                                                jslkdf jslkdf jslkdf sjkldf
                                                 <Link
                                                     to="/product-detail"
                                                     className={
                                                         classes.cardImageWrapper
                                                     }
                                                 >
-                                                    <h3
-                                                        className={
-                                                            classes.cardTitle
-                                                        }
-                                                    >
-                                                        Card title Autodesk look
-                                                        to the future by using
-                                                        3d printing. will be
-                                                        very good to other
-                                                        organization
-                                                    </h3>
+                                                    ...Read more
                                                 </Link>
-                                                <p
-                                                    className={
-                                                        classes.cardDescription
-                                                    }
-                                                >
-                                                    lsdjfs lskdjf skldjf lksdjf
-                                                    lksd fjlskdfj lksdf jksldfj
-                                                    skldf jslkdf jslkdf jslkdf
-                                                    sjkldf
-                                                    <Link
-                                                        to="/product-detail"
-                                                        className={
-                                                            classes.cardImageWrapper
-                                                        }
-                                                    >
-                                                        ...Read more
-                                                    </Link>
-                                                </p>
-                                                <p
-                                                    className={
-                                                        classes.cardAuthor
-                                                    }
-                                                >
-                                                    By{' '}
-                                                    <Link
-                                                        to="/product-detail"
-                                                        className={
-                                                            classes.cardImageWrapper
-                                                        }
-                                                    >
-                                                        <b>Cakasuma</b>
-                                                    </Link>{' '}
-                                                    2 days ago
-                                                </p>
-                                            </GridItem>
-                                            <GridItem
-                                                xs={12}
-                                                sm={5}
-                                                md={5}
-                                                className={classes.cardWrapper}
-                                            >
+                                            </p>
+                                            <p className={classes.cardAuthor}>
+                                                By{' '}
                                                 <Link
                                                     to="/product-detail"
                                                     className={
                                                         classes.cardImageWrapper
                                                     }
                                                 >
-                                                    <img
-                                                        src={image}
-                                                        alt="..."
-                                                        className={
-                                                            classes.cardImage
-                                                        }
-                                                    />
+                                                    <b>Cakasuma</b>
+                                                </Link>{' '}
+                                                2 days ago
+                                            </p>
+                                        </GridItem>
+                                    </GridContainer>
+                                </div>
+                            )
+                        } else {
+                            return (
+                                <div key={idx} className={classes.card}>
+                                    <GridContainer
+                                        justify="center"
+                                        className={classes.cardReverse}
+                                    >
+                                        <GridItem
+                                            xs={12}
+                                            sm={7}
+                                            md={7}
+                                            className={classes.cardWrapper}
+                                        >
+                                            <div
+                                                className={
+                                                    classes.cardCategoryWrapper
+                                                }
+                                            >
+                                                <h6
+                                                    className={
+                                                        classes.cardCategory
+                                                    }
+                                                >
+                                                    Category name
+                                                </h6>
+                                            </div>
+                                            <Link
+                                                to="/product-detail"
+                                                className={
+                                                    classes.cardImageWrapper
+                                                }
+                                            >
+                                                <h3
+                                                    className={
+                                                        classes.cardTitle
+                                                    }
+                                                >
+                                                    Card title Autodesk look to
+                                                    the future by using 3d
+                                                    printing. will be very good
+                                                    to other organization
+                                                </h3>
+                                            </Link>
+                                            <p
+                                                className={
+                                                    classes.cardDescription
+                                                }
+                                            >
+                                                lsdjfs lskdjf skldjf lksdjf lksd
+                                                fjlskdfj lksdf jksldfj skldf
+                                                jslkdf jslkdf jslkdf sjkldf
+                                                <Link
+                                                    to="/product-detail"
+                                                    className={
+                                                        classes.cardImageWrapper
+                                                    }
+                                                >
+                                                    ...Read more
                                                 </Link>
-                                            </GridItem>
-                                        </GridContainer>
-                                    </div>
-                                )
-                            }
-                        })}
-                    </GridItem>
-                </GridContainer>
-            </div>
-        )
-    }
+                                            </p>
+                                            <p className={classes.cardAuthor}>
+                                                By{' '}
+                                                <Link
+                                                    to="/product-detail"
+                                                    className={
+                                                        classes.cardImageWrapper
+                                                    }
+                                                >
+                                                    <b>Cakasuma</b>
+                                                </Link>{' '}
+                                                2 days ago
+                                            </p>
+                                        </GridItem>
+                                        <GridItem
+                                            xs={12}
+                                            sm={5}
+                                            md={5}
+                                            className={classes.cardWrapper}
+                                        >
+                                            <Link
+                                                to="/product-detail"
+                                                className={
+                                                    classes.cardImageWrapper
+                                                }
+                                            >
+                                                <img
+                                                    src={image}
+                                                    alt="..."
+                                                    className={
+                                                        classes.cardImage
+                                                    }
+                                                />
+                                            </Link>
+                                        </GridItem>
+                                    </GridContainer>
+                                </div>
+                            )
+                        }
+                    })}
+                </GridItem>
+            </GridContainer>
+        </div>
+    )
 }
 
 ProductSection.propTypes = {

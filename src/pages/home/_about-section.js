@@ -32,12 +32,12 @@ export default function AboutSection() {
         <div className={classes.section}>
             <GridContainer className={classes.container}>
                 <GridItem xs={12} sm={12} md={12}>
-                    <h2 className={classes.title2}>Choose the categories</h2>
+                    <h2 className={classes.title2}>Pilih kategori</h2>
                     <NavPillsStatic
                         alignCenter
                         tabs={[
                             {
-                                tabButton: 'Energy',
+                                tabButton: 'Energi',
                                 tabIcon: Energy,
                                 color: 'success',
                                 onClick: () => {
@@ -53,7 +53,7 @@ export default function AboutSection() {
                                 },
                             },
                             {
-                                tabButton: 'Biomedic',
+                                tabButton: 'Biomedik',
                                 tabIcon: Biomedic,
                                 color: 'danger',
                                 onClick: () => {
@@ -61,7 +61,7 @@ export default function AboutSection() {
                                 },
                             },
                             {
-                                tabButton: 'Food',
+                                tabButton: 'Olah pangan',
                                 tabIcon: Food,
                                 color: 'rose',
                                 onClick: () => {
@@ -69,7 +69,7 @@ export default function AboutSection() {
                                 },
                             },
                             {
-                                tabButton: 'Others',
+                                tabButton: 'Lainnya',
                                 tabIcon: Other,
                                 color: 'info',
                                 onClick: () => {
@@ -84,8 +84,8 @@ export default function AboutSection() {
                 <GridContainer>
                     <GridItem xs={12} sm={12} md={3}>
                         <InfoArea
-                            title="Free chat"
-                            description="Help innovators and stakeholders to communicate for the further support of each other"
+                            title="Chat gratis"
+                            description=" Bantu inovator dan investor untuk berkomunikasi dengan mudah"
                             icon={Chat}
                             iconColor="danger"
                             vertical
@@ -93,8 +93,8 @@ export default function AboutSection() {
                     </GridItem>
                     <GridItem xs={12} sm={12} md={3}>
                         <InfoArea
-                            title="Verified Users"
-                            description="The innovators and the stakeholders registered and verified from the company"
+                            title="Inovasi terpilih"
+                            description="Inovasi akan direview oleh team maritim muda nusantara, untuk menguji syarat dan keoriginalitas produk"
                             icon={VerifiedUser}
                             iconColor="danger"
                             vertical
@@ -102,8 +102,8 @@ export default function AboutSection() {
                     </GridItem>
                     <GridItem xs={12} sm={12} md={3}>
                         <InfoArea
-                            title="Various Fields"
-                            description="Accommodate various fields of innovation for Indonesia's innovators and stakeholders"
+                            title="Beragam kategori"
+                            description="Inovasi terpilih dari kategori penting seperti energi, IT, pangan, dan biomedik"
                             icon={BarChart}
                             iconColor="danger"
                             vertical
@@ -111,8 +111,8 @@ export default function AboutSection() {
                     </GridItem>
                     <GridItem xs={12} sm={12} md={3}>
                         <InfoArea
-                            title="Patent Status"
-                            description="Help the innovators to get a patent for the innovation as an Intellectual Property of Indonesia"
+                            title="Status paten"
+                            description="Membantu inovator untuk mendapatkan status paten produk indonesia"
                             icon={Class}
                             iconColor="danger"
                             vertical
