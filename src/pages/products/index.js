@@ -27,7 +27,7 @@ import SEO from '../../components/layout/seo.js'
 const innovationCategory = [
     {
         name: 'energy',
-        label: 'Energy',
+        label: 'Energi',
         path: '/energy',
     },
     {
@@ -37,17 +37,17 @@ const innovationCategory = [
     },
     {
         name: 'biomedic',
-        label: 'Biomedic',
+        label: 'Biomedik',
         path: '/biomedic',
     },
     {
         name: 'food',
-        label: 'Food',
+        label: 'Olah pangan',
         path: '/food',
     },
     {
         name: 'others',
-        label: 'Others',
+        label: 'Lainnya',
         path: '/others',
     },
 ]
@@ -55,11 +55,11 @@ const innovationCategory = [
 const innovationSort = [
     {
         name: 'popularity',
-        label: 'Popularity',
+        label: 'Terpopuler',
     },
     {
         name: 'name',
-        label: 'Name',
+        label: 'Abjad',
     },
 ]
 const ProductsPage = ({ classes }) => {
@@ -67,6 +67,7 @@ const ProductsPage = ({ classes }) => {
     const [selectedEnabled, setSelectedLabel] = React.useState('popularity')
     const [selectedChecked, setSelectedChecked] = React.useState([])
     const [products, setProducts] = React.useState(null)
+    const [productsI, setProductsI] = React.useState(null)
 
     React.useEffect(() => {
         if (!firebase) {
@@ -107,6 +108,7 @@ const ProductsPage = ({ classes }) => {
                 })
             })
             setProducts(productsSnapshot)
+            setProductsI(productsSnapshot)
         })
     }, [firebase])
 
@@ -127,6 +129,19 @@ const ProductsPage = ({ classes }) => {
         setSelectedChecked(newChecked)
     }
 
+    const filterSearch = e => {
+        const updatedList = productsI
+        const filtered = updatedList.filter(function(item) {
+            return (
+                item.data.title
+                    .toLowerCase()
+                    .search(e.target.value.toLowerCase()) !== -1
+            )
+        })
+        console.log(filtered)
+        setProducts(filtered)
+    }
+
     return (
         <Layout>
             <SEO title="products" />
@@ -141,8 +156,8 @@ const ProductsPage = ({ classes }) => {
             >
                 <GridContainer className={classes.container}>
                     <div className={classes.headerWrapper}>
-                        <h1>All innovations</h1>
-                        <h2>Pick your interests here</h2>
+                        <h1>Semua Inovasi</h1>
+                        <h2>Pilih inovasi inovasi menarik berkut</h2>
                     </div>
                 </GridContainer>
             </Background>
@@ -151,7 +166,7 @@ const ProductsPage = ({ classes }) => {
                     <div className={classes.filterWrapper}>
                         <Card className={classes.card}>
                             <div className={classes.cardHeader}>
-                                Select your categories
+                                Pilih kategori
                             </div>
                             <CardBody>
                                 {innovationCategory.map((innovation, idx) => (
@@ -283,9 +298,10 @@ const ProductsPage = ({ classes }) => {
                                     className: classes.formControl,
                                 }}
                                 inputProps={{
-                                    placeholder: 'Search innovation',
+                                    placeholder: 'Cari inovasi',
+                                    onChange: filterSearch,
                                     inputProps: {
-                                        'aria-label': 'Search innovation',
+                                        'aria-label': 'Cari inovasi',
                                         className: classes.searchInput,
                                     },
                                 }}
