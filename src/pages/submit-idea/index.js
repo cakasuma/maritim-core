@@ -132,10 +132,17 @@ const SubmitIdea = ({ classes }) => {
             (await abstractRef.put(innovation.abstract_file))
 
         const new_innovation = { ...innovation }
-        new_innovation.image_1 = image1Ref.fullPath
+        const url_image_1 = await image1Ref.getDownloadURL()
+        const url_image_2 = innovation.image_2
+            ? await image1Ref.getDownloadURL()
+            : ''
+        const url_abstract_file = innovation.abstract_file
+            ? await abstractRef.getDownloadURL()
+            : ''
 
-        new_innovation.image_2 = image2Ref ? image2Ref.fullPath : ''
-        new_innovation.abstract_file = abstractRef ? abstractRef.fullPath : ''
+        new_innovation.image_1 = url_image_1
+        new_innovation.image_2 = url_image_2
+        new_innovation.abstract_file = url_abstract_file
         new_innovation.viewers = 0
         new_innovation.liked = 0
 

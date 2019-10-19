@@ -69,6 +69,7 @@ const productStyle = {
     cardCategoryWrapper: {
         color: '#00acc1',
         display: 'inline-block',
+        width: '100%',
     },
     cardCategory: {
         marginTop: '10px',
