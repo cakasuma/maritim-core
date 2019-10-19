@@ -14,7 +14,7 @@ const relatedSettings = {
     infinite: true,
     speed: 500,
     slidesToShow: 4,
-    slidesToScroll: 2,
+    slidesToScroll: 1,
     autoplay: false,
 }
 const RelatedInnovation = ({ classes, category, title }) => {
@@ -68,7 +68,7 @@ const RelatedInnovation = ({ classes, category, title }) => {
     return (
         <GridContainer className={classes.container}>
             <div className={classes.relatedTitle}>
-                <h2 className={classes.relatedName}>Related innovation</h2>
+                <h2 className={classes.relatedName}>Inovasi terkait</h2>
                 <span className={classes.relatedSeparator}></span>
             </div>
             <GridItem xs={12} sm={12} md={12}>
@@ -76,7 +76,7 @@ const RelatedInnovation = ({ classes, category, title }) => {
                     className={classes.relatedContainer}
                     {...relatedSettings}
                 >
-                    {products ? (
+                    {products &&
                         products.map((product, idx) => (
                             <div
                                 className={classes.relatedPostWrapper}
@@ -115,13 +115,9 @@ const RelatedInnovation = ({ classes, category, title }) => {
                                     </p>
                                 </div>
                             </div>
-                        ))
-                    ) : (
-                        <h2 className={classes.relatedName}>
-                            Not yet added for this category
-                        </h2>
-                    )}
+                        ))}
                 </Slider>
+                {!products.length && <h6>Not yet added for this category</h6>}
             </GridItem>
         </GridContainer>
     )
