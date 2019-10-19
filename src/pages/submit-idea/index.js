@@ -70,6 +70,10 @@ const SubmitIdea = ({ classes }) => {
             return
         }
 
+        const new_innovation = { ...innovation }
+        new_innovation.category = 'Energy'
+        setInnovation(new_innovation)
+
         firebase.auth().onAuthStateChanged(function(user) {
             setCurrentUser(user)
         })

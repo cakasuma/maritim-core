@@ -15,11 +15,6 @@ const StyledWrapper = styled.section`
 `
 
 const CategoryStep = ({ classes, innovation, setInnovation }) => {
-    useEffect(() => {
-        const new_innovation = { ...innovation }
-        new_innovation.category = 'Energy'
-        setInnovation(new_innovation)
-    })
     return (
         <StyledWrapper>
             <GridContainer className={classes.container}>
@@ -73,6 +68,7 @@ const CategoryStep = ({ classes, innovation, setInnovation }) => {
                                 const new_innovation = { ...innovation }
                                 new_innovation.category = 'Others'
                                 setInnovation(new_innovation)
+                                console.log(new_innovation)
                                 console.log('others')
                             },
                         },

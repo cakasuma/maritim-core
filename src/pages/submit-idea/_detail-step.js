@@ -75,6 +75,7 @@ const DetailStep = ({ classes, setInnovation, innovation }) => {
                                                 value: values.title,
                                                 onChange: e => {
                                                     handleChange(e)
+                                                    console.log(innovation)
                                                     const new_innovation = {
                                                         ...innovation,
                                                     }
