@@ -20,6 +20,9 @@ const productDetailStyle = {
         marginBottom: '1rem',
         width: '100%',
     },
+    imageDetail: {
+        boxShadow: '0 2px 8px 0 grey',
+    },
     relatedName: {
         marginTop: '0',
         padding: '0 15px',

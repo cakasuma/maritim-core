@@ -7,6 +7,7 @@ import Button from '@material-ui/core/Button'
 import Typography from '@material-ui/core/Typography'
 import { FirebaseContext } from 'gatsby-plugin-firebase'
 import classNames from 'classnames'
+import { navigate } from 'gatsby'
 
 // @material-ui/core components
 import withStyles from '@material-ui/core/styles/withStyles'
@@ -75,6 +76,10 @@ const SubmitIdea = ({ classes }) => {
         setInnovation(new_innovation)
 
         firebase.auth().onAuthStateChanged(function(user) {
+            if (!user) {
+                navigate('/login')
+                return
+            }
             setCurrentUser(user)
         })
     }, [firebase])

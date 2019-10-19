@@ -6,6 +6,8 @@ import StepLabel from '@material-ui/core/StepLabel'
 import Button from '@material-ui/core/Button'
 import Typography from '@material-ui/core/Typography'
 import classNames from 'classnames'
+import { navigate } from 'gatsby'
+import { FirebaseContext } from 'gatsby-plugin-firebase'
 
 // @material-ui/core components
 import withStyles from '@material-ui/core/styles/withStyles'
@@ -43,6 +45,7 @@ function getStepContent(stepIndex) {
 }
 
 const SubmitIdea = ({ classes }) => {
+    const firebase = React.useContext(FirebaseContext)
     const [activeStep, setActiveStep] = React.useState(0)
     const [innovation, setInnovation] = React.useState(null)
     const steps = getSteps()
@@ -63,6 +66,19 @@ const SubmitIdea = ({ classes }) => {
     function handleReset() {
         setActiveStep(0)
     }
+
+    React.useEffect(() => {
+        if (!firebase) {
+            return
+        }
+
+        firebase.auth().onAuthStateChanged(function(user) {
+            if (!user) {
+                navigate('/login')
+                return
+            }
+        })
+    }, [firebase])
     return (
         <Layout>
             <SEO title="Home" />

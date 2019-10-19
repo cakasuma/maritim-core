@@ -1,6 +1,7 @@
 import React from 'react'
 import classNames from 'classnames'
 import { navigate } from 'gatsby'
+import { FirebaseContext } from 'gatsby-plugin-firebase'
 
 // @material-ui/core components
 import withStyles from '@material-ui/core/styles/withStyles'
@@ -24,6 +25,20 @@ import IconButton from '@material-ui/core/IconButton'
 import EditIcon from '@material-ui/icons/Edit'
 
 const MyIdeas = ({ classes }) => {
+    const firebase = React.useContext(FirebaseContext)
+
+    React.useEffect(() => {
+        if (!firebase) {
+            return
+        }
+
+        firebase.auth().onAuthStateChanged(function(user) {
+            if (!user) {
+                navigate('/login')
+                return
+            }
+        })
+    }, [firebase])
     return (
         <Layout>
             <SEO title="Home" />

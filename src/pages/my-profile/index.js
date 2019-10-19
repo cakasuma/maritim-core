@@ -1,12 +1,14 @@
 import React from "react";
 // nodejs library that concatenates classes
 import classNames from "classnames";
+import {navigate} from 'gatsby'
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
 // @material-ui/icons
 import Camera from "@material-ui/icons/Camera";
 import Palette from "@material-ui/icons/Palette";
 import Favorite from "@material-ui/icons/Favorite";
+import { FirebaseContext } from 'gatsby-plugin-firebase'
 // core components
 import Layout from '../../components/layout/layout.js'
 import Button from "../../components/shared/CustomButtons/Button.jsx";
@@ -32,6 +34,8 @@ import styles from '../../components/jss/maritim/views/profilePage.jsx'
 const useStyles = makeStyles(styles);
 
 export default function ProfilePage(props) {
+  const firebase = React.useContext(FirebaseContext)
+  const [currentUser, setCurrentUser] = React.useState()
   const classes = useStyles();
   const { ...rest } = props;
   const imageClasses = classNames(
@@ -40,6 +44,21 @@ export default function ProfilePage(props) {
     classes.imgFluid
   );
   const navImageClasses = classNames(classes.imgRounded, classes.imgGallery);
+  
+  React.useEffect(() => {
+    if (!firebase) {
+        return
+    }
+
+    firebase.auth().onAuthStateChanged(function(user) {
+        if (!user) {
+            navigate('/login')
+            return
+        }
+        setCurrentUser(user)
+    })
+}, [firebase])
+
   return (
     <Layout>
       <Parallax small filter image={require("../../images/profile-bg.jpg")} />
