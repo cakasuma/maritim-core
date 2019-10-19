@@ -135,6 +135,11 @@ const MyIdeas = ({ classes }) => {
                                     </List>
                                 </GridItem>
                             ))}
+                        {products && !products.length && (
+                            <div className={classes.unavailable}>
+                                <span>Belum ada inovasi</span>
+                            </div>
+                        )}
                     </GridContainer>
                 </div>
             </div>

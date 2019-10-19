@@ -22,6 +22,13 @@ const productDetailStyle = {
     },
     imageDetail: {
         boxShadow: '0 2px 8px 0 grey',
+        '& img': {
+            maxWidth: '35rem',
+            maxHeight: '25rem',
+        },
+        '@media (max-width: 425px)': {
+            margin: '1.5rem 0',
+        },
     },
     relatedName: {
         marginTop: '0',

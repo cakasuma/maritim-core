@@ -50,6 +50,15 @@ const navPillsStyle = theme => ({
         opacity: '1',
         maxWidth: '100%',
         margin: '0 2rem',
+        '@media (max-width: 768px)': {
+            margin: '0 1rem',
+        },
+        '@media (max-width: 425px)': {
+            margin: '1rem 1rem',
+        },
+        '@media (max-width: 375px)': {
+            margin: '1rem 0',
+        },
     },
     pillsWithIcons: {
         borderRadius: '4px',

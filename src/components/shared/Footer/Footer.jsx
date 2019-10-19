@@ -33,7 +33,7 @@ function Footer({ ...props }) {
                                 className={classes.block}
                                 target="_blank"
                             >
-                                Maritim muda nusantara
+                                Warung inovasi
                             </a>
                         </ListItem>
                         <ListItem className={classes.inlineBlock}>

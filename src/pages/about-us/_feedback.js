@@ -227,9 +227,8 @@ const FeedbackSection = ({ classes }) => {
                                 title="Kontak kita"
                                 description={
                                     <p>
-                                        Maritim muda nusantara <br />{' '}
-                                        +62-812-1846-2281 <br /> Senin - Minggu,
-                                        8:00-22:00
+                                        Warung inovasi <br /> +62-812-1846-2281{' '}
+                                        <br /> Senin - Minggu, 8:00-22:00
                                     </p>
                                 }
                                 icon={Phone}

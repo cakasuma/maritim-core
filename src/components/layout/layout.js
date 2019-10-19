@@ -27,7 +27,7 @@ const Layout = ({ children, classes, is_login }) => {
             <Header
                 absolute
                 color="transparent"
-                brand="Maritim Muda Nusantara"
+                brand="Warung inovasi"
                 rightLinks={<HeaderLinks />}
                 changeColorOnScroll={{
                     height: 100,

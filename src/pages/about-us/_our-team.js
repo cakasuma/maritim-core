@@ -52,7 +52,7 @@ export default function TeamSection() {
                                 Kaisar
                                 <br />
                                 <small className={classes.smallTitle}>
-                                    CEO Maritim muda nusantara
+                                    CEO Warung inovasi
                                 </small>
                             </h4>
                             <CardBody>
@@ -197,8 +197,7 @@ export default function TeamSection() {
                                     Biki saputra handal dalam mendesign website,
                                     banner, video, dan segala multimedia
                                     teknologi. menjadi salah satu media
-                                    informatika di maritim muda nusantara sejak
-                                    2018
+                                    informatika di Warung inovasi sejak 2018
                                 </p>
                             </CardBody>
                             <CardFooter className={classes.justifyCenter}>

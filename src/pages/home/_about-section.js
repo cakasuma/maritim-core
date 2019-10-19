@@ -94,7 +94,7 @@ export default function AboutSection() {
                     <GridItem xs={12} sm={12} md={3}>
                         <InfoArea
                             title="Inovasi terpilih"
-                            description="Inovasi akan direview oleh team maritim muda nusantara, untuk menguji syarat dan keoriginalitas produk"
+                            description="Inovasi akan direview oleh team Warung inovasi, untuk menguji syarat dan keoriginalitas produk"
                             icon={VerifiedUser}
                             iconColor="danger"
                             vertical

@@ -47,6 +47,15 @@ const landingPageStyle = {
             '1rem auto' /* Gives that scrolling effect as the typing happens */,
         letterSpacing: '0.1em' /* Adjust as needed */,
         animation: '$typing 2.5s steps(30, end), $blink 1s step-end infinite',
+        '@media (max-width: 1024px)': {
+            fontSize: '6rem',
+        },
+        '@media (max-width: 425px)': {
+            fontSize: '4rem',
+        },
+        '@media (max-width: 375px)': {
+            fontSize: '3rem',
+        },
     },
     separator: {
         margin: '1rem auto',

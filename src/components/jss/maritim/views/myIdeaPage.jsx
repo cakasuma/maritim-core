@@ -92,6 +92,16 @@ const myIdeaPageStyle = {
     parallax: {
         height: '400px',
     },
+    unavailable: {
+        color: 'black',
+        width: '100%',
+        height: '100%',
+        marginTop: '20%',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        textAlign: 'center',
+    },
 }
 
 export default myIdeaPageStyle

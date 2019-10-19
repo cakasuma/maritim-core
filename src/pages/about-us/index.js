@@ -43,9 +43,7 @@ const IndexPage = ({ classes }) => (
             >
                 <GridContainer className={classes.container}>
                     <GridItem xs={12} sm={12} md={12}>
-                        <h1 className={classes.title}>
-                            MARITIM MUDA NUSANTARA
-                        </h1>
+                        <h1 className={classes.title}>Warung inovasi</h1>
                         <h4 className={classes.titleSecondary}>
                             Kita Muda, Wujudkan Poros Maritim Dunia
                         </h4>
