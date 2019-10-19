@@ -15,9 +15,6 @@ const productDetailStyle = {
         paddingBottom: '5rem',
         padding: 0,
     },
-    navWrapper: {
-        margin: '20px auto 50px auto',
-    },
     relatedTitle: {
         display: 'inline-flex',
         marginBottom: '1rem',

@@ -1,12 +1,12 @@
 import React from 'react'
 
-import PropTypes from 'prop-types'
+import { navigate } from 'gatsby'
 // @material-ui/core components
 import withStyles from '@material-ui/core/styles/withStyles'
 import GridContainer from '../../components/shared/Grid/GridContainer.jsx'
 import GridItem from '../../components/shared/Grid/GridItem.jsx'
 import Slider from 'react-slick'
-import LocationOn from '@material-ui/icons/LocationOn'
+import { FirebaseContext } from 'gatsby-plugin-firebase'
 
 import productsDetailStyle from '../../components/jss/maritim/views/productDetailPage.jsx'
 import Button from '../../components/shared/CustomButtons/Button.jsx'
@@ -21,12 +21,11 @@ import Badge from '../../components/shared/Badge/Badge.jsx'
 import Layout from '../../components/layout/layout.js'
 import SEO from '../../components/layout/seo.js'
 
-import image1 from '../../images/bg.jpg'
+import RelatedInnovation from './related-innovation'
 // @material-ui/icons
 import Dashboard from '@material-ui/icons/Dashboard'
 import Schedule from '@material-ui/icons/Schedule'
 import List from '@material-ui/icons/List'
-import image from '../../images/faces/avatar.jpg'
 
 const settings = {
     dots: false,
@@ -37,21 +36,47 @@ const settings = {
     autoplay: true,
 }
 
-const relatedSettings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 4,
-    slidesToScroll: 2,
-    autoplay: false,
-}
+const ProductDetail = ({ classes }) => {
+    const firebase = React.useContext(FirebaseContext)
+    const [product, setProduct] = React.useState({})
 
-class ProductDetail extends React.Component {
-    state = {}
+    React.useEffect(() => {
+        const urlParams = new URLSearchParams(window.location.search)
+        if (!urlParams.get('pid')) {
+            navigate('/products')
+            return
+        }
+        const product_id = urlParams.get('pid')
+        console.log(product_id)
+        if (!firebase) {
+            return
+        }
 
-    render() {
-        const { classes } = this.props
-        return (
+        const db = firebase.firestore()
+        const query = db.collection('innovation').doc(product_id)
+
+        query.get().then(snapshots => {
+            if (snapshots.exists) {
+                firebase
+                    .firestore()
+                    .collection('users')
+                    .doc(snapshots.data().innovator)
+                    .get()
+                    .then(user => {
+                        if (user.exists) {
+                            const productDoc = snapshots.data()
+                            productDoc.innovator = user.data().name
+                            productDoc.phone = user.data().phone
+                            productDoc.id = product_id
+                            setProduct(productDoc)
+                        }
+                    })
+            }
+        })
+    }, [firebase])
+
+    return (
+        product && (
             <Layout>
                 <SEO title="product detail" />
                 <Background
@@ -59,17 +84,20 @@ class ProductDetail extends React.Component {
                     style={{
                         backgroundSize: 'cover',
                         backgroundPosition: 'center',
-                        height: '18rem',
+                        height: '20rem',
                     }}
                     img_name="landing-bg.jpg"
                     brightness="0.7"
                 >
-                    <GridContainer className={classes.container}>
-                        <div className={classes.headerWrapper}>
-                            <h2>Innovation title</h2>
-                            <h3>Innovation description</h3>
-                        </div>
-                    </GridContainer>
+                    {' '}
+                    {product && (
+                        <GridContainer className={classes.container}>
+                            <div className={classes.headerWrapper}>
+                                <h2>{product.title}</h2>
+                                <h3>{product.subtitle}</h3>
+                            </div>
+                        </GridContainer>
+                    )}
                 </Background>
                 <GridContainer className={classes.container}>
                     <GridItem
@@ -83,14 +111,24 @@ class ProductDetail extends React.Component {
                             {...settings}
                         >
                             <div>
-                                <img src={image1} alt="First slide" />
+                                <img src={product.image_1} alt="First slide" />
                             </div>
-                            <div>
-                                <img src={image1} alt="Second slide" />
-                            </div>
-                            <div>
-                                <img src={image1} alt="Third slide" />
-                            </div>
+                            {product.image_2 && (
+                                <div>
+                                    <img
+                                        src={product.image_2}
+                                        alt="Second slide"
+                                    />
+                                </div>
+                            )}
+                            {product.abstract_file && (
+                                <div>
+                                    <img
+                                        src={product.abstract_file}
+                                        alt="Third slide"
+                                    />
+                                </div>
+                            )}
                         </Slider>
                     </GridItem>
                     <GridItem
@@ -109,20 +147,20 @@ class ProductDetail extends React.Component {
                                         <h4>Data</h4>
                                     </Primary>
                                     <p>
-                                        <strong>Title:</strong> innovation title
+                                        <strong>Judul:</strong> {product.title}
                                     </p>
                                     <p>
-                                        <strong>Category:</strong> innovation
-                                        category
+                                        <strong>Sub judul:</strong>{' '}
+                                        {product.subtitle}
                                     </p>
                                     <p>
-                                        <strong>Author:</strong> innovation
-                                        author
+                                        <strong>Inovator:</strong>{' '}
+                                        {product.innovator}
                                     </p>
                                     <Primary>
-                                        <h4>Brief description</h4>
+                                        <h4>Kelebihan produk</h4>
                                     </Primary>
-                                    <p>Lorem ipsum yes no</p>
+                                    <p>{product.excellence}</p>
                                     <Button
                                         className={classes.contactButton}
                                         color="primary"
@@ -130,25 +168,35 @@ class ProductDetail extends React.Component {
                                         onClick={e => {
                                             e.preventDefault()
                                             window.open(
-                                                'https://wa.me/623424324234',
+                                                `https://wa.me/${product.phone}`,
                                                 '_blank',
                                             )
                                         }}
                                     >
-                                        Contact now +623424324234
+                                        Contact now {product.phone}
                                     </Button>
                                 </CardBody>
                             </Card>
                             <Card className={classes.cardSecondary}>
                                 <div className={classes.cardHeader}>
-                                    Categories tags
+                                    Kategori
                                 </div>
                                 <CardBody>
-                                    <Badge color="primary">Pangan</Badge>
-                                    <Badge color="info">TIK</Badge>
-                                    <Badge color="success">Energi</Badge>
-                                    <Badge color="warning">Material</Badge>
-                                    <Badge color="rose">Lainnya</Badge>
+                                    {product.category === 'Energy' && (
+                                        <Badge color="success">Energi</Badge>
+                                    )}
+                                    {product.category === 'IT' && (
+                                        <Badge color="primary">IT</Badge>
+                                    )}
+                                    {product.category === 'Food' && (
+                                        <Badge color="info">Olah pangan</Badge>
+                                    )}
+                                    {product.category === 'Biomedic' && (
+                                        <Badge color="warning">Biomedik</Badge>
+                                    )}
+                                    {product.category === 'Others' && (
+                                        <Badge color="rose">Lainnya</Badge>
+                                    )}
                                 </CardBody>
                             </Card>
                         </div>
@@ -159,118 +207,31 @@ class ProductDetail extends React.Component {
                                 color="primary"
                                 tabs={[
                                     {
-                                        tabButton: 'Dashboard',
+                                        tabButton: 'Deskripsi',
                                         tabIcon: Dashboard,
                                         tabContent: (
                                             <span>
-                                                <p>
-                                                    Collaboratively administrate
-                                                    empowered markets via
-                                                    plug-and-play networks.
-                                                    Dynamically procrastinate
-                                                    B2C users after installed
-                                                    base benefits.
-                                                </p>
-                                                <br />
-                                                <p>
-                                                    Dramatically visualize
-                                                    customer directed
-                                                    convergence without
-                                                    revolutionary ROI.
-                                                    Collaboratively administrate
-                                                    empowered markets via
-                                                    plug-and-play networks.
-                                                    Dynamically procrastinate
-                                                    B2C users after installed
-                                                    base benefits.
-                                                </p>
-                                                <br />
-                                                <p>
-                                                    Dramatically visualize
-                                                    customer directed
-                                                    convergence without
-                                                    revolutionary ROI.
-                                                    Collaboratively administrate
-                                                    empowered markets via
-                                                    plug-and-play networks.
-                                                    Dynamically procrastinate
-                                                    B2C users after installed
-                                                    base benefits.
-                                                </p>
+                                                <p>{product.description}</p>
                                             </span>
                                         ),
                                     },
                                     {
-                                        tabButton: 'Schedule',
+                                        tabButton: 'Tahap pembuatan',
                                         tabIcon: Schedule,
                                         tabContent: (
                                             <span>
                                                 <p>
-                                                    Efficiently unleash
-                                                    cross-media information
-                                                    without cross-media value.
-                                                    Quickly maximize timely
-                                                    deliverables for real-time
-                                                    schemas.
-                                                </p>
-                                                <br />
-                                                <p>
-                                                    Dramatically maintain
-                                                    clicks-and-mortar solutions
-                                                    without functional
-                                                    solutions. Dramatically
-                                                    visualize customer directed
-                                                    convergence without
-                                                    revolutionary ROI.
-                                                    Collaboratively administrate
-                                                    empowered markets via
-                                                    plug-and-play networks.
-                                                    Dynamically procrastinate
-                                                    B2C users after installed
-                                                    base benefits.
+                                                    {product.development_stage}
                                                 </p>
                                             </span>
                                         ),
                                     },
                                     {
-                                        tabButton: 'Tasks',
+                                        tabButton: 'Status paten',
                                         tabIcon: List,
                                         tabContent: (
                                             <span>
-                                                <p>
-                                                    Collaboratively administrate
-                                                    empowered markets via
-                                                    plug-and-play networks.
-                                                    Dynamically procrastinate
-                                                    B2C users after installed
-                                                    base benefits.
-                                                </p>
-                                                <br />
-                                                <p>
-                                                    Dramatically visualize
-                                                    customer directed
-                                                    convergence without
-                                                    revolutionary ROI.
-                                                    Collaboratively administrate
-                                                    empowered markets via
-                                                    plug-and-play networks.
-                                                    Dynamically procrastinate
-                                                    B2C users after installed
-                                                    base benefits.
-                                                </p>
-                                                <br />
-                                                <p>
-                                                    Dramatically visualize
-                                                    customer directed
-                                                    convergence without
-                                                    revolutionary ROI.
-                                                    Collaboratively administrate
-                                                    empowered markets via
-                                                    plug-and-play networks.
-                                                    Dynamically procrastinate
-                                                    B2C users after installed
-                                                    base benefits.
-                                                </p>
+                                                <p>{product.patent_status}</p>
                                             </span>
                                         ),
                                     },
@@ -278,64 +239,14 @@ class ProductDetail extends React.Component {
                             />
                         </GridItem>
                     </GridContainer>
-                    <div className={classes.relatedTitle}>
-                        <h2 className={classes.relatedName}>
-                            Related innovation
-                        </h2>
-                        <span className={classes.relatedSeparator}></span>
-                    </div>
-                    <GridItem xs={12} sm={12} md={12}>
-                        <Slider
-                            className={classes.relatedContainer}
-                            {...relatedSettings}
-                        >
-                            {new Array(8).fill(8).map((em, idx) => (
-                                <div className={classes.relatedPostWrapper}>
-                                    <Link
-                                        to="/product-detail"
-                                        className={classes.postImageWrapper}
-                                    >
-                                        <img
-                                            src={image}
-                                            alt="..."
-                                            className={classes.postImage}
-                                        />
-                                    </Link>
-                                    <div className={classes.postDescription}>
-                                        <div className={classes.postCategory}>
-                                            <h6>Pangan</h6>
-                                        </div>
-                                        <h4 className={classes.postTitle}>
-                                            <Link
-                                                to="/product-detail"
-                                                className={
-                                                    classes.postImageWrapper
-                                                }
-                                            >
-                                                Autodesk look into the future
-                                            </Link>
-                                        </h4>
-                                        <p className={classes.postExplain}>
-                                            alksdfjalskdfj jlskdjflskdf j sdlkf
-                                            jlskd{' '}
-                                            <Link
-                                                to="/product-detail"
-                                                className={
-                                                    classes.postImageWrapper
-                                                }
-                                            >
-                                                ...Read more
-                                            </Link>
-                                        </p>
-                                    </div>
-                                </div>
-                            ))}
-                        </Slider>
-                    </GridItem>
+                    <RelatedInnovation
+                        category={product.category}
+                        title={product.title}
+                    />
                 </GridContainer>
             </Layout>
         )
-    }
+    )
 }
 
 export default withStyles(productsDetailStyle)(ProductDetail)

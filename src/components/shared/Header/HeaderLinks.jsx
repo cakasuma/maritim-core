@@ -153,7 +153,7 @@ function HeaderLinks({ ...props }) {
                         left
                         caret={false}
                         hoverColor="primary"
-                        dropdownHeader={`Hi, ${currentUser &&
+                        dropdownHeader={`Halo, ${currentUser &&
                             currentUser.displayName}`}
                         buttonText={
                             <img
@@ -165,10 +165,10 @@ function HeaderLinks({ ...props }) {
                         onClick={action => {
                             console.log(action)
                             switch (action) {
-                                case 'My profile':
+                                case 'Profil saya':
                                     navigate('my-profile')
                                     break
-                                case 'Sign out':
+                                case 'Keluar':
                                     console.log('hi')
                                     if (firebase) {
                                         firebase
