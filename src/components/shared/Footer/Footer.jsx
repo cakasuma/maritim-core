@@ -44,16 +44,15 @@ function Footer({ ...props }) {
                     </List>
                 </div>
                 <div className={classes.right}>
-                    &copy; {1900 + new Date().getYear()} , dibuat dengan{' '}
-                    <Favorite className={classes.icon} /> oleh{' '}
+                    &copy; {1900 + new Date().getYear()} , Karya Nyata{' '}
                     <a
                         href="https://www.maritimmuda.id"
                         className={aClasses}
                         target="_blank"
                     >
-                        Maritim muda
+                        Maritim Muda Nusantara
                     </a>{' '}
-                    untuk Indonesia yang lebih baik
+                    untuk Indonesia maju
                 </div>
             </div>
         </footer>
