@@ -60,7 +60,7 @@ function HeaderLinks({ ...props }) {
             <ListItem className={classes.listItem}>
                 <CustomDropdown
                     noLiPadding
-                    buttonText="Categories"
+                    buttonText="Kategori"
                     buttonProps={{
                         className: classes.navLink,
                         color: 'transparent',
@@ -71,7 +71,7 @@ function HeaderLinks({ ...props }) {
                             to="/products?cat=energy"
                             className={classes.dropdownLink}
                         >
-                            Energy
+                            Energi
                         </Link>,
                         <Link
                             to="/products?cat=it"
@@ -83,19 +83,19 @@ function HeaderLinks({ ...props }) {
                             to="/products?cat=biomedic"
                             className={classes.dropdownLink}
                         >
-                            Biomedic
+                            Biomedik
                         </Link>,
                         <Link
                             to="/products?cat=food"
                             className={classes.dropdownLink}
                         >
-                            Food
+                            Olah pangan
                         </Link>,
                         <Link
                             to="/products?cat=others"
                             className={classes.dropdownLink}
                         >
-                            Others
+                            Lainnya
                         </Link>,
                     ]}
                 />
@@ -107,7 +107,7 @@ function HeaderLinks({ ...props }) {
                     target="_blank"
                     className={classes.navLink}
                 >
-                    About us
+                    Tentang kami
                 </Link>
             </ListItem>
             {isLoggedin && (
@@ -118,7 +118,7 @@ function HeaderLinks({ ...props }) {
                         target="_blank"
                         className={classes.navLink}
                     >
-                        Submit your idea!
+                        Mulai berinovasi
                     </Link>
                 </ListItem>
             )}
@@ -130,7 +130,7 @@ function HeaderLinks({ ...props }) {
                         target="_blank"
                         className={classes.navLink}
                     >
-                        My ideas
+                        Inovasi saya
                     </Link>
                 </ListItem>
             )}
@@ -144,7 +144,7 @@ function HeaderLinks({ ...props }) {
                         color="rose"
                         round
                     >
-                        Login
+                        Masuk/Daftar
                     </Button>
                 </ListItem>
             ) : (
@@ -190,7 +190,7 @@ function HeaderLinks({ ...props }) {
                                 classes.imageDropdownButton,
                             color: 'transparent',
                         }}
-                        dropdownList={['My profile', 'Sign out']}
+                        dropdownList={['Profil saya', 'Keluar']}
                     />
                 </ListItem>
             )}
