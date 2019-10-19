@@ -38,14 +38,14 @@ function Footer({ ...props }) {
                         </ListItem>
                         <ListItem className={classes.inlineBlock}>
                             <Link to="/about-us" className={classes.block}>
-                                About us
+                                Tentang kami
                             </Link>
                         </ListItem>
                     </List>
                 </div>
                 <div className={classes.right}>
-                    &copy; {1900 + new Date().getYear()} , made with{' '}
-                    <Favorite className={classes.icon} /> by{' '}
+                    &copy; {1900 + new Date().getYear()} , dibuat dengan{' '}
+                    <Favorite className={classes.icon} /> oleh{' '}
                     <a
                         href="https://www.maritimmuda.id"
                         className={aClasses}
@@ -53,7 +53,7 @@ function Footer({ ...props }) {
                     >
                         Maritim muda
                     </a>{' '}
-                    for a better Indonesia.
+                    untuk Indonesia yang lebih baik
                 </div>
             </div>
         </footer>

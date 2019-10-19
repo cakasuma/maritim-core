@@ -66,6 +66,12 @@ const myIdeaPageStyle = {
         color: '#FFFFFF',
         textDecoration: 'none',
     },
+    titleDescription: {
+        width: '100%',
+        fontSize: '16px',
+        color: '#fff',
+        textTransform: 'none',
+    },
     subtitle: {
         fontSize: '1.313rem',
         maxWidth: '500px',
@@ -79,6 +85,7 @@ const myIdeaPageStyle = {
     mainRaised: {
         margin: '-60px 30px 0px',
         borderRadius: '6px',
+        minHeight: '600px',
         boxShadow:
             '0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2)',
     },

@@ -31,7 +31,7 @@ export default function TeamSection() {
     )
     return (
         <div className={classes.section}>
-            <h2 className={classes.title}>Here is our team</h2>
+            <h2 className={classes.title}>Keanggotaan</h2>
             <div>
                 <GridContainer>
                     <GridItem xs={12} sm={12} md={4}>
@@ -43,25 +43,38 @@ export default function TeamSection() {
                                 className={classes.itemGrid}
                             >
                                 <img
-                                    src={team1}
+                                    src="https://i1.rgstatic.net/ii/profile.image/279094743846920-1443552780848_Q512/Kaisar_Akhir3.jpg"
                                     alt="..."
                                     className={imageClasses}
                                 />
                             </GridItem>
                             <h4 className={classes.cardTitle}>
-                                Taylol Swipe
+                                Kaisar
                                 <br />
                                 <small className={classes.smallTitle}>
-                                    Model
+                                    CEO Maritim muda nusantara
                                 </small>
                             </h4>
                             <CardBody>
                                 <p className={classes.description}>
-                                    You can write here details about one of your
-                                    team members. You can give more details
-                                    about what they do. Feel free to add some{' '}
-                                    <a href="#pablo">links</a> for people to be
-                                    able to follow them outside the site.
+                                    Kaisar Akhir baru saja menyelesaikan
+                                    pendidikan MSc in Maritime Affairs dari
+                                    World Maritime University (WMU), Swedia,
+                                    dengan spesialisasi Ocean Sustainability,
+                                    Governance and Management pada November 2018
+                                    yang didanai secara penuh oleh beasiswa dari
+                                    LPDP. Sejak kuliah S1 pada program Ilmu dan
+                                    Teknologi Kelautan di IPB, dia telah aktif
+                                    dalam kegiatan sosial, kemahasiswaan, dan
+                                    keilmiahan dari tingkat kampus/lokal,
+                                    nasional, hingga internasional. Fokus ia
+                                    sekarang pada kegiatan berupa edukasi,
+                                    edutrip, aksi sosial, konsultasi, dan
+                                    advokasi guna mendukung Indonesia sebagai
+                                    Poros Maritim Dunia serta penanganan sampah
+                                    plastik laut di Indonesia. Ia percaya dengan
+                                    kolaborasi dan profesionalisme, itu semua
+                                    dapat terwujud.
                                 </p>
                             </CardBody>
                             <CardFooter className={classes.justifyCenter}>
@@ -111,13 +124,13 @@ export default function TeamSection() {
                                 className={classes.itemGrid}
                             >
                                 <img
-                                    src={team2}
+                                    src="https://1.bp.blogspot.com/_bCYQxIvMQ2U/TQOQAXHapkI/AAAAAAAAAQw/dIjtEHBe5cc/s640/anonymous_international_black_sticker-p217501226871431885qjcl_400.jpg"
                                     alt="..."
                                     className={imageClasses}
                                 />
                             </GridItem>
                             <h4 className={classes.cardTitle}>
-                                Cakasuma
+                                Amam
                                 <br />
                                 <small className={classes.smallTitle}>
                                     Developer
@@ -125,11 +138,8 @@ export default function TeamSection() {
                             </h4>
                             <CardBody>
                                 <p className={classes.description}>
-                                    You can write here details about one of your
-                                    team members. You can give more details
-                                    about what they do. Feel free to add some{' '}
-                                    <a href="#pablo">links</a> for people to be
-                                    able to follow them outside the site.
+                                    Just a normal human being. Interested in
+                                    coding.
                                 </p>
                             </CardBody>
                             <CardFooter className={classes.justifyCenter}>
@@ -167,7 +177,7 @@ export default function TeamSection() {
                                 className={classes.itemGrid}
                             >
                                 <img
-                                    src={team3}
+                                    src="https://pbs.twimg.com/profile_images/961287979783241733/aFuLRGk-_400x400.jpg"
                                     alt="..."
                                     className={imageClasses}
                                 />
@@ -181,11 +191,14 @@ export default function TeamSection() {
                             </h4>
                             <CardBody>
                                 <p className={classes.description}>
-                                    You can write here details about one of your
-                                    team members. You can give more details
-                                    about what they do. Feel free to add some{' '}
-                                    <a href="#pablo">links</a> for people to be
-                                    able to follow them outside the site.
+                                    Menyelesaikan program BSc in Multimedia
+                                    Technology di Asia Pasific University dan
+                                    Staffordshire University, United Kingdom.
+                                    Biki saputra handal dalam mendesign website,
+                                    banner, video, dan segala multimedia
+                                    teknologi. menjadi salah satu media
+                                    informatika di maritim muda nusantara sejak
+                                    2018
                                 </p>
                             </CardBody>
                             <CardFooter className={classes.justifyCenter}>

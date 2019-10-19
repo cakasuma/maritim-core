@@ -26,6 +26,8 @@ import EditIcon from '@material-ui/icons/Edit'
 
 const MyIdeas = ({ classes }) => {
     const firebase = React.useContext(FirebaseContext)
+    const [products, setProducts] = React.useState([])
+    const [user, setUser] = React.useState([])
 
     React.useEffect(() => {
         if (!firebase) {
@@ -33,7 +35,26 @@ const MyIdeas = ({ classes }) => {
         }
 
         firebase.auth().onAuthStateChanged(function(user) {
-            if (!user) {
+            if (user) {
+                setUser(user)
+                console.log(user)
+
+                const db = firebase.firestore()
+                const query = db
+                    .collection('innovation')
+                    .where('innovator', '==', `${user.uid}`)
+
+                query.get().then(hasil => {
+                    const hasilProducts = []
+                    hasil.forEach(async doc => {
+                        const productDoc = {}
+                        productDoc.id = doc.id
+                        productDoc.data = doc.data()
+                        hasilProducts.push(productDoc)
+                    })
+                    setProducts(hasilProducts)
+                })
+            } else {
                 navigate('/login')
                 return
             }
@@ -50,9 +71,11 @@ const MyIdeas = ({ classes }) => {
                 >
                     <GridContainer className={classes.container}>
                         <GridItem xs={12} sm={12} md={12}>
-                            <h1 className={classes.title}>
-                                Here is the list of your innovation ideas
-                            </h1>
+                            <h1 className={classes.title}>Kumpulan inovasi</h1>
+                            <h6 className={classes.titleDescription}>
+                                Inilah kontribusi inovasi anda untuk Indonesia
+                                maju
+                            </h6>
                         </GridItem>
                     </GridContainer>
                 </Parallax>
@@ -61,41 +84,52 @@ const MyIdeas = ({ classes }) => {
                         className={classes.container}
                         justify="center"
                     >
-                        {new Array(6).fill(6).map((em, idx) => (
-                            <GridItem key={idx} xs={12} sm={6} md={4}>
-                                <List>
-                                    <ListItem
-                                        className={classes.listItem}
-                                        button
-                                        onClick={() =>
-                                            navigate('/my-ideas/edit')
-                                        }
-                                    >
-                                        <ListItemAvatar>
-                                            <Avatar>
-                                                <ImageIcon />
-                                            </Avatar>
-                                        </ListItemAvatar>
-                                        <ListItemText
-                                            className={classes.listItemText}
-                                            primary="Photos"
-                                            secondary="Jan 9, 2014"
-                                        />
-                                        <ListItemSecondaryAction>
-                                            <IconButton
-                                                edge="end"
-                                                aria-label="comments"
-                                                onClick={() =>
-                                                    navigate('/my-ideas/edit')
+                        {products &&
+                            products.map((product, idx) => (
+                                <GridItem key={idx} xs={12} sm={6} md={4}>
+                                    <List>
+                                        <ListItem
+                                            className={classes.listItem}
+                                            button
+                                            onClick={() =>
+                                                navigate(
+                                                    `/my-ideas/edit?pid=${product.id}`,
+                                                )
+                                            }
+                                        >
+                                            <ListItemAvatar>
+                                                <Avatar>
+                                                    <img
+                                                        src={
+                                                            product.data.image_1
+                                                        }
+                                                    />
+                                                </Avatar>
+                                            </ListItemAvatar>
+                                            <ListItemText
+                                                className={classes.listItemText}
+                                                primary={product.data.title}
+                                                secondary={
+                                                    product.data.subtitle
                                                 }
-                                            >
-                                                <EditIcon />
-                                            </IconButton>
-                                        </ListItemSecondaryAction>
-                                    </ListItem>
-                                </List>
-                            </GridItem>
-                        ))}
+                                            />
+                                            <ListItemSecondaryAction>
+                                                <IconButton
+                                                    edge="end"
+                                                    aria-label="comments"
+                                                    onClick={() =>
+                                                        navigate(
+                                                            `/my-ideas/edit?pid=${product.id}`,
+                                                        )
+                                                    }
+                                                >
+                                                    <EditIcon />
+                                                </IconButton>
+                                            </ListItemSecondaryAction>
+                                        </ListItem>
+                                    </List>
+                                </GridItem>
+                            ))}
                     </GridContainer>
                 </div>
             </div>
