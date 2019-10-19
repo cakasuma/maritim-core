@@ -54,7 +54,6 @@ const ProductDetail = ({ classes }) => {
 
         const db = firebase.firestore()
         const query = db.collection('innovation').doc(product_id)
-
         query.get().then(snapshots => {
             if (snapshots.exists) {
                 firebase
@@ -71,6 +70,11 @@ const ProductDetail = ({ classes }) => {
                             setProduct(productDoc)
                         }
                     })
+                firebase
+                    .firestore()
+                    .collection('innovation')
+                    .doc(product_id)
+                    .update({ viewers: snapshots.data().viewers + 1 })
             }
         })
     }, [firebase])
@@ -156,6 +160,10 @@ const ProductDetail = ({ classes }) => {
                                     <p>
                                         <strong>Inovator:</strong>{' '}
                                         {product.innovator}
+                                    </p>
+                                    <p>
+                                        <strong>Viewers:</strong>{' '}
+                                        {product.viewers}
                                     </p>
                                     <Primary>
                                         <h4>Kelebihan produk</h4>

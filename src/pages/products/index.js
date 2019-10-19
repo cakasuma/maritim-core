@@ -50,6 +50,11 @@ const innovationCategory = [
         label: 'Lainnya',
         path: '/others',
     },
+    {
+        name: 'semua',
+        label: 'Semuanya',
+        path: '/semua',
+    },
 ]
 
 const innovationSort = [
@@ -96,24 +101,57 @@ const ProductsPage = ({ classes }) => {
                     if (user.exists) {
                         productDoc.data.innovator = user.data().name
                         productsSnapshot.push(productDoc)
-                        console.log(productDoc)
                     }
                     ctr++
-                    console.log(snapshots.docs.length)
-                    console.log(ctr)
                     if (snapshots.docs.length === ctr) {
-                        console.log('hi')
                         resolve()
                     }
                 })
             })
-            setProducts(productsSnapshot)
             setProductsI(productsSnapshot)
+            const urlParams = new URLSearchParams(window.location.search)
+
+            if (urlParams.get('cat')) {
+                const newSnap = [...productsSnapshot]
+                const filteredSnap = newSnap.filter(function(item) {
+                    return (
+                        item.data.category
+                            .toLowerCase()
+                            .search(urlParams.get('cat')) !== -1
+                    )
+                })
+                setProducts(filteredSnap)
+            } else {
+                setProducts(productsSnapshot)
+            }
         })
     }, [firebase])
 
     const handleChangeEnabled = event => {
         const value = event.target.value
+
+        if (value === 'name') {
+            const newSnap = [...products]
+            const sortedSnap = newSnap.sort((a, b) =>
+                a.data.title > b.data.title
+                    ? 1
+                    : b.data.title > a.data.title
+                    ? -1
+                    : 0,
+            )
+            setProducts(sortedSnap)
+        }
+        if (value === 'popularity') {
+            const newSnap = [...products]
+            const sortedSnap = newSnap.sort((a, b) =>
+                a.data.viewers > b.data.viewers
+                    ? 1
+                    : b.data.viewers > a.data.viewers
+                    ? -1
+                    : 0,
+            )
+            setProducts(sortedSnap)
+        }
         setSelectedLabel(value)
     }
     const handleChangeCheck = label => {
@@ -124,6 +162,16 @@ const ProductsPage = ({ classes }) => {
             newChecked.push(label)
         } else {
             newChecked.splice(currentIndex, 1)
+        }
+
+        if (newChecked.length === 0 || newChecked.includes('semua')) {
+            setProducts(productsI)
+        } else {
+            const newSnap = [...productsI]
+            const filteredSnap = newSnap.filter(function(item) {
+                return newChecked.includes(item.data.category.toLowerCase())
+            })
+            setProducts(filteredSnap)
         }
 
         setSelectedChecked(newChecked)
