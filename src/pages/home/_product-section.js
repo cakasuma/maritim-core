@@ -13,7 +13,6 @@ import GridContainer from '../../components/shared/Grid/GridContainer.jsx'
 import GridItem from '../../components/shared/Grid/GridItem.jsx'
 
 import productStyle from '../../components/jss/maritim/views/landingPageSections/productStyle.jsx'
-import image from '../../images/faces/avatar.jpg'
 
 const ProductSection = ({ classes }) => {
     const firebase = React.useContext(FirebaseContext)
@@ -30,8 +29,6 @@ const ProductSection = ({ classes }) => {
             .collection('innovation')
             .orderBy('viewers')
             .limit(3)
-
-        db.runTransaction(transaction => {})
 
         query.get().then(async snapshots => {
             const productsSnapshot = []
@@ -132,7 +129,7 @@ const ProductSection = ({ classes }) => {
                                                     </h6>
                                                 </div>
                                                 <Link
-                                                    to="/product-detail"
+                                                    to={`/product-detail?pid=${product.id}`}
                                                     className={
                                                         classes.cardImageWrapper
                                                     }
@@ -152,7 +149,7 @@ const ProductSection = ({ classes }) => {
                                                 >
                                                     {product.data.description}
                                                     <Link
-                                                        to="/product-detail"
+                                                        to={`/product-detail?pid=${product.id}`}
                                                         className={
                                                             classes.cardImageWrapper
                                                         }
@@ -167,7 +164,7 @@ const ProductSection = ({ classes }) => {
                                                 >
                                                     By{' '}
                                                     <Link
-                                                        to="/product-detail"
+                                                        to={`/product-detail?pid=${product.id}`}
                                                         className={
                                                             classes.cardImageWrapper
                                                         }
@@ -212,7 +209,7 @@ const ProductSection = ({ classes }) => {
                                                     </h6>
                                                 </div>
                                                 <Link
-                                                    to="/product-detail"
+                                                    to={`/product-detail?pid=${product.id}`}
                                                     className={
                                                         classes.cardImageWrapper
                                                     }
@@ -232,7 +229,7 @@ const ProductSection = ({ classes }) => {
                                                 >
                                                     {product.data.description}
                                                     <Link
-                                                        to="/product-detail"
+                                                        to={`/product-detail?pid=${product.id}`}
                                                         className={
                                                             classes.cardImageWrapper
                                                         }
@@ -247,7 +244,7 @@ const ProductSection = ({ classes }) => {
                                                 >
                                                     By{' '}
                                                     <Link
-                                                        to="/product-detail"
+                                                        to={`/product-detail?pid=${product.id}`}
                                                         className={
                                                             classes.cardImageWrapper
                                                         }
