@@ -18,9 +18,6 @@ import ListItemText from '@material-ui/core/ListItemText'
 import ListItemAvatar from '@material-ui/core/ListItemAvatar'
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction'
 import Avatar from '@material-ui/core/Avatar'
-import ImageIcon from '@material-ui/icons/Image'
-import WorkIcon from '@material-ui/icons/Work'
-import BeachAccessIcon from '@material-ui/icons/BeachAccess'
 import IconButton from '@material-ui/core/IconButton'
 import EditIcon from '@material-ui/icons/Edit'
 
@@ -91,10 +88,14 @@ const MyIdeas = ({ classes }) => {
                                         <ListItem
                                             className={classes.listItem}
                                             button
-                                            onClick={() =>
-                                                navigate(
-                                                    `/my-ideas/edit?pid=${product.id}`,
-                                                )
+                                            onClick={
+                                                () =>
+                                                    alert(
+                                                        'fitur ini belum tersedia utk saat ini',
+                                                    )
+                                                // navigate(
+                                                //     `/my-ideas/edit?pid=${product.id}`,
+                                                // )
                                             }
                                         >
                                             <ListItemAvatar>
@@ -117,10 +118,14 @@ const MyIdeas = ({ classes }) => {
                                                 <IconButton
                                                     edge="end"
                                                     aria-label="comments"
-                                                    onClick={() =>
-                                                        navigate(
-                                                            `/my-ideas/edit?pid=${product.id}`,
-                                                        )
+                                                    onClick={
+                                                        () =>
+                                                            alert(
+                                                                'fitur ini belum tersedia utk saat ini',
+                                                            )
+                                                        // navigate(
+                                                        //     `/my-ideas/edit?pid=${product.id}`,
+                                                        // )
                                                     }
                                                 >
                                                     <EditIcon />

@@ -103,7 +103,7 @@ const SignupForm = ({ classes, toggleLogin }) => {
                                     actions.setSubmitting(false)
                                     actions.setStatus({
                                         success:
-                                            "We've sent you email to verify your account",
+                                            'Silahkan cek email kamu untuk memverifikasi akun anda',
                                     })
                                 })
                             })
@@ -136,7 +136,7 @@ const SignupForm = ({ classes, toggleLogin }) => {
                         <>
                             <CardBody>
                                 <CustomInput
-                                    labelText="Full name"
+                                    labelText="Nama lengkap"
                                     id="full_name"
                                     formControlProps={{
                                         fullWidth: true,
@@ -170,7 +170,7 @@ const SignupForm = ({ classes, toggleLogin }) => {
                                     }}
                                 />
                                 <CustomInput
-                                    labelText="Phone number"
+                                    labelText="No tel"
                                     id="phone"
                                     formControlProps={{
                                         fullWidth: true,
@@ -204,7 +204,7 @@ const SignupForm = ({ classes, toggleLogin }) => {
                                     }}
                                 />
                                 <CustomSelect
-                                    labelText="Type"
+                                    labelText="Tipe akun"
                                     id="type"
                                     formControlProps={{
                                         fullWidth: true,
@@ -248,7 +248,7 @@ const SignupForm = ({ classes, toggleLogin }) => {
                                     }}
                                 />
                                 <CustomInput
-                                    labelText="Email..."
+                                    labelText="Alamat email"
                                     id="email"
                                     formControlProps={{
                                         fullWidth: true,
@@ -282,7 +282,7 @@ const SignupForm = ({ classes, toggleLogin }) => {
                                     }}
                                 />
                                 <CustomInput
-                                    labelText="Password"
+                                    labelText="Kata kunci"
                                     id="pass"
                                     formControlProps={{
                                         fullWidth: true,
@@ -345,14 +345,16 @@ const SignupForm = ({ classes, toggleLogin }) => {
                                         toggleLogin()
                                     }}
                                 >
-                                    Already have an account? Login here
+                                    Sudah punya akun? Masuk disini
                                 </Button>
                             </CardFooter>
                         </>
                     ) : (
                         <>
                             <CardBody>
-                                <StyledHeader>Sign up successful</StyledHeader>
+                                <StyledHeader>
+                                    Pendaftaran berhasil!
+                                </StyledHeader>
                                 <StyledParagraph>
                                     {status.success}
                                 </StyledParagraph>
@@ -367,7 +369,7 @@ const SignupForm = ({ classes, toggleLogin }) => {
                                         navigate('/')
                                     }}
                                 >
-                                    View innovation
+                                    Lihat semua inovasi
                                 </Button>
                             </CardFooter>
                         </>

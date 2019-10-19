@@ -157,7 +157,7 @@ function HeaderLinks({ ...props }) {
                             currentUser.displayName}`}
                         buttonText={
                             <img
-                                src={profileImage}
+                                src="https://1.bp.blogspot.com/_bCYQxIvMQ2U/TQOQAXHapkI/AAAAAAAAAQw/dIjtEHBe5cc/s640/anonymous_international_black_sticker-p217501226871431885qjcl_400.jpg"
                                 className={classes.img}
                                 alt="profile"
                             />

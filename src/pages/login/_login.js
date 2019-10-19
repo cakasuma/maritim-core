@@ -85,7 +85,7 @@ const LoginForm = ({ classes, toggleLogin }) => {
                 <Form className={classes.form}>
                     <CardBody>
                         <CustomInput
-                            labelText="Email..."
+                            labelText="Alamat email"
                             id="email"
                             error={errors.email && touched.email ? true : false}
                             errorMessage={
@@ -113,7 +113,7 @@ const LoginForm = ({ classes, toggleLogin }) => {
                             }}
                         />
                         <CustomInput
-                            labelText="Password"
+                            labelText="Kata kunci"
                             id="pass"
                             error={
                                 errors.password && touched.password
@@ -157,7 +157,7 @@ const LoginForm = ({ classes, toggleLogin }) => {
                             />
                         ) : (
                             <Button color="primary" size="md" type="submit">
-                                Login
+                                Masuk
                             </Button>
                         )}
                         <br />
@@ -170,7 +170,7 @@ const LoginForm = ({ classes, toggleLogin }) => {
                                 toggleLogin()
                             }}
                         >
-                            Create a new account here
+                            Belum punya akun? Daftar disini
                         </Button>
                     </CardFooter>
                 </Form>

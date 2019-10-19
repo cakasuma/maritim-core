@@ -117,7 +117,9 @@ const RelatedInnovation = ({ classes, category, title }) => {
                             </div>
                         ))}
                 </Slider>
-                {!products.length && <h6>Not yet added for this category</h6>}
+                {!products.length && (
+                    <h6>Belum ada inovasi terkait untuk saat ini</h6>
+                )}
             </GridItem>
         </GridContainer>
     )
