@@ -147,12 +147,15 @@ class LoginPage extends React.Component {
                                             <div className={classes.socialLine}>
                                                 <Button
                                                     justIcon
-                                                    href="#pablo"
+                                                    href="#google"
                                                     target="_blank"
                                                     color="transparent"
-                                                    onClick={e =>
+                                                    onClick={e => {
                                                         e.preventDefault()
-                                                    }
+                                                        alert(
+                                                            'fitur belum tersedia',
+                                                        )
+                                                    }}
                                                 >
                                                     <FontAwesomeIcon
                                                         icon={faTwitter}
@@ -163,9 +166,12 @@ class LoginPage extends React.Component {
                                                     href="#pablo"
                                                     target="_blank"
                                                     color="transparent"
-                                                    onClick={e =>
+                                                    onClick={e => {
                                                         e.preventDefault()
-                                                    }
+                                                        alert(
+                                                            'fitur belum tersedia',
+                                                        )
+                                                    }}
                                                 >
                                                     <FontAwesomeIcon
                                                         icon={faFacebook}
@@ -176,9 +182,12 @@ class LoginPage extends React.Component {
                                                     href="#pablo"
                                                     target="_blank"
                                                     color="transparent"
-                                                    onClick={e =>
+                                                    onClick={e => {
                                                         e.preventDefault()
-                                                    }
+                                                        alert(
+                                                            'fitur belum tersedia',
+                                                        )
+                                                    }}
                                                 >
                                                     <FontAwesomeIcon
                                                         icon={faGooglePlusG}
