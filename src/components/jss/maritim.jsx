@@ -56,6 +56,7 @@ const defaultFont = {
 }
 
 const primaryColor = '#6c63ff'
+const secondaryColor = '#f08f20'
 const warningColor = '#ff9800'
 const dangerColor = '#f44336'
 const successColor = '#4caf50'
@@ -175,6 +176,7 @@ export {
     card,
     defaultFont,
     primaryColor,
+    secondaryColor,
     warningColor,
     dangerColor,
     successColor,

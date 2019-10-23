@@ -1,8 +1,11 @@
 import React from 'react'
 // nodejs library to set properties for components
+
 import PropTypes from 'prop-types'
 // @material-ui/core components
 import withStyles from '@material-ui/core/styles/withStyles'
+import CircularProgress from '@material-ui/core/CircularProgress'
+
 import { Link } from 'gatsby'
 import { FirebaseContext } from 'gatsby-plugin-firebase'
 
@@ -74,7 +77,10 @@ const ProductSection = ({ classes }) => {
                 </GridItem>
                 <GridItem xs={12} sm={12} md={10}>
                     {!products ? (
-                        <div>hi</div>
+                        <CircularProgress
+                            className={classes.circularProgress}
+                            color="secondary"
+                        />
                     ) : (
                         products.map((product, idx) => {
                             const date = new Date(product.data.timestamp)

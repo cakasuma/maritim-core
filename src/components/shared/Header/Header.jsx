@@ -14,14 +14,12 @@ import Hidden from '@material-ui/core/Hidden'
 import Drawer from '@material-ui/core/Drawer'
 // @material-ui/icons
 import Menu from '@material-ui/icons/Menu'
+import Image from '../Image/image'
 // core components
 import headerStyle from '../../jss/maritim/components/headerStyle.jsx'
 
-const Logo = styled.img`
-    width: 10rem;
-    height: 3rem;
-    border-radius: 50%;
-    margin-right: 12px;
+const Logo = styled.div`
+    width: 12rem;
 `
 
 class Header extends React.Component {
@@ -82,7 +80,9 @@ class Header extends React.Component {
         })
         const brandComponent = (
             <Link to="/" className={classes.title}>
-                <Logo src="Logo.png" alt={brand} />
+                <Logo>
+                    <Image img_name="Logo.png" alt="Warung Inovasi" />
+                </Logo>
             </Link>
         )
         return (

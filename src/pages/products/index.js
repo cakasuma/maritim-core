@@ -199,22 +199,14 @@ const ProductsPage = ({ classes }) => {
     return (
         <Layout>
             <SEO title="products" />
-            <Background
-                className={classes.productHead}
-                style={{
-                    backgroundSize: 'cover',
-                    backgroundPosition: 'center',
-                }}
-                img_name="landing-bg.jpg"
-                brightness="0.7"
-            >
+            <div className={classes.productHead}>
                 <GridContainer className={classes.container}>
                     <div className={classes.headerWrapper}>
                         <h1>Semua Inovasi</h1>
                         <h2>Pilih inovasi inovasi menarik berkut</h2>
                     </div>
                 </GridContainer>
-            </Background>
+            </div>
             <GridContainer className={classes.container}>
                 <GridItem xs={12} sm={6} md={3} className={classes.filterList}>
                     <div className={classes.filterWrapper}>

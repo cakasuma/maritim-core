@@ -13,7 +13,7 @@ const relatedSettings = {
     dots: true,
     infinite: true,
     speed: 500,
-    slidesToShow: 1,
+    slidesToShow: 4,
     slidesToScroll: 1,
     autoplay: false,
 }
@@ -28,10 +28,10 @@ const RelatedInnovation = ({ classes, category, title }) => {
         console.log('how many times this guy run')
 
         const db = firebase.firestore()
-        const query = db
-            .collection('innovation')
-            .where('category', '==', `${category}`)
+        const query = db.collection('innovation')
+
         // TODO: filter using category
+        // .where('category', '==', `${category}`)
 
         query.get().then(async snapshots => {
             const productsSnapshot = []
@@ -81,8 +81,8 @@ const RelatedInnovation = ({ classes, category, title }) => {
                                 className={classes.relatedPostWrapper}
                                 key={idx}
                             >
-                                <Link
-                                    to={`/product-detail?pid=${product.id}`}
+                                <a
+                                    href={`/product-detail/?pid=${product.id}`}
                                     className={classes.postImageWrapper}
                                 >
                                     <img
@@ -90,27 +90,27 @@ const RelatedInnovation = ({ classes, category, title }) => {
                                         alt="..."
                                         className={classes.postImage}
                                     />
-                                </Link>
+                                </a>
                                 <div className={classes.postDescription}>
                                     <div className={classes.postCategory}>
                                         <h6>{product.data.category}</h6>
                                     </div>
                                     <h4 className={classes.postTitle}>
-                                        <Link
-                                            to={`/product-detail?pid=${product.id}`}
+                                        <a
+                                            href={`/product-detail/?pid=${product.id}`}
                                             className={classes.postImageWrapper}
                                         >
                                             {product.data.title}
-                                        </Link>
+                                        </a>
                                     </h4>
                                     <p className={classes.postExplain}>
                                         {product.data.description}
-                                        <Link
-                                            to={`/product-detail?pid=${product.id}`}
+                                        <a
+                                            href={`/product-detail/?pid=${product.id}`}
                                             className={classes.postImageWrapper}
                                         >
                                             ...Read more
-                                        </Link>
+                                        </a>
                                     </p>
                                 </div>
                             </div>

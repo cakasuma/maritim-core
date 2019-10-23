@@ -38,7 +38,7 @@ const IndexPage = ({ classes }) => (
         <div>
             <Parallax
                 filter
-                image={require('../../images/landing-bg.jpg')}
+                image={require('../../images/svg/team-spirit.svg')}
                 className={classes.parallax}
             >
                 <GridContainer className={classes.container}>

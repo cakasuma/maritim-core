@@ -31,11 +31,20 @@ const UploadStep = ({ classes, innovation, setInnovation }) => {
     // const firebase = React.useContext(FirebaseContext)
 
     const handleFileUpload = e => {
-        const new_innovation = {
-            ...innovation,
+        const file_e = e.target.files[0]
+        const file_size = file_e.size / 1024 / 1024 // in MB
+        if (file_size > 1.5) {
+            alert(
+                'File size exceed limit 1.5MB, current file size: ' + file_size,
+            )
+            e.target.value = ''
+        } else {
+            const new_innovation = {
+                ...innovation,
+            }
+            new_innovation[e.target.getAttribute('name')] = e.target.files[0]
+            setInnovation(new_innovation)
         }
-        new_innovation[e.target.getAttribute('name')] = e.target.files[0]
-        setInnovation(new_innovation)
     }
     return (
         <StyledWrapper>

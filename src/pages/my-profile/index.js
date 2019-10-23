@@ -5,30 +5,16 @@ import { navigate } from 'gatsby'
 // @material-ui/core components
 import { makeStyles } from '@material-ui/core/styles'
 // @material-ui/icons
-import Camera from '@material-ui/icons/Camera'
-import Palette from '@material-ui/icons/Palette'
-import Favorite from '@material-ui/icons/Favorite'
+
 import { FirebaseContext } from 'gatsby-plugin-firebase'
 // core components
 import Layout from '../../components/layout/layout.js'
 import Button from '../../components/shared/CustomButtons/Button.jsx'
 import GridContainer from '../../components/shared/Grid/GridContainer.jsx'
 import GridItem from '../../components/shared/Grid/GridItem.jsx'
-import NavPills from '../../components/shared/NavPills/NavPills.jsx'
+
 import Parallax from '../../components/shared/Parallax/Parallax.jsx'
 
-import profile from '../../images/faces/christian.jpg'
-
-import studio1 from '../../images/examples/studio-1.jpg'
-import studio2 from '../../images/examples/studio-2.jpg'
-import studio3 from '../../images/examples/studio-3.jpg'
-import studio4 from '../../images/examples/studio-4.jpg'
-import studio5 from '../../images/examples/studio-5.jpg'
-import work1 from '../../images/examples/olu-eletu.jpg'
-import work2 from '../../images/examples/clem-onojeghuo.jpg'
-import work3 from '../../images/examples/cynthia-del-rio.jpg'
-import work4 from '../../images/examples/mariya-georgieva.jpg'
-import work5 from '../../images/examples/clem-onojegaw.jpg'
 import styles from '../../components/jss/maritim/views/profilePage.jsx'
 
 const useStyles = makeStyles(styles)

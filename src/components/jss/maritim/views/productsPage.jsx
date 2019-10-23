@@ -1,5 +1,12 @@
-import { container, grayColor, primaryColor } from '../../maritim.jsx'
+import {
+    container,
+    grayColor,
+    primaryColor,
+    secondaryColor,
+} from '../../maritim.jsx'
 import customCheckboxRadioSwitch from '../customCheckboxRadioSwitch.jsx'
+
+import image from '../../../../images/svg/undraw-master.svg'
 
 const productsPageStyle = {
     container: {
@@ -24,6 +31,12 @@ const productsPageStyle = {
         width: '100%',
         marginTop: '6rem',
         textAlign: 'center',
+        '& h1, & h2': {
+            background: secondaryColor,
+            width: 'fit-content',
+            margin: '1rem auto',
+            padding: '1rem',
+        },
     },
     card: {
         margin: '0',
@@ -114,7 +127,7 @@ const productsPageStyle = {
     },
     productHead: {
         backgroundColor: primaryColor,
-        boxShadow: 'inset 0 0 0 2000px rgba(255,0,150,0.3)',
+        backgroundImage: 'url(' + image + ')',
     },
     circularProgress: {
         margin: 'auto',
