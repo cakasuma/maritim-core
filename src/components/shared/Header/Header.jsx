@@ -18,8 +18,8 @@ import Menu from '@material-ui/icons/Menu'
 import headerStyle from '../../jss/maritim/components/headerStyle.jsx'
 
 const Logo = styled.img`
-    width: 45px;
-    height: 45px;
+    width: 10rem;
+    height: 3rem;
     border-radius: 50%;
     margin-right: 12px;
 `
@@ -82,8 +82,7 @@ class Header extends React.Component {
         })
         const brandComponent = (
             <Link to="/" className={classes.title}>
-                <Logo src="warung-inovasi.png" />
-                {brand}
+                <Logo src="Logo.png" alt={brand} />
             </Link>
         )
         return (

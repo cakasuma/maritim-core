@@ -1,4 +1,4 @@
-import { container, title } from '../../maritim.jsx'
+import { container, title, primaryColor } from '../../maritim.jsx'
 
 const landingPageStyle = {
     '@keyframes typing': {
@@ -22,6 +22,10 @@ const landingPageStyle = {
     },
     parallax: {
         height: '700px',
+        backgroundPosition: '16px 290px',
+        backgroundSize: '34%',
+        backgroundRepeat: 'no-repeat',
+        backgroundColor: primaryColor,
     },
     title: {
         ...title,

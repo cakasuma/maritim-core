@@ -16,7 +16,6 @@ import GridItem from '../components/shared/Grid/GridItem.jsx'
 
 import Button from '../components/shared/CustomButtons/Button.jsx'
 import Parallax from '../components/shared/Parallax/Parallax.jsx'
-import NavPillsStatic from '../components/shared/NavPillsStatic/NavPillsStatic.jsx'
 
 import landingPageStyle from '../components/jss/maritim/views/landingPage.jsx'
 
@@ -33,8 +32,7 @@ const IndexPage = ({ classes }) => (
         <div>
             <Parallax
                 className={classes.parallax}
-                filter
-                image={require('../images/bg7.jpg')}
+                image={require('../images/svg/undraw-new-ideas.svg')}
             >
                 <GridContainer className={classes.container}>
                     <GridContainer className={classes.container}>
@@ -61,7 +59,7 @@ const IndexPage = ({ classes }) => (
                             <h2 className={classes.separator}>Atau</h2>
                             <Button
                                 component={Link}
-                                color="primary"
+                                color="info"
                                 size="lg"
                                 to="/products"
                                 target="_blank"

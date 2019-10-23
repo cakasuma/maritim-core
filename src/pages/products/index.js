@@ -1,4 +1,6 @@
 import React from 'react'
+import styled from 'styled-components'
+import CircularProgress from '@material-ui/core/CircularProgress'
 // nodejs library to set properties for components
 import PropTypes from 'prop-types'
 // @material-ui/core components
@@ -23,6 +25,11 @@ import Background from '../../components/shared/Image/background'
 
 import Layout from '../../components/layout/layout.js'
 import SEO from '../../components/layout/seo.js'
+
+const Wrapper = styled.div`
+    margin-left: 15px;
+    margin-right: 15px;
+`
 
 const innovationCategory = [
     {
@@ -186,7 +193,6 @@ const ProductsPage = ({ classes }) => {
                     .search(e.target.value.toLowerCase()) !== -1
             )
         })
-        console.log(filtered)
         setProducts(filtered)
     }
 
@@ -356,7 +362,7 @@ const ProductsPage = ({ classes }) => {
                             />
                             <Search className={classes.searchIcon} />
                         </GridItem>
-                        {products &&
+                        {products ? (
                             products.map((product, idx) => (
                                 <GridItem
                                     xs={12}
@@ -365,44 +371,56 @@ const ProductsPage = ({ classes }) => {
                                     className={classes.postWrapper}
                                     key={idx}
                                 >
-                                    <Link
-                                        to={`/product-detail?pid=${product.id}`}
-                                        className={classes.postImageWrapper}
-                                    >
-                                        <img
-                                            src={product.data.image_1}
-                                            alt="..."
-                                            className={classes.postImage}
-                                        />
-                                    </Link>
-                                    <div className={classes.postDescription}>
-                                        <div className={classes.postCategory}>
-                                            <h6>{product.data.category}</h6>
+                                    <Wrapper>
+                                        <Link
+                                            to={`/product-detail?pid=${product.id}`}
+                                            className={classes.postImageWrapper}
+                                        >
+                                            <img
+                                                src={product.data.image_1}
+                                                alt="..."
+                                                className={classes.postImage}
+                                            />
+                                        </Link>
+                                        <div
+                                            className={classes.postDescription}
+                                        >
+                                            <div
+                                                className={classes.postCategory}
+                                            >
+                                                <h6>{product.data.category}</h6>
+                                            </div>
+                                            <h4 className={classes.postTitle}>
+                                                <Link
+                                                    to={`/product-detail?pid=${product.id}`}
+                                                    className={
+                                                        classes.postImageWrapper
+                                                    }
+                                                >
+                                                    {product.data.title}
+                                                </Link>
+                                            </h4>
+                                            <p className={classes.postExplain}>
+                                                {product.data.description}
+                                                <Link
+                                                    to={`/product-detail?pid=${product.id}`}
+                                                    className={
+                                                        classes.postImageWrapper
+                                                    }
+                                                >
+                                                    ...Read more
+                                                </Link>
+                                            </p>
                                         </div>
-                                        <h4 className={classes.postTitle}>
-                                            <Link
-                                                to={`/product-detail?pid=${product.id}`}
-                                                className={
-                                                    classes.postImageWrapper
-                                                }
-                                            >
-                                                {product.data.title}
-                                            </Link>
-                                        </h4>
-                                        <p className={classes.postExplain}>
-                                            {product.data.description}
-                                            <Link
-                                                to={`/product-detail?pid=${product.id}`}
-                                                className={
-                                                    classes.postImageWrapper
-                                                }
-                                            >
-                                                ...Read more
-                                            </Link>
-                                        </p>
-                                    </div>
+                                    </Wrapper>
                                 </GridItem>
-                            ))}
+                            ))
+                        ) : (
+                            <CircularProgress
+                                className={classes.circularProgress}
+                                color="secondary"
+                            />
+                        )}
                     </GridContainer>
                 </GridItem>
             </GridContainer>

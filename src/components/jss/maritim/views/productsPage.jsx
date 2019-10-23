@@ -59,8 +59,8 @@ const productsPageStyle = {
         lineHeight: '1.5rem',
     },
     postImage: {
-        width: '17rem',
-        height: '16rem',
+        maxWidth: '100%',
+        height: '12rem',
         boxShadow:
             '0 5px 15px -8px rgba(0, 0, 0, 0.24), 0 8px 10px -5px rgba(0, 0, 0, 0.2)',
         borderRadius: '6px',
@@ -115,6 +115,9 @@ const productsPageStyle = {
     productHead: {
         backgroundColor: primaryColor,
         boxShadow: 'inset 0 0 0 2000px rgba(255,0,150,0.3)',
+    },
+    circularProgress: {
+        margin: 'auto',
     },
 }
 
