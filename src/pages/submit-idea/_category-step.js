@@ -22,7 +22,7 @@ const CategoryStep = ({ classes, innovation, setInnovation }) => {
                     color="primary"
                     tabs={[
                         {
-                            tabButton: 'Energy',
+                            tabButton: 'Energi',
                             tabIcon: Energy,
                             onClick: () => {
                                 const new_innovation = { ...innovation }
@@ -42,7 +42,7 @@ const CategoryStep = ({ classes, innovation, setInnovation }) => {
                             },
                         },
                         {
-                            tabButton: 'Biomedic',
+                            tabButton: 'Biomedik',
                             tabIcon: Biomedic,
                             onClick: () => {
                                 const new_innovation = { ...innovation }
@@ -52,7 +52,7 @@ const CategoryStep = ({ classes, innovation, setInnovation }) => {
                             },
                         },
                         {
-                            tabButton: 'Food',
+                            tabButton: 'Olah pangan',
                             tabIcon: Food,
                             onClick: () => {
                                 const new_innovation = { ...innovation }
@@ -62,7 +62,7 @@ const CategoryStep = ({ classes, innovation, setInnovation }) => {
                             },
                         },
                         {
-                            tabButton: 'Others',
+                            tabButton: 'Lainnya',
                             tabIcon: Other,
                             onClick: () => {
                                 const new_innovation = { ...innovation }

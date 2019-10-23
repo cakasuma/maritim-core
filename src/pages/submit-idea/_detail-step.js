@@ -17,13 +17,12 @@ import CustomSelect from '../../components/shared/CustomSelect/CustomSelect.jsx'
 import submitPageStyle from '../../components/jss/maritim/views/submitPage.jsx'
 
 const validationSchema = Yup.object().shape({
-    name: Yup.string().required('Name is required!'),
-    email: Yup.string()
-        .email('E-mail is not valid!')
-        .required('E-mail is required!'),
-    company: Yup.string().required('Company is required!'),
-    phone: Yup.string().required('Phone is required!'),
-    message: Yup.string().required('Message is required!'),
+    title: Yup.string().required('Judul dibutuhkan'),
+    subtitle: Yup.string().required('Sub judul dibutuhkan'),
+    description: Yup.string().required('Deskripsi dibutuhkan'),
+    development_stage: Yup.string().required('Tahap pengembangan dibutuhkan'),
+    excellence: Yup.string().required('Pesan dibutuhkan'),
+    patent_status: Yup.string().required('Tahap paten dibutuhkan'),
 })
 
 const workFormValues = {
@@ -58,7 +57,7 @@ const DetailStep = ({ classes, setInnovation, innovation }) => {
                                 <GridContainer justify="center">
                                     <GridItem xs={12} sm={12} md={6}>
                                         <CustomInput
-                                            labelText="Innovation title"
+                                            labelText="Judul"
                                             id="title"
                                             error={
                                                 errors.title && touched.title
@@ -95,7 +94,7 @@ const DetailStep = ({ classes, setInnovation, innovation }) => {
                                     </GridItem>
                                     <GridItem xs={12} sm={12} md={6}>
                                         <CustomInput
-                                            labelText="Innovation subtitle"
+                                            labelText="Sub judul"
                                             id="subtitle"
                                             error={
                                                 errors.subtitle &&
@@ -133,7 +132,7 @@ const DetailStep = ({ classes, setInnovation, innovation }) => {
                                     </GridItem>
                                     <GridItem xs={12} sm={12} md={6}>
                                         <CustomInput
-                                            labelText="Innovation description"
+                                            labelText="Deskripsi"
                                             id="description"
                                             error={
                                                 errors.description &&
@@ -173,7 +172,7 @@ const DetailStep = ({ classes, setInnovation, innovation }) => {
                                     </GridItem>
                                     <GridItem xs={12} sm={12} md={6}>
                                         <CustomSelect
-                                            labelText="Development Stage"
+                                            labelText="Tahap pengembangan"
                                             id="development_stage"
                                             formControlProps={{
                                                 fullWidth: true,
@@ -209,24 +208,24 @@ const DetailStep = ({ classes, setInnovation, innovation }) => {
                                                 readOnly: isSubmitting,
                                                 menuItem: [
                                                     {
-                                                        text: 'Data gathering',
-                                                        value: 'Data gathering',
+                                                        text:
+                                                            'Pengumpulan data',
+                                                        value:
+                                                            'Pengumpulan data',
                                                     },
                                                     {
                                                         text:
-                                                            'Research & Development',
+                                                            'Riset dan pengembangan',
                                                         value:
-                                                            'Research & Development',
+                                                            'Riset dan pengembangan',
                                                     },
                                                     {
-                                                        text: 'Prototype',
-                                                        value: 'Prototype',
+                                                        text: 'Prototipe',
+                                                        value: 'Prototipe',
                                                     },
                                                     {
-                                                        text:
-                                                            'Ready made solution!',
-                                                        value:
-                                                            'Ready made solution',
+                                                        text: 'Siap jadi',
+                                                        value: 'Siap jadi',
                                                     },
                                                 ],
                                             }}
@@ -234,7 +233,7 @@ const DetailStep = ({ classes, setInnovation, innovation }) => {
                                     </GridItem>
                                     <GridItem xs={12} sm={12} md={6}>
                                         <CustomInput
-                                            labelText="Whats make your innovation distinct"
+                                            labelText="Apa yang membuat idemu menarik"
                                             id="excellence"
                                             error={
                                                 errors.excellence &&
@@ -272,7 +271,7 @@ const DetailStep = ({ classes, setInnovation, innovation }) => {
                                     </GridItem>
                                     <GridItem xs={12} sm={12} md={6}>
                                         <CustomSelect
-                                            labelText="Patent status"
+                                            labelText="Tahap paten"
                                             id="patent_status"
                                             formControlProps={{
                                                 fullWidth: true,
@@ -308,24 +307,25 @@ const DetailStep = ({ classes, setInnovation, innovation }) => {
                                                 readOnly: isSubmitting,
                                                 menuItem: [
                                                     {
-                                                        text:
-                                                            'Not yet registered',
+                                                        text: 'Belum terdaftar',
                                                         value:
-                                                            'Not yet registered',
+                                                            'Belum terdaftar',
                                                     },
                                                     {
                                                         text:
-                                                            'Request for approval',
+                                                            'Menunggu persetujuan',
                                                         value:
-                                                            'Request for approval',
+                                                            'Menunggu persetujuan',
                                                     },
                                                     {
-                                                        text: 'Approved',
-                                                        value: 'Approved',
+                                                        text:
+                                                            'Persetujuan paten diterima',
+                                                        value:
+                                                            'Persetujuan paten diterima',
                                                     },
                                                     {
-                                                        text: 'Patented!',
-                                                        value: 'Patented',
+                                                        text: 'Terpatenkan',
+                                                        value: 'Terpatenkan',
                                                     },
                                                 ],
                                             }}

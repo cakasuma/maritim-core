@@ -7,7 +7,7 @@ import Button from '@material-ui/core/Button'
 import Typography from '@material-ui/core/Typography'
 import { FirebaseContext } from 'gatsby-plugin-firebase'
 import classNames from 'classnames'
-import { navigate } from 'gatsby'
+import { navigate, Link } from 'gatsby'
 
 // @material-ui/core components
 import withStyles from '@material-ui/core/styles/withStyles'
@@ -23,11 +23,7 @@ import DetailStep from './_detail-step'
 import UploadStep from './_upload-step'
 
 function getSteps() {
-    return [
-        'Select which category your idea is',
-        'Explain the details',
-        'File upload',
-    ]
+    return ['Pilih kategori', 'Detail inovasi', 'Unggah gambar dan dokumen']
 }
 
 function getStepContent(stepIndex, innovation, setInnovation) {
@@ -184,13 +180,12 @@ const SubmitIdea = ({ classes }) => {
                     <GridContainer className={classes.container}>
                         <GridItem xs={12} sm={12} md={12}>
                             <h1 className={classes.title}>
-                                Lets show the world your idea
+                                Mari tunjukkan idemu
                             </h1>
                             <h4 className={classes.titleSecondary}>
-                                We publish your innovation to help investor peek
-                                at your innovation and communicate with you. We
-                                believe Indonesia is a country full of inventor
-                                and it will help its glory because of you too!.
+                                Publikasi inovasimu dapat membantu meningkatkan
+                                eksistensi idemu, dan juga membuat investor
+                                tertarik untuk mendonasi inovasimu.
                             </h4>
                         </GridItem>
                     </GridContainer>
@@ -295,6 +290,16 @@ const SubmitIdea = ({ classes }) => {
                                     </div>
                                 )}
                             </div>
+                            <h4 className={classes.hint}>
+                                Untuk mempublish inovasimu, kita membutuhkan
+                                data personal data seperti KTP atau SIM, umur,
+                                dan email untuk memproses ketahap selanjutnya.
+                                Inofrmasi ini digunakan untuk mencegah pemalsuan
+                                data. Catatan: setelah publish, anda tidak bisa
+                                mengedit atau mendelete inovasi anda, tolong
+                                kontak kami melalui nomor telepon tertera di
+                                laman <Link to="/about-us">Tentang kami</Link>
+                            </h4>
                         </div>
                     </div>
                 </div>

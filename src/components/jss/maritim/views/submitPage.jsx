@@ -74,6 +74,11 @@ const submitPageStyle = {
     parallax: {
         height: '400px',
     },
+    hint: {
+        color: '#cccccc',
+        width: '50%',
+        margin: '3.5rem auto',
+    },
 }
 
 export default submitPageStyle

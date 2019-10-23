@@ -1,7 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
 import GridContainer from '../../components/shared/Grid/GridContainer.jsx'
-import Button from '@material-ui/core/Button'
 import Input from '@material-ui/core/Input'
 import submitPageStyle from '../../components/jss/maritim/views/submitPage.jsx'
 import withStyles from '@material-ui/core/styles/withStyles'
@@ -33,9 +32,11 @@ const UploadStep = ({ classes, innovation, setInnovation }) => {
     const handleFileUpload = e => {
         const file_e = e.target.files[0]
         const file_size = file_e.size / 1024 / 1024 // in MB
-        if (file_size > 1.5) {
+        const limit = e.target.name === 'abstract_file' ? 5 : 1.5
+
+        if (file_size > limit) {
             alert(
-                'File size exceed limit 1.5MB, current file size: ' + file_size,
+                `File size melebihi ${limit}MB, file size terunggah: ${file_size}MB`,
             )
             e.target.value = ''
         } else {
@@ -49,7 +50,9 @@ const UploadStep = ({ classes, innovation, setInnovation }) => {
     return (
         <StyledWrapper>
             <StyledGridContainer className={classes.container}>
-                <TitleDescription>Upload first image</TitleDescription>
+                <TitleDescription>
+                    Unggah gambar utama (*dibutuhkan)
+                </TitleDescription>
                 <Input
                     accept="image/*"
                     className={classes.input}
@@ -59,7 +62,9 @@ const UploadStep = ({ classes, innovation, setInnovation }) => {
                     type="file"
                     required
                 />
-                <TitleDescription>Upload second image</TitleDescription>
+                <TitleDescription>
+                    Unggah gambar kedua (*optional)
+                </TitleDescription>
                 <Input
                     accept="image/*"
                     className={classes.input}
@@ -71,8 +76,9 @@ const UploadStep = ({ classes, innovation, setInnovation }) => {
                 />
 
                 <TitleDescription>
-                    Upload Supporting document (e.g. paper, experiment test, or
-                    abstract)
+                    Unggah dokumen pendukung (abstract, dokumen testing produk,
+                    proposal) Upload Supporting document (e.g. paper, experiment
+                    test, or abstract) (*optional)
                 </TitleDescription>
                 <Input
                     accept="image/*"
