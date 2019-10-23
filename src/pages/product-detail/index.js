@@ -247,10 +247,12 @@ const ProductDetail = ({ classes }) => {
                             />
                         </GridItem>
                     </GridContainer>
-                    <RelatedInnovation
-                        category={product.category}
-                        title={product.title}
-                    />
+                    {product && (
+                        <RelatedInnovation
+                            category={product.category}
+                            title={product.title}
+                        />
+                    )}
                 </GridContainer>
             </Layout>
         )

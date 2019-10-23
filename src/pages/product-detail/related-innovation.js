@@ -13,7 +13,7 @@ const relatedSettings = {
     dots: true,
     infinite: true,
     speed: 500,
-    slidesToShow: 4,
+    slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: false,
 }
@@ -25,21 +25,19 @@ const RelatedInnovation = ({ classes, category, title }) => {
         if (!firebase) {
             return
         }
+        console.log('how many times this guy run')
 
         const db = firebase.firestore()
         const query = db
             .collection('innovation')
             .where('category', '==', `${category}`)
-            .where('title', '<', `${title}`)
         // TODO: filter using category
-        // .where('category', '==', category)
 
         query.get().then(async snapshots => {
             const productsSnapshot = []
             await new Promise((resolve, reject) => {
                 let ctr = 0
                 snapshots.forEach(async doc => {
-                    console.log(ctr)
                     const productDoc = {}
                     productDoc.id = doc.id
                     productDoc.data = doc.data()
@@ -52,11 +50,10 @@ const RelatedInnovation = ({ classes, category, title }) => {
 
                     if (user.exists) {
                         productDoc.data.innovator = user.data().name
+                        productsSnapshot.push(productDoc)
                     }
                     ctr++
-
                     if (snapshots.docs.length === ctr) {
-                        console.log('hi')
                         resolve()
                     }
                 })
@@ -64,7 +61,6 @@ const RelatedInnovation = ({ classes, category, title }) => {
             setProducts(productsSnapshot)
         })
     }, [firebase])
-
     return (
         <GridContainer className={classes.container}>
             <div className={classes.relatedTitle}>
@@ -76,8 +72,11 @@ const RelatedInnovation = ({ classes, category, title }) => {
                     className={classes.relatedContainer}
                     {...relatedSettings}
                 >
-                    {products &&
-                        products.map((product, idx) => (
+                    {products.map((product, idx) => {
+                        console.log('hi')
+                        console.log(title)
+                        if (product.data.title === title) return null
+                        return (
                             <div
                                 className={classes.relatedPostWrapper}
                                 key={idx}
@@ -115,7 +114,8 @@ const RelatedInnovation = ({ classes, category, title }) => {
                                     </p>
                                 </div>
                             </div>
-                        ))}
+                        )
+                    })}
                 </Slider>
                 {!products.length && (
                     <h6>Belum ada inovasi terkait untuk saat ini</h6>
