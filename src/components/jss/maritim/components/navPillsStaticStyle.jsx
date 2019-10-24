@@ -149,7 +149,7 @@ const navPillsStyle = theme => ({
     tabWrapper: {
         color: 'inherit',
         position: 'relative',
-        fontSize: '12px',
+        fontSize: '1.2rem',
         lineHeight: '24px',
         fontWeight: '500',
         textTransform: 'uppercase',

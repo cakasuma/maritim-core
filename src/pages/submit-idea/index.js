@@ -1,4 +1,5 @@
 import React from 'react'
+import styled from 'styled-components'
 import Stepper from '@material-ui/core/Stepper'
 import Step from '@material-ui/core/Step'
 import StepLabel from '@material-ui/core/StepLabel'
@@ -12,6 +13,7 @@ import { navigate, Link } from 'gatsby'
 // @material-ui/core components
 import withStyles from '@material-ui/core/styles/withStyles'
 import GridContainer from '../../components/shared/Grid/GridContainer.jsx'
+import Image from '../../components/shared/Image/Image'
 import GridItem from '../../components/shared/Grid/GridItem.jsx'
 import Layout from '../../components/layout/layout.js'
 import SEO from '../../components/layout/seo.js'
@@ -21,6 +23,11 @@ import submitPageStyle from '../../components/jss/maritim/views/submitPage.jsx'
 import CategoryStep from './_category-step'
 import DetailStep from './_detail-step'
 import UploadStep from './_upload-step'
+
+const ImageWrapper = styled.div`
+    max-width: 400px;
+    margin: auto;
+`
 
 function getSteps() {
     return ['Pilih kategori', 'Detail inovasi', 'Unggah gambar dan dokumen']
@@ -196,7 +203,9 @@ const SubmitIdea = ({ classes }) => {
                             <Stepper activeStep={activeStep} alternativeLabel>
                                 {steps.map(label => (
                                     <Step key={label}>
-                                        <StepLabel>{label}</StepLabel>
+                                        <StepLabel classes={classes.myLabel}>
+                                            {label}
+                                        </StepLabel>
                                     </Step>
                                 ))}
                             </Stepper>
@@ -235,19 +244,26 @@ const SubmitIdea = ({ classes }) => {
                                                     </div>
                                                 ) : (
                                                     <div>
+                                                        <ImageWrapper>
+                                                            <Image
+                                                                img_name="success.png"
+                                                                alt="Sukses!"
+                                                            />
+                                                        </ImageWrapper>
                                                         <Typography
                                                             className={
                                                                 classes.instructions
                                                             }
                                                         >
-                                                            All steps completed
+                                                            Selamat!, ide sudah
+                                                            terkumpul
                                                         </Typography>
                                                         <Button
                                                             onClick={
                                                                 handleNewSubmit
                                                             }
                                                         >
-                                                            Submit new idea
+                                                            Daftar ide baru
                                                         </Button>
                                                     </div>
                                                 )}
@@ -290,7 +306,7 @@ const SubmitIdea = ({ classes }) => {
                                     </div>
                                 )}
                             </div>
-                            <h4 className={classes.hint}>
+                            <h6 className={classes.hint}>
                                 Untuk mempublish inovasimu, kita membutuhkan
                                 data personal data seperti KTP atau SIM, umur,
                                 dan email untuk memproses ketahap selanjutnya.
@@ -299,7 +315,7 @@ const SubmitIdea = ({ classes }) => {
                                 mengedit atau mendelete inovasi anda, tolong
                                 kontak kami melalui nomor telepon tertera di
                                 laman <Link to="/about-us">Tentang kami</Link>
-                            </h4>
+                            </h6>
                         </div>
                     </div>
                 </div>

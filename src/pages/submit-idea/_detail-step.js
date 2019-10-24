@@ -71,7 +71,7 @@ const DetailStep = ({ classes, setInnovation, innovation }) => {
                                             }
                                             inputProps={{
                                                 name: 'title',
-                                                value: values.title,
+                                                value: innovation.title || '',
                                                 onChange: e => {
                                                     handleChange(e)
                                                     console.log(innovation)
@@ -110,7 +110,8 @@ const DetailStep = ({ classes, setInnovation, innovation }) => {
                                             }
                                             inputProps={{
                                                 name: 'subtitle',
-                                                value: values.subtitle,
+                                                value:
+                                                    innovation.subtitle || '',
                                                 onChange: e => {
                                                     handleChange(e)
                                                     const new_innovation = {
@@ -148,7 +149,9 @@ const DetailStep = ({ classes, setInnovation, innovation }) => {
                                             }
                                             inputProps={{
                                                 name: 'description',
-                                                value: values.description,
+                                                value:
+                                                    innovation.description ||
+                                                    '',
                                                 onChange: e => {
                                                     handleChange(e)
                                                     const new_innovation = {
@@ -192,7 +195,9 @@ const DetailStep = ({ classes, setInnovation, innovation }) => {
                                             inputProps={{
                                                 type: 'text',
                                                 name: 'development_stage',
-                                                value: values.development_stage,
+                                                value:
+                                                    innovation.development_stage ||
+                                                    '',
                                                 onChange: e => {
                                                     handleChange(e)
                                                     const new_innovation = {
@@ -233,7 +238,7 @@ const DetailStep = ({ classes, setInnovation, innovation }) => {
                                     </GridItem>
                                     <GridItem xs={12} sm={12} md={6}>
                                         <CustomInput
-                                            labelText="Apa yang membuat idemu menarik"
+                                            labelText="Ketertarikan ide"
                                             id="excellence"
                                             error={
                                                 errors.excellence &&
@@ -249,7 +254,8 @@ const DetailStep = ({ classes, setInnovation, innovation }) => {
                                             }
                                             inputProps={{
                                                 name: 'excellence',
-                                                value: values.excellence,
+                                                value:
+                                                    innovation.excellence || '',
                                                 onChange: e => {
                                                     handleChange(e)
                                                     const new_innovation = {
@@ -291,7 +297,9 @@ const DetailStep = ({ classes, setInnovation, innovation }) => {
                                             inputProps={{
                                                 type: 'text',
                                                 name: 'patent_status',
-                                                value: values.patent_status,
+                                                value:
+                                                    innovation.patent_status ||
+                                                    '',
                                                 onChange: e => {
                                                     handleChange(e)
                                                     const new_innovation = {
