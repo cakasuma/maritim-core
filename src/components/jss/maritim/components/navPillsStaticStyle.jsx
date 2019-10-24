@@ -57,7 +57,7 @@ const navPillsStyle = theme => ({
             margin: '1rem 1rem',
         },
         '@media (max-width: 375px)': {
-            margin: '1rem 0',
+            margin: '1rem 0.5rem',
         },
     },
     pillsWithIcons: {

@@ -29,7 +29,7 @@ const WorkSection = ({ classes }) => {
                         type="button"
                         rel="noopener noreferrer"
                     >
-                        Join us
+                        Daftar sekarang
                     </Button>
                 </GridItem>
             </GridContainer>

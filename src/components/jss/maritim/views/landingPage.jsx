@@ -23,9 +23,12 @@ const landingPageStyle = {
     parallax: {
         height: '700px',
         backgroundPosition: '16px 290px',
-        backgroundSize: '34%',
+        backgroundSize: '30rem',
         backgroundRepeat: 'no-repeat',
         backgroundColor: primaryColor,
+        '@media (max-width: 600px)': {
+            height: '500px',
+        },
     },
     title: {
         ...title,

@@ -11,26 +11,15 @@ import classNames from 'classnames'
 // @material-ui/core components
 import withStyles from '@material-ui/core/styles/withStyles'
 
-import Energy from '@material-ui/icons/Autorenew'
-import Biomedic from '@material-ui/icons/NaturePeople'
-import IT from '@material-ui/icons/DevicesOther'
-import Food from '@material-ui/icons/Fastfood'
-import Other from '@material-ui/icons/CardGiftcard'
-
 import GridContainer from '../../components/shared/Grid/GridContainer.jsx'
 import GridItem from '../../components/shared/Grid/GridItem.jsx'
 
-import Button from '../../components/shared/CustomButtons/Button.jsx'
 import Parallax from '../../components/shared/Parallax/Parallax.jsx'
-import NavPillsStatic from '../../components/shared/NavPillsStatic/NavPillsStatic.jsx'
 
 import aboutUsStyle from '../../components/jss/maritim/views/aboutUsStyle.jsx'
 
 import FeedbackSection from './_feedback'
 import OurTeamSection from './_our-team'
-
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faLightbulb } from '@fortawesome/free-solid-svg-icons'
 
 const IndexPage = ({ classes }) => (
     <Layout>

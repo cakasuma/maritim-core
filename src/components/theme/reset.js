@@ -182,32 +182,32 @@ const Reset = css`
     }
 
     h1 {
-        font-size: 3rem;
+        font-size: 4rem;
         line-height: 1.15em;
     }
 
     h2 {
-        font-size: 2.25rem;
+        font-size: 3.5rem;
         line-height: 1.5em;
     }
 
     h3 {
-        font-size: 1.5625rem;
+        font-size: 2.5rem;
         line-height: 1.4em;
     }
 
     h4 {
-        font-size: 1rem;
+        font-size: 2rem;
         line-height: 1.5em;
     }
 
     h5 {
-        font-size: 1.0625rem;
+        font-size: 1.4rem;
         line-height: 1.55em;
     }
 
     h6 {
-        font-size: 0.75rem;
+        font-size: 1.2rem;
         text-transform: uppercase;
         font-weight: 500;
     }

@@ -12,10 +12,10 @@ const GlobalStyle = createGlobalStyle`
             font-size: 120%; /* 1rem = 12px */
         }
         @media (max-width: 992px) {
-            font-size: 75%; /* 1rem = 8px */
+            font-size: 76%; /* 1rem = 8px */
         }
         @media (max-width: 660px) {
-            font-size: 65%; /* 1rem = 8px */
+            font-size: 70%; /* 1rem = 8px */
         }
     }
 `

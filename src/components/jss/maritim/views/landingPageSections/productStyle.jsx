@@ -53,6 +53,9 @@ const productStyle = {
         textAlign: 'left',
         justifyContent: 'center',
         alignSelf: 'center',
+        '@media (max-width: 375px)': {
+            textAlign: 'center',
+        },
     },
     cardImage: {
         width: '17rem',

@@ -34,6 +34,10 @@ const teamStyle = {
     itemGrid: {
         marginLeft: 'auto',
         marginRight: 'auto',
+        '& img': {
+            width: '10rem',
+            height: '10rem',
+        },
     },
     cardTitle,
     smallTitle: {

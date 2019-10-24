@@ -16,10 +16,6 @@ import CardFooter from '../../components/shared/Card/CardFooter.jsx'
 
 import styles from '../../components/jss/maritim/views/landingPageSections/teamStyle.jsx'
 
-import team1 from '../../images/faces/avatar.jpg'
-import team2 from '../../images/faces/christian.jpg'
-import team3 from '../../images/faces/kendall.jpg'
-
 const useStyles = makeStyles(styles)
 
 export default function TeamSection() {
@@ -177,7 +173,7 @@ export default function TeamSection() {
                                 className={classes.itemGrid}
                             >
                                 <img
-                                    src="https://pbs.twimg.com/profile_images/961287979783241733/aFuLRGk-_400x400.jpg"
+                                    src="https://maritimmuda.id/upload/user/24/foto.jpg"
                                     alt="..."
                                     className={imageClasses}
                                 />
