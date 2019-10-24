@@ -125,14 +125,6 @@ const ProductDetail = ({ classes }) => {
                                     />
                                 </div>
                             )}
-                            {product.abstract_file && (
-                                <div>
-                                    <img
-                                        src={product.abstract_file}
-                                        alt="Third slide"
-                                    />
-                                </div>
-                            )}
                         </Slider>
                     </GridItem>
                     <GridItem
@@ -183,6 +175,15 @@ const ProductDetail = ({ classes }) => {
                                     >
                                         Contact now {product.phone}
                                     </Button>
+                                    {product.abstract_file && (
+                                        <a
+                                            className={classes.attachment}
+                                            href={product.abstract_file}
+                                            download
+                                        >
+                                            Unduh dokumen
+                                        </a>
+                                    )}
                                 </CardBody>
                             </Card>
                             <Card className={classes.cardSecondary}>

@@ -21,10 +21,9 @@ const productDetailStyle = {
         width: '100%',
     },
     imageDetail: {
-        boxShadow: '0 2px 8px 0 grey',
         '& img': {
-            maxWidth: '35rem',
-            maxHeight: '25rem',
+            width: '100%',
+            height: 'auto',
         },
         '@media (max-width: 425px)': {
             margin: '1.5rem 0',
@@ -55,6 +54,7 @@ const productDetailStyle = {
     relatedContainer: {
         '& img': {
             margin: 'auto',
+            height: '12rem',
         },
         margin: 'auto',
     },
