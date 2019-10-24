@@ -13,7 +13,7 @@ import { navigate, Link } from 'gatsby'
 // @material-ui/core components
 import withStyles from '@material-ui/core/styles/withStyles'
 import GridContainer from '../../components/shared/Grid/GridContainer.jsx'
-import Image from '../../components/shared/Image/Image'
+import Image from '../../components/shared/Image/image'
 import GridItem from '../../components/shared/Grid/GridItem.jsx'
 import Layout from '../../components/layout/layout.js'
 import SEO from '../../components/layout/seo.js'
