@@ -37,6 +37,7 @@ const CategoryStep = ({ classes, innovation, setInnovation }) => {
                                 new_innovation.category = value
                                 setInnovation(new_innovation)
                                 console.log(value)
+                                console.log('test')
                             },
                             menuItem: [
                                 {
