@@ -2,6 +2,7 @@ import {
     container,
     grayColor,
     primaryColor,
+    secondaryColor,
     infoColor,
 } from '../../maritim.jsx'
 import customCheckboxRadioSwitch from '../customCheckboxRadioSwitch.jsx'
@@ -24,6 +25,7 @@ const productDetailStyle = {
         '& img': {
             width: '100%',
             height: 'auto',
+            maxHeight: '42rem',
         },
         '@media (max-width: 425px)': {
             margin: '1.5rem 0',
@@ -59,14 +61,24 @@ const productDetailStyle = {
         margin: 'auto',
     },
     contactButton: {
-        margin: 'auto',
+        margin: '1rem auto',
         width: '100%',
     },
     attachment: {
         margin: 'auto',
         width: '100%',
+        display: 'block',
+        color: 'white',
+        textAlign: 'center',
         padding: '1rem',
-        marginTop: '1rem',
+        fontSize: '1.2rem',
+        background: secondaryColor,
+        transition: 'all 0.2s',
+        '&:hover': {
+            color: 'white',
+            boxShadow:
+                '0 14px 26px -12px rgba(156, 39, 176, 0.42), 0 4px 23px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(156, 39, 176, 0.2)',
+        },
     },
     pageHeader: {
         width: '100%',
@@ -124,6 +136,9 @@ const productDetailStyle = {
     },
     relatedPostWrapper: {
         padding: '0 0.5rem',
+    },
+    circularProgress: {
+        margin: 'auto',
     },
 }
 

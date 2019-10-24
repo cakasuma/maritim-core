@@ -32,6 +32,7 @@ function Footer({ ...props }) {
                                 href="https://www.maritimmuda.id"
                                 className={classes.block}
                                 target="_blank"
+                                rel="noopener noreferrer"
                             >
                                 Warung inovasi
                             </a>
@@ -49,6 +50,7 @@ function Footer({ ...props }) {
                         href="https://www.maritimmuda.id"
                         className={aClasses}
                         target="_blank"
+                        rel="noopener noreferrer"
                     >
                         Maritim Muda Nusantara
                     </a>{' '}

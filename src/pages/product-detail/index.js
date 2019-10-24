@@ -3,6 +3,7 @@ import React from 'react'
 import { navigate } from 'gatsby'
 // @material-ui/core components
 import withStyles from '@material-ui/core/styles/withStyles'
+import CircularProgress from '@material-ui/core/CircularProgress'
 import GridContainer from '../../components/shared/Grid/GridContainer.jsx'
 import GridItem from '../../components/shared/Grid/GridItem.jsx'
 import Slider from 'react-slick'
@@ -15,7 +16,6 @@ import Card from '../../components/shared/Card/Card.jsx'
 import CardBody from '../../components/shared/Card/CardBody.jsx'
 import Primary from '../../components/shared/Typography/Primary.jsx'
 import NavPills from '../../components/shared/NavPills/NavPills.jsx'
-import { Link } from 'gatsby'
 import Badge from '../../components/shared/Badge/Badge.jsx'
 
 import Layout from '../../components/layout/layout.js'
@@ -115,7 +115,17 @@ const ProductDetail = ({ classes }) => {
                             {...settings}
                         >
                             <div>
-                                <img src={product.image_1} alt="First slide" />
+                                {product.image_1 ? (
+                                    <img
+                                        src={product.image_1}
+                                        alt="First slide"
+                                    />
+                                ) : (
+                                    <CircularProgress
+                                        className={classes.circularProgress}
+                                        color="secondary"
+                                    />
+                                )}
                             </div>
                             {product.image_2 && (
                                 <div>
