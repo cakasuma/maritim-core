@@ -62,6 +62,12 @@ const productDetailStyle = {
         margin: 'auto',
         width: '100%',
     },
+    attachment: {
+        margin: 'auto',
+        width: '100%',
+        padding: '1rem',
+        marginTop: '1rem',
+    },
     pageHeader: {
         width: '100%',
         maxHeight: '15rem',
