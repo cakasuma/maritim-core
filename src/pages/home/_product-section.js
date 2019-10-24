@@ -25,7 +25,6 @@ const ProductSection = ({ classes }) => {
         if (!firebase) {
             return
         }
-        console.log('1')
 
         const db = firebase.firestore()
         const query = db
@@ -51,13 +50,9 @@ const ProductSection = ({ classes }) => {
                     if (user.exists) {
                         productDoc.data.innovator = user.data().name
                         productsSnapshot.push(productDoc)
-                        console.log(productDoc)
                     }
                     ctr++
-                    console.log(snapshots.docs.length)
-                    console.log(ctr)
                     if (snapshots.docs.length === ctr) {
-                        console.log('hi')
                         resolve()
                     }
                 })

@@ -29,6 +29,10 @@ import SEO from '../../components/layout/seo.js'
 const Wrapper = styled.div`
     margin-left: 15px;
     margin-right: 15px;
+
+    @media screen and (max-width: 420px) {
+        text-align: center;
+    }
 `
 
 const innovationCategory = [
@@ -203,12 +207,12 @@ const ProductsPage = ({ classes }) => {
                 <GridContainer className={classes.container}>
                     <div className={classes.headerWrapper}>
                         <h1>Semua Inovasi</h1>
-                        <h2>Pilih inovasi inovasi menarik berkut</h2>
+                        <h2>Pilih inovasi menarik berkut</h2>
                     </div>
                 </GridContainer>
             </div>
             <GridContainer className={classes.container}>
-                <GridItem xs={12} sm={6} md={3} className={classes.filterList}>
+                <GridItem xs={12} sm={12} md={3} className={classes.filterList}>
                     <div className={classes.filterWrapper}>
                         <Card className={classes.card}>
                             <div className={classes.cardHeader}>
@@ -382,22 +386,22 @@ const ProductsPage = ({ classes }) => {
                                             >
                                                 <h6>{product.data.category}</h6>
                                             </div>
-                                            <h4 className={classes.postTitle}>
+                                            <h5>
                                                 <Link
                                                     to={`/product-detail?pid=${product.id}`}
                                                     className={
-                                                        classes.postImageWrapper
+                                                        classes.postTitle
                                                     }
                                                 >
                                                     {product.data.title}
                                                 </Link>
-                                            </h4>
+                                            </h5>
                                             <p className={classes.postExplain}>
                                                 {product.data.description}
                                                 <Link
                                                     to={`/product-detail?pid=${product.id}`}
                                                     className={
-                                                        classes.postImageWrapper
+                                                        classes.postReadMore
                                                     }
                                                 >
                                                     ...Read more

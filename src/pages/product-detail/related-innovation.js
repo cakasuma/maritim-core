@@ -121,14 +121,14 @@ const RelatedInnovation = ({ classes, category, title }) => {
                                     <div className={classes.postCategory}>
                                         <h6>{product.data.category}</h6>
                                     </div>
-                                    <h4 className={classes.postTitle}>
+                                    <h5 className={classes.postTitle}>
                                         <a
                                             href={`/product-detail/?pid=${product.id}`}
                                             className={classes.postImageWrapper}
                                         >
                                             {product.data.title}
                                         </a>
-                                    </h4>
+                                    </h5>
                                     <p className={classes.postExplain}>
                                         {product.data.description}
                                         <a

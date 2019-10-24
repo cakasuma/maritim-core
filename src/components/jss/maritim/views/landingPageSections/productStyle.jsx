@@ -1,20 +1,3 @@
-/*!
-
-=========================================================
-* Material Kit React - v1.7.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/material-kit-react
-* Copyright 2019 Creative Tim (https://www.creative-tim.com)
-* Licensed under MIT (https://github.com/creativetimofficial/material-kit-react/blob/master/LICENSE.md)
-
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-*/
 import { title } from '../../../maritim.jsx'
 
 const productStyle = {
@@ -59,7 +42,7 @@ const productStyle = {
     },
     cardImage: {
         width: '17rem',
-        height: '16rem',
+        height: '14rem',
         boxShadow:
             '0 5px 15px -8px rgba(0, 0, 0, 0.24), 0 8px 10px -5px rgba(0, 0, 0, 0.2)',
         borderRadius: '6px',

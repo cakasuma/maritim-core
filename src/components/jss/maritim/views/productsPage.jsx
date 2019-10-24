@@ -3,6 +3,7 @@ import {
     grayColor,
     primaryColor,
     secondaryColor,
+    infoColor,
 } from '../../maritim.jsx'
 import customCheckboxRadioSwitch from '../customCheckboxRadioSwitch.jsx'
 
@@ -48,15 +49,11 @@ const productsPageStyle = {
         padding: '1rem',
         fontSize: '1.1rem',
     },
-    filterList: {
-        '@media (max-width: 768px)': {
-            display: 'none',
-        },
-    },
+    filterList: {},
     ...customCheckboxRadioSwitch,
     postDescription: {},
     postCategory: {
-        color: primaryColor,
+        color: infoColor,
     },
     postTitle: {
         color: '#3C4858',
@@ -73,6 +70,7 @@ const productsPageStyle = {
     },
     postImage: {
         maxWidth: '100%',
+        width: '17rem',
         height: '12rem',
         boxShadow:
             '0 5px 15px -8px rgba(0, 0, 0, 0.24), 0 8px 10px -5px rgba(0, 0, 0, 0.2)',
@@ -82,6 +80,7 @@ const productsPageStyle = {
     },
     postImageWrapper: {
         display: 'inline-block',
+        color: '#3C4858',
     },
     postWrapper: {
         paddingBottom: '20px',
