@@ -29,6 +29,7 @@ const ProductSection = ({ classes }) => {
         const db = firebase.firestore()
         const query = db
             .collection('innovation')
+            .where('approved', '==', true)
             .orderBy('viewers')
             .limit(3)
 

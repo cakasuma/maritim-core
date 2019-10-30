@@ -92,7 +92,7 @@ const ProductsPage = ({ classes }) => {
         console.log('1')
 
         const db = firebase.firestore()
-        const query = db.collection('innovation')
+        const query = db.collection('innovation').where('approved', '==', true)
 
         query.get().then(async snapshots => {
             const productsSnapshot = []

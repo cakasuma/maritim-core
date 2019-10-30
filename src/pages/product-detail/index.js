@@ -230,7 +230,7 @@ const ProductDetail = ({ classes }) => {
                                         tabIcon: Dashboard,
                                         tabContent: (
                                             <span>
-                                                <p>{product.description}</p>
+                                                <p>{product.content}</p>
                                             </span>
                                         ),
                                     },
