@@ -44,7 +44,6 @@ const DetailStep = ({ classes, setInnovation, innovation }) => {
                         validationSchema={validationSchema}
                     >
                         {({
-                            values,
                             errors,
                             touched,
                             handleSubmit,
@@ -133,7 +132,7 @@ const DetailStep = ({ classes, setInnovation, innovation }) => {
                                     </GridItem>
                                     <GridItem xs={12} sm={12} md={6}>
                                         <CustomInput
-                                            labelText="Deskripsi"
+                                            labelText="Deskripsi singkat"
                                             id="description"
                                             error={
                                                 errors.description &&
