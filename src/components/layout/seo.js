@@ -28,7 +28,7 @@ function SEO({ description, lang, meta, title }) {
 
     useEffect(() => {
         console.log('page clicked')
-        analytics.page({
+        analytics.page(title, {
             title: title,
             description: metaDescription,
             url: window.location.href,
