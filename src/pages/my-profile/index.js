@@ -4,6 +4,7 @@ import classNames from 'classnames'
 import { navigate } from 'gatsby'
 // @material-ui/core components
 import { makeStyles } from '@material-ui/core/styles'
+import SEO from '../../components/layout/seo.js'
 // @material-ui/icons
 
 import { FirebaseContext } from 'gatsby-plugin-firebase'
@@ -55,6 +56,7 @@ export default function ProfilePage(props) {
 
     return (
         <Layout>
+            <SEO title="My profile" />
             <Parallax
                 small
                 filter

@@ -81,7 +81,7 @@ const SubmitIdea = ({ classes }) => {
     }, [firebase])
     return (
         <Layout>
-            <SEO title="Home" />
+            <SEO title="Edit ideas" />
             <div>
                 <Parallax
                     className={classes.parallax}

@@ -23,7 +23,7 @@ import OurTeamSection from './_our-team'
 
 const IndexPage = ({ classes }) => (
     <Layout>
-        <SEO title="Home" />
+        <SEO title="About us" />
         <div>
             <Parallax
                 filter

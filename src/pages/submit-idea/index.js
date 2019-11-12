@@ -177,7 +177,7 @@ const SubmitIdea = ({ classes }) => {
     }
     return (
         <Layout>
-            <SEO title="Home" />
+            <SEO title="Submit idea" />
             <div>
                 <Parallax
                     className={classes.parallax}

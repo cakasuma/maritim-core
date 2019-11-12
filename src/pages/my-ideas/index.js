@@ -59,7 +59,7 @@ const MyIdeas = ({ classes }) => {
     }, [firebase])
     return (
         <Layout>
-            <SEO title="Home" />
+            <SEO title="My ideas" />
             <div>
                 <Parallax
                     className={classes.parallax}
