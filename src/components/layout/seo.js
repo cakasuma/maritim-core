@@ -34,6 +34,7 @@ function SEO({ description, lang, meta, title }) {
             url: window.location.href,
             path: window.location.pathname,
             referrer: window.location.origin,
+            page: title,
         })
     }, [])
 
