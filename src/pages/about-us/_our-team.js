@@ -45,7 +45,7 @@ export default function TeamSection() {
                                 />
                             </GridItem>
                             <h4 className={classes.cardTitle}>
-                                Kaisar
+                                Kaisar Akhir
                                 <br />
                                 <small className={classes.smallTitle}>
                                     CEO Warung inovasi
@@ -126,7 +126,7 @@ export default function TeamSection() {
                                 />
                             </GridItem>
                             <h4 className={classes.cardTitle}>
-                                Amam
+                                Mustofa Ghaleb Amami
                                 <br />
                                 <small className={classes.smallTitle}>
                                     Developer
