@@ -26,18 +26,6 @@ function SEO({ description, lang, meta, title }) {
     )
     const metaDescription = description || site.siteMetadata.description
 
-    useEffect(() => {
-        console.log('page clicked')
-        analytics.page(title, {
-            title: title,
-            description: metaDescription,
-            url: window.location.href,
-            path: window.location.pathname,
-            referrer: window.location.origin,
-            page: title,
-        })
-    }, [])
-
     return (
         <Helmet
             htmlAttributes={{
